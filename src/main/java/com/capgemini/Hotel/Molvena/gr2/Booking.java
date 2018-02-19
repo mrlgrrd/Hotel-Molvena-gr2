@@ -1,5 +1,6 @@
 package com.capgemini.Hotel.Molvena.gr2;
 
+import com.capgemini.Hotel.Molvena.gr2.person.Employee;
 import com.capgemini.Hotel.Molvena.gr2.person.Guest;
 
 
