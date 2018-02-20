@@ -46,24 +46,12 @@ public class Room {
 
     }
 
-    /**
-     * this method lets you modify the properties of the room
-     *
-     * @param number    the room number
-     * @param Eroomtype the room type
-     */
-    public void changeRoom(int number, Enum<ERoomType> Eroomtype) {
-        this.roomType = Eroomtype;
-        this.number = number;
 
-    }
 
     /**
-     * this method removes a room from the system
+     * getters & setters
+     * @return value
      */
-    public void removeRoom() {
-
-    }
 
     public Enum<ERoomType> getRoomType() {
         return roomType;
