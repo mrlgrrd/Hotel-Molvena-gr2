@@ -6,6 +6,10 @@ import com.capgemini.Hotel.Molvena.gr2.person.Guest;
 
 import java.util.Date;
 
+/**
+ * POJO
+ */
+
 public class Booking {
 
     /**
@@ -54,22 +58,8 @@ public class Booking {
     }
 
     /**
-     * methods
+     * default constructor
      */
-    public void determineNightsOfStay(){}
-
-    public void getPrice(){}
-
-    public void checkRoomSize(){}
-
-    public void makeBooking(){}
-
-    public void cancelBooking(){}
-
-    public void checkIfPaid(){}
-
-    public void pay(){}
-
-
-
+    public Booking() {
+    }
 }

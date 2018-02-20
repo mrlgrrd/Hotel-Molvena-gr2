@@ -37,18 +37,11 @@ public class Employee extends Person {
     }
 
 
-    private ArrayList<Room> rooms = new ArrayList<Room>();
 
 
-    public void initializeRooms() {
 
-        Room room = new Room(ERoomType.STANDARD, 1);
-        this.rooms.add(room);
 
-    }
 
-    public ArrayList<Room> getRooms() {
-        return rooms;
-    }
+
 
 }
