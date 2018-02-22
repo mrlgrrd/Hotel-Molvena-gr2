@@ -18,20 +18,21 @@ public class RoomRepository {
      * constructor generates the first rooms
      */
     public RoomRepository() {
+        this.rooms = new ArrayList<>();
         Room room1 = new Room(ERoomType.STANDARD, 1);
         Room room2 = new Room(ERoomType.STANDARD, 2);
         Room room3 = new Room(ERoomType.DELUXE, 3);
         Room room4 = new Room(ERoomType.DELUXE, 4);
         Room room5 = new Room(ERoomType.HONEYMOON, 5);
-        rooms.add(room1);
-        rooms.add(room2);
-        rooms.add(room3);
-        rooms.add(room4);
-        rooms.add(room5);
+        this.rooms.add(room1);
+        this.rooms.add(room2);
+        this.rooms.add(room3);
+        this.rooms.add(room4);
+        this.rooms.add(room5);
     }
 
     /**
-     * save a new room to the
+     * save a new room to the repository
      */
     public Room saveRoom(Room room) {
         this.rooms.add(room);
