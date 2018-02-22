@@ -13,12 +13,13 @@ public class BabyBed {
     private int inRoomNr;
 
     /**
-     * constructor
+     * constructors
      */
     public BabyBed() {
         this.clean = true;
         this.inUse = false;
     }
+
 
     /**
      * this method assigns a babybed to a room
