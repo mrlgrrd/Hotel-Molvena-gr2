@@ -6,12 +6,12 @@ import com.capgemini.Hotel.Molvena.gr2.Room;
 import com.capgemini.Hotel.Molvena.gr2.person.Guest;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.capgemini.Hotel.Molvena.gr2.repositories.GuestRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/controller/")
@@ -78,12 +78,23 @@ public class Controller {
         return rooms;
     }
 
+    /**
+     *
+     * @param guestToSave add Guest to guest list
+     */
 
+    @Autowired
+    private GuestRepository guestRepository;
 
-    @GetMapping("/api/addGuest")
+    @RequestMapping(value = "addguest",method = RequestMethod.POST)
     public void addGuest(@RequestParam Guest guestToSave){
+        guestRepository.saveGuest(guestToSave);
 
-        //return "Hello there " + name;
+    }
+
+    @RequestMapping(value = "allguests", method = RequestMethod.GET)
+    public List<Guest> indexGuest(){
+        return guestRepository.getGuests();
     }
 
 
