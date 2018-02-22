@@ -33,14 +33,6 @@ public class Guest extends Person {
     /**
      * Constructors
      */
-    public Guest(String address, String zipCode, String city, String country, int phone, String email) {
-        this.address = address;
-        this.zipCode = zipCode;
-        this.city = city;
-        this.country = country;
-        this.phone = phone;
-        this.email = email;
-    }
 
     public Guest() {
     }
