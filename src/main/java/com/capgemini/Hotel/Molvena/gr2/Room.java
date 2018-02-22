@@ -1,12 +1,14 @@
 package com.capgemini.Hotel.Molvena.gr2;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import java.util.ArrayList;
 
+@RequestMapping("/api/person/")
 public class Room {
     /**
      * properties
      */
-
     private Enum<ERoomType> roomType;
 
     private boolean occupied;
@@ -36,17 +38,9 @@ public class Room {
         this.occupied = false;
     }
 
+    // empty constructor
     public Room() {
     }
-
-    /**
-     * this method checks which rooms are available in a given period
-     */
-    public void checkIfAvailable() {
-
-    }
-
-
 
     /**
      * getters & setters

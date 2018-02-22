@@ -7,12 +7,14 @@ import com.capgemini.Hotel.Molvena.gr2.person.Guest;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 
 @RestController
+@RequestMapping("/api/controller/")
 public class Controller {
 
     private ArrayList<Room> rooms = new ArrayList<Room>();
@@ -26,7 +28,7 @@ public class Controller {
      *
      * @return room
      */
-    @GetMapping("/api/initializerooms")
+    @RequestMapping("initializerooms")
     public ArrayList<Room> initializeRooms() {
 
         Room room1 = new Room(ERoomType.STANDARD, 1);
@@ -50,7 +52,7 @@ public class Controller {
      * @param number    room number
      * @return list of rooms
      */
-    @GetMapping("/api/addroom")
+    @RequestMapping("addroom")
     public ArrayList<Room> addRoom(Enum<ERoomType> ERoomType, int number) {
         rooms.add(new Room(ERoomType, number));
         return rooms;
@@ -63,12 +65,17 @@ public class Controller {
      * @param ERoomType room type
      * @return room
      */
-    @GetMapping("/api/changeroom")
+    @RequestMapping("changeroom")
     public Room changeRoom(int number, Enum<ERoomType> ERoomType) {
         if (room.getNumber() == number) {
             this.room.setRoomType(ERoomType);
         }
         return room;
+    }
+
+    @RequestMapping("showrooms")
+    public ArrayList<Room> showRooms(){
+        return rooms;
     }
 
 
@@ -124,7 +131,7 @@ public class Controller {
      *
      * @param number roomnumber
      */
-    @GetMapping("/api/deleteroom")
+    @RequestMapping("deleteroom")
     public void deleteRoom(int number) {
         if (room.getNumber() == number) {
             rooms.remove(room);
