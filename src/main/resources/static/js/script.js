@@ -1,6 +1,6 @@
-$.get("/api/initializerooms", function (result) {
+$.get("/api/initializeRooms", function (result) {
 
-	console.log("number:", result.number);
-	console.log("type:", result.roomType);
+	console.log("number: ", result.number);
+	console.log("type: ", result.roomType);
 
 });
