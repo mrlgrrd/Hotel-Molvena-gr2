@@ -54,14 +54,15 @@ public class Controller {
     @Autowired
     private GuestRepository guestRepository;
 
-    @RequestMapping(value = "addguest",method = RequestMethod.POST)
-    public void addGuest(@RequestParam Guest guestToSave){
-        guestRepository.saveGuest(guestToSave);
+    @RequestMapping(value = "newguest",method = RequestMethod.POST)
+    public void newguest(@RequestBody Guest guestToSave){
+        guestRepository.newGuest(guestToSave);
 
     }
 
     @RequestMapping(value = "allguests", method = RequestMethod.GET)
     public List<Guest> indexGuest() {
+
         return guestRepository.getGuests();
     }
 
@@ -83,7 +84,7 @@ public class Controller {
     public void deleteRoom(int number) {
         roomRepository.deleteRoom(number);
     }
-    
+
 
     /**
      * getters & setters

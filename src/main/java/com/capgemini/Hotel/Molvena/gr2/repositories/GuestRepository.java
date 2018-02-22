@@ -22,7 +22,7 @@ public class GuestRepository {
         this.guests = guests;
     }
 
-    public Guest saveGuest(Guest guest){
+    public Guest newGuest(Guest guest){
         this.guests.add(guest);
         return guest;
     }
