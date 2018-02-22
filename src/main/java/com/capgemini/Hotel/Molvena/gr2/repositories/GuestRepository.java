@@ -18,11 +18,11 @@ public class GuestRepository {
         return this.guests;
     }
 
-    public void setPersons(List<Guest> guests){
+    public void saveGuest(List<Guest> guests){
         this.guests = guests;
     }
 
-    public Guest saveGuest(Guest guest){
+    public Guest newGuest(Guest guest){
         this.guests.add(guest);
         return guest;
     }

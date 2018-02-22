@@ -38,13 +38,26 @@ function postData(){
 
     //Communicate with Java
     $.ajax({
-        url : "http://localhost:8080/api/controller/addguest",
+        url : "http://localhost:8080/api/controller/newguest",
         type : "post",
         data : newGuest,
         contentType: "application/json",
         success : function(data){
-            console.log("success post!")
 
+            //Geef een bevestiging dat de gast is toegevoegd
+            $("#confirmation").text("You've successfully added "+inputFirstName+" "+inputLastName)
+
+            //Maak de velden leeg
+            $("#fname").val("");
+            $("#lname").val("");
+            $("#address").val("");
+            $("#zipcode").val("");
+            $("#city").val("");
+            $("#country").val("");
+            $("#phone").val("");
+            $("#email").val("");
+            $("#passportnr").val("");
+            $("#nationality").val("");
 
         }
     })
