@@ -22,6 +22,9 @@ public class Controller {
     @Autowired
     private RoomRepository roomRepository;
 
+    public Controller() {
+    }
+
     /**
      * add a room to the arraylist of rooms
      */
@@ -46,7 +49,7 @@ public class Controller {
      * @param ERoomType room type
      */
     @RequestMapping(value = "updateroom", method = RequestMethod.POST)
-    public void updateRoom(@RequestBody int number, @RequestBody Enum<ERoomType> ERoomType) {
+    public void updateRoom(@RequestBody int number, @RequestBody ERoomType ERoomType) {
         roomRepository.updateRoom(number, ERoomType);
     }
 

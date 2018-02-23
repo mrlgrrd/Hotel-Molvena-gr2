@@ -9,7 +9,7 @@ public class Room {
     /**
      * properties
      */
-    private Enum<ERoomType> roomType;
+    private ERoomType roomType;
 
     private boolean occupied;
 
@@ -23,7 +23,7 @@ public class Room {
 
     private int number;
 
-    private Enum<ERoomOccupiedBy> roomOccupiedBy;
+    private ERoomOccupiedBy roomOccupiedBy;
 
     /**
      * constructor
@@ -31,7 +31,7 @@ public class Room {
      * @param roomType room type
      * @param number   room nr
      */
-    public Room(Enum<ERoomType> roomType, int number) {
+    public Room(ERoomType roomType, int number) {
         this.roomType = roomType;
         this.number = number;
         this.isClean = true;
@@ -47,11 +47,11 @@ public class Room {
      * @return value
      */
 
-    public Enum<ERoomType> getRoomType() {
+    public ERoomType getRoomType() {
         return roomType;
     }
 
-    public void setRoomType(Enum<ERoomType> roomType) {
+    public void setRoomType(ERoomType roomType) {
         this.roomType = roomType;
     }
 
@@ -103,11 +103,11 @@ public class Room {
         this.number = number;
     }
 
-    public Enum<ERoomOccupiedBy> getRoomOccupiedBy() {
+    public ERoomOccupiedBy getRoomOccupiedBy() {
         return roomOccupiedBy;
     }
 
-    public void setRoomOccupiedBy(Enum<ERoomOccupiedBy> roomOccupiedBy) {
+    public void setRoomOccupiedBy(ERoomOccupiedBy roomOccupiedBy) {
         this.roomOccupiedBy = roomOccupiedBy;
     }
 }

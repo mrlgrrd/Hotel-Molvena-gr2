@@ -45,7 +45,7 @@ public class RoomRepository {
      * @param roomNumber roomnumer of the room
      * @param roomType   new roomtype
      */
-    public void updateRoom(int roomNumber, Enum<ERoomType> roomType) {
+    public void updateRoom(int roomNumber, ERoomType roomType) {
         for (Room room : this.rooms) {
             if (room.getNumber() == roomNumber) {
                 room.setRoomType(roomType);

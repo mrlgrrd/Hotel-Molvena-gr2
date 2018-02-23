@@ -1,7 +1,7 @@
 function addRoom(){
     // get values from the post button form
-    var roomNumber = $("#roomNumber").val();
-    var EroomType = $("#roomType").val();
+    var roomNumber = Number($("#roomNumber").val());
+    var EroomType = Number($("#roomType").val());
 
     var newRoomObject = {
         number : roomNumber,
