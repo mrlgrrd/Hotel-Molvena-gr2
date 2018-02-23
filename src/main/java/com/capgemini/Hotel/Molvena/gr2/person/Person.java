@@ -3,6 +3,7 @@ package com.capgemini.Hotel.Molvena.gr2.person;
 public class Person {
 
     private String lastName;
+    private String insertion;
     private String firstName;
 
     public Person() {
@@ -22,5 +23,13 @@ public class Person {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getInsertion() {
+        return insertion;
+    }
+
+    public void setInsertion(String insertion) {
+        this.insertion = insertion;
     }
 }
