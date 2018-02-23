@@ -73,6 +73,7 @@ public class Controller {
 
     @RequestMapping(value = "newguest", method = RequestMethod.POST)
     public void newguest(@RequestBody Guest guestToSave) {
+
         guestRepository.newGuest(guestToSave);
 
 

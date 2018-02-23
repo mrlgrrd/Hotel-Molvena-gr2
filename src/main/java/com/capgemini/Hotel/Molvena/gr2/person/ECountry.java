@@ -1,5 +1,5 @@
 package com.capgemini.Hotel.Molvena.gr2.person;
 
-public enum Country {
+public enum ECountry {
 
 }

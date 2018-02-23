@@ -8,6 +8,7 @@ function postData(){
 
     //Get values from input texts
     var inputFirstName = $("#fname").val();
+    var inputPreposition = $("#preposition").val();
     var inputLastName = $("#lname").val();
     var inputAddress = $("#address").val();
     var inputZipcode = $("#zipcode").val();
@@ -21,6 +22,7 @@ function postData(){
     //Put in a object
     var newGuestObject = {
         firstName : inputFirstName,
+        preposition : inputPreposition,
         lastName : inputLastName,
         address : inputAddress,
         zipCode : inputZipcode,
@@ -49,6 +51,7 @@ function postData(){
 
             //Maak de velden leeg
             $("#fname").val("");
+            $("#preposition").val("");
             $("#lname").val("");
             $("#address").val("");
             $("#zipcode").val("");
