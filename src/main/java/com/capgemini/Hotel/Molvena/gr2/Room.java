@@ -17,9 +17,9 @@ public class Room {
 
     private BabyBed babybed;
 
-    boolean isClean;
+    private boolean isClean;
 
-    ArrayList<Booking> roomBookings = new ArrayList<Booking>();
+   private ArrayList<Booking> roomBookings = new ArrayList<Booking>();
 
     private int number;
 
