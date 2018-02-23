@@ -59,7 +59,7 @@ public class Controller {
      * @param number roomnumber
      */
     @RequestMapping(value = "deleteroom", method = RequestMethod.DELETE)
-    public void deleteRoom(int number) {
+    public void deleteRoom(@RequestParam int number) {
         roomRepository.deleteRoom(number);
     }
 

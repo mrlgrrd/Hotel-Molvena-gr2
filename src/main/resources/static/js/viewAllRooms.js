@@ -14,7 +14,7 @@ function getRooms(){
             var roomList = "";
 
             $.each(data, function(index, current){
-                var roomString = "<tr> <th>" + current.number + "</th> <th>  " + current.roomType + "</th> <th> " + current.occupied + "</th> <th> " + current.isClean + "</th></tr>";
+                var roomString = "<tr> <th>" + current.number + "</th> <th>  " + current.roomType + "</th> <th> " + current.occupied + "</th> <th> " + current.isClean + "</th><th><button type='button' class='btn btn-danger' onclick='javascript:deleteRoom(" +current.number+")'>Delete Room</button></th></tr>";
 
                 roomList = roomList + roomString;
 
@@ -25,5 +25,22 @@ function getRooms(){
     });
     });
 
-}
+};
+
 $(document).ready(getRooms);
+
+function deleteRoom(nr){
+console.log(nr);
+    $.ajax({
+            // waar moet hij de request op uitvoeren
+            url : "http://localhost:8080/api/controller/deleteroom?number=" + nr,
+            // type actie
+            type : "delete",
+            // als de actie lukt, voer deze functie uit
+            success: function(nr){
+            // methode die het record uit de repository verwijdert
+            
+            }
+        });
+
+}
