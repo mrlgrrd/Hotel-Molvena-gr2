@@ -37,6 +37,12 @@ public class Guest extends Person {
     public Guest() {
     }
 
+    public Guest(String country, String city) {
+        this.country = country;
+        this.city = city;
+
+    }
+
     /**
      * Getters and setters
      */
