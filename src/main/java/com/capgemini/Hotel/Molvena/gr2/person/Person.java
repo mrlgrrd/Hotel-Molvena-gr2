@@ -3,7 +3,7 @@ package com.capgemini.Hotel.Molvena.gr2.person;
 public class Person {
 
     private String lastName;
-    private String insertion;
+    private String preposition;
     private String firstName;
 
     public Person() {
@@ -25,11 +25,11 @@ public class Person {
         this.firstName = firstName;
     }
 
-    public String getInsertion() {
-        return insertion;
+    public String getPreposition() {
+        return preposition;
     }
 
-    public void setInsertion(String insertion) {
-        this.insertion = insertion;
+    public void setPreposition(String preposition) {
+        this.preposition = preposition;
     }
 }

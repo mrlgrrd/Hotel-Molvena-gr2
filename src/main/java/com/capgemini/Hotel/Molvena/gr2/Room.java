@@ -1,10 +1,10 @@
 package com.capgemini.Hotel.Molvena.gr2;
 
-import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 
-@RequestMapping("/api/person/")
+//@RequestMapping("/api/person/")
 public class Room {
     /**
      * properties

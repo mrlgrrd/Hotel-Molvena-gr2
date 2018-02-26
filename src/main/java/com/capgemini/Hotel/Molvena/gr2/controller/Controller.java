@@ -8,16 +8,14 @@ import com.capgemini.Hotel.Molvena.gr2.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/controller/")
 public class Controller {
 
-    private Room room;
-    private ArrayList<Guest> guests = new ArrayList<Guest>();
-    private Guest guest;
 
     @Autowired
     private RoomRepository roomRepository;
@@ -71,12 +69,15 @@ public class Controller {
     private GuestRepository guestRepository;
 
 
+
     @RequestMapping(value = "newguest", method = RequestMethod.POST)
     public void newguest(@RequestBody Guest guestToSave) {
+
         guestRepository.newGuest(guestToSave);
 
 
     }
+
 
     @RequestMapping(value = "allguests", method = RequestMethod.GET)
     public List<Guest> indexGuest() {
@@ -89,27 +90,7 @@ public class Controller {
      *
      * @return properties
      */
-    public Room getRoom() {
-        return room;
-    }
 
-    public void setRoom(Room room) {
-        this.room = room;
-    }
 
-    public ArrayList<Guest> getGuests() {
-        return guests;
-    }
 
-    public void setGuests(ArrayList<Guest> guests) {
-        this.guests = guests;
-    }
-
-    public Guest getGuest() {
-        return guest;
-    }
-
-    public void setGuest(Guest guest) {
-        this.guest = guest;
-    }
 }
