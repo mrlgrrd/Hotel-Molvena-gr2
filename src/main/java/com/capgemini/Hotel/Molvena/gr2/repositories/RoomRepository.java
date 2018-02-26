@@ -24,6 +24,7 @@ public class RoomRepository {
         Room room3 = new Room(ERoomType.DELUXE, 3);
         Room room4 = new Room(ERoomType.DELUXE, 4);
         Room room5 = new Room(ERoomType.HONEYMOON, 5);
+
         this.rooms.add(room1);
         this.rooms.add(room2);
         this.rooms.add(room3);

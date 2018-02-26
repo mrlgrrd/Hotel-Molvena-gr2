@@ -17,7 +17,7 @@ public class Room {
 
     private BabyBed babybed;
 
-    private boolean isClean;
+    private boolean Clean;
 
    private ArrayList<Booking> roomBookings = new ArrayList<Booking>();
 
@@ -34,7 +34,7 @@ public class Room {
     public Room(ERoomType roomType, int number) {
         this.roomType = roomType;
         this.number = number;
-        this.isClean = true;
+        this.Clean = true;
         this.occupied = false;
     }
 
@@ -79,14 +79,6 @@ public class Room {
         this.babybed = babybed;
     }
 
-    public boolean isClean() {
-        return isClean;
-    }
-
-    public void setClean(boolean clean) {
-        isClean = clean;
-    }
-
     public ArrayList<Booking> getRoomBookings() {
         return roomBookings;
     }
@@ -109,5 +101,13 @@ public class Room {
 
     public void setRoomOccupiedBy(ERoomOccupiedBy roomOccupiedBy) {
         this.roomOccupiedBy = roomOccupiedBy;
+    }
+
+    public boolean isClean() {
+        return Clean;
+    }
+
+    public void setClean(boolean clean) {
+        Clean = clean;
     }
 }
