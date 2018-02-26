@@ -14,8 +14,6 @@ public class GuestRepository {
 
     public GuestRepository(){
         this.guests = new ArrayList<>();
-        Guest guest1 = new Guest("Holland", "Utrecht" );
-        this.guests.add(guest1);
     }
 
 
