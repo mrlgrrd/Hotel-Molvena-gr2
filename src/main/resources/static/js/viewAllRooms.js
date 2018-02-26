@@ -14,7 +14,11 @@ function getRooms(){
             var roomList = "";
 
             $.each(data, function(index, current){
-                var roomString = "<tr> <th>" + current.number + "</th> <th>  " + current.roomType + "</th> <th> " + current.occupied + "</th> <th> " + current.isClean + "</th><th><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateRoomModal' onclick='javascript:updateRoom(" +current.number+")'>Update Room</button></th> <th><button type='button' class='btn btn-danger' onclick='javascript:deleteRoom(" +current.number+")'>Delete Room</button></th></tr>";
+                var roomString = "<tr> <th>" + current.number + "</th> <th>  " + current.roomType + "</th> <th> " +
+                current.occupied + "</th> <th> " + current.isClean +
+                "</th><th><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateRoomModal' onclick='javascript:updateRoom(" +
+                current.number+")'>Update Room</button></th> <th><button type='button' class='btn btn-danger' onclick='javascript:deleteRoom(" +current.number+
+                ")'>Delete Room</button></th></tr>";
 
                 roomList = roomList + roomString;
 

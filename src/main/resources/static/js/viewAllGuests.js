@@ -13,7 +13,11 @@ function getGuests(){
             var guestList = "";
 
             $.each(data, function(index, current){
-                var guestString = "<tr> <th>" + current.firstName + "</th> <th>  " + current.preposition + "</th> <th> " + current.lastName + "</th> <th> " + current.address + "</th> <th> " + current.zipCode + "</th> <th> " + current.city + "</th> <th> " + current.country + "</th> <th> " + current.phone + "</th> <th> " + current.email + "</th> <th> " + current.passportNumber + "</th> <th> " + current.nationality +"</th><th><button type='button' class='btn btn-danger' onclick='javascript:deleteGuest(" +current.passportNumber+")'>Delete Guest</button></th></tr>";
+                var guestString = "<tr> <th>" + current.firstName + "</th> <th>  " + current.preposition + "</th> <th> " +
+                    current.lastName + "</th> <th> " + current.address + "</th> <th> " + current.zipCode + "</th> <th> " +
+                    current.city + "</th> <th> " + current.country + "</th> <th> " + current.phone + "</th> <th> " +
+                    current.email + "</th> <th> " + current.passportNumber + "</th> <th> " + current.nationality +
+                    "</th><th><button type='button' class='btn btn-danger' onclick='javascript:deleteGuest(" +current.passportNumber+")'>Delete Guest</button></th></tr>";
 
                 guestList = guestList + guestString;
 
