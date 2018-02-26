@@ -44,11 +44,11 @@ public class Controller {
      * this method lets you change the properties of the room
      *
      * @param number    room number
-     * @param ERoomType room type
+     * @param RoomType room type
      */
     @RequestMapping(value = "updateroom", method = RequestMethod.POST)
-    public void updateRoom(@RequestBody int number, @RequestBody ERoomType ERoomType) {
-        roomRepository.updateRoom(number, ERoomType);
+    public void updateRoom(@RequestBody Room roomToUpdate) {
+        roomRepository.updateRoom(roomToUpdate);
     }
 
     /**
