@@ -81,6 +81,33 @@
         <tbody id="rooms">
         </tbody>
     </table>
+
+    <!-- Modal -->
+    <div class="modal fade" id="updateRoomModal" tabindex="-1" role="dialog" aria-labelledby="updateRoomModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="RoomModal">Update room</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p> Set the room type to: </p>
+                    <label for="roomType">Room Type (select one):</label>
+                    <select class="form-control" id="roomType">
+                        <option value="2">Standard Suite</option>
+                        <option value="1">Deluxe Suite</option>
+                        <option value="0">Honeymoon Suite</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 
 </main>
