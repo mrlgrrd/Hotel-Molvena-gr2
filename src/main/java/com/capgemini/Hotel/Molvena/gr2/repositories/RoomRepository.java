@@ -41,15 +41,13 @@ public class RoomRepository {
     }
 
     /**
-     * this method updates the roomtype for an existing room
-     *
-     * @param roomNumber roomnumer of the room
-     * @param roomType   new roomtype
+     * update the properties of a room
+     * @param roomToUpdate properties to update the room to
      */
-    public void updateRoom(int roomNumber, ERoomType roomType) {
+    public void updateRoom(Room roomToUpdate) {
         for (Room room : this.rooms) {
-            if (room.getNumber() == roomNumber) {
-                room.setRoomType(roomType);
+            if (room.getNumber() == roomToUpdate.getNumber()) {
+                room.setRoomType(roomToUpdate.getRoomType());
             }
 
         }

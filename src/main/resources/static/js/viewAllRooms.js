@@ -14,11 +14,13 @@ function getRooms(){
             var roomList = "";
 
             $.each(data, function(index, current){
+
                 var roomString = "<tr> <th>" + current.number + "</th> <th>  " + current.roomType + "</th> <th> " +
                 current.occupied + "</th> <th> " + current.isClean +
                 "</th><th><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateRoomModal' onclick='javascript:updateRoom(" +
                 current.number+")'>Update Room</button></th> <th><button type='button' class='btn btn-danger' onclick='javascript:deleteRoom(" +current.number+
                 ")'>Delete Room</button></th></tr>";
+                var roomString = "<tr> <th>" + current.number + "</th> <th>  " + current.roomType + "</th> <th> " + current.occupied + "</th> <th> " + current.isClean + "</th><th><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateRoomModal' onclick='javascript:updateRoom(" +current.number+")' >Update Room</button></th> <th><button type='button' class='btn btn-danger' onclick='javascript:deleteRoom(" +current.number+")'>Delete Room</button></th></tr>";
 
                 roomList = roomList + roomString;
 
@@ -34,8 +36,7 @@ function getRooms(){
 $(document).ready(getRooms);
 
 function deleteRoom(nr){
-console.log(nr);
-    alert("Room " + nr + " has been deleted.");
+
     $.ajax({
             // waar moet hij de request op uitvoeren
             url : "http://localhost:8080/api/controller/deleteroom?number=" + nr,
@@ -44,7 +45,6 @@ console.log(nr);
             // als de actie lukt, voer deze functie uit
             success: function(nr){
                 rooms.deleteRoom(nr);
-
             }
         });
 
@@ -52,11 +52,24 @@ console.log(nr);
 
 function updateRoom(nr){
 
+    var inputRoomType = Number($("#roomType"));
+
+    var newRoom = {
+        number : nr,
+        roomType : inputRoomType
+        };
+
+    var newRoomJson = JSON.stringify(newRoom);
+
     $.ajax({
         url : "http://localhost:8080/api/controller/updateroom?number=" + nr,
         type : "update",
-        success : function(nr){
-        rooms.updateRoom(nr);
+        data : newRoomJson,
+        contentType : "application/json",
+        success : function(data){
+            console.log(newRoomJson);
+
+        rooms.updateRoom(current.number, current.roomType);
         }
 
     });
