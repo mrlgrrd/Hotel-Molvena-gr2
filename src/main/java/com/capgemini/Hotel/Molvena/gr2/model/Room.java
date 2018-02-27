@@ -1,6 +1,8 @@
-package com.capgemini.Hotel.Molvena.gr2;
+package com.capgemini.Hotel.Molvena.gr2.model;
 
 //import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.capgemini.Hotel.Molvena.gr2.model.*;
 
 import java.util.ArrayList;
 

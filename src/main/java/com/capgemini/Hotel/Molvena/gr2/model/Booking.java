@@ -1,4 +1,4 @@
-package com.capgemini.Hotel.Molvena.gr2;
+package com.capgemini.Hotel.Molvena.gr2.model;
 
 import com.capgemini.Hotel.Molvena.gr2.person.Guest;
 

@@ -1,7 +1,6 @@
 package com.capgemini.Hotel.Molvena.gr2.controller;
 
-import com.capgemini.Hotel.Molvena.gr2.ERoomType;
-import com.capgemini.Hotel.Molvena.gr2.Room;
+import com.capgemini.Hotel.Molvena.gr2.model.Room;
 import com.capgemini.Hotel.Molvena.gr2.person.Guest;
 import com.capgemini.Hotel.Molvena.gr2.repositories.GuestRepository;
 import com.capgemini.Hotel.Molvena.gr2.repositories.RoomRepository;
