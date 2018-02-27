@@ -4,7 +4,7 @@ public class BabyBed {
 
     /**
      * properties
-     */
+
 
     private boolean inUse;
 
@@ -12,20 +12,20 @@ public class BabyBed {
 
     private int inRoomNr;
 
-    /**
+    *
      * constructors
-     */
+
     public BabyBed() {
         this.clean = true;
         this.inUse = false;
     }
 
 
-    /**
+    *
      * this method assigns a babybed to a room
      *
      * @param roomNr
-     */
+
     public void assignToRoom(int roomNr) {
         this.inUse = true;
         this.clean = false;
@@ -33,11 +33,11 @@ public class BabyBed {
 
     }
 
-    /**
+    *
      * this method sets the babybed to clean
-     */
+
     public void cleanBabyBed() {
         this.clean = true;
-    }
+    }*/
 
 }

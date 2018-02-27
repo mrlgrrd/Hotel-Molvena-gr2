@@ -15,7 +15,6 @@ import java.util.List;
 @RequestMapping("/api/controller/")
 public class Controller {
 
-
     @Autowired
     private RoomRepository roomRepository;
 
@@ -25,19 +24,19 @@ public class Controller {
     /**
      * add a room to the arraylist of rooms
      */
-    @RequestMapping(value = "addroom", method = RequestMethod.POST)
-    public void addRoom(@RequestBody Room roomToSave) {
-        roomRepository.saveRoom(roomToSave);
-    }
+//    @RequestMapping(value = "addroom", method = RequestMethod.POST)
+//    public void addRoom(@RequestBody Room roomToSave) {
+//        roomRepository.saveRoom(roomToSave);
+//    }
 
     /**
      * this method gets the list of rooms from the repository
      */
-    @RequestMapping(value = "showrooms", method = RequestMethod.GET)
-    public List<Room> showRooms() {
-        return roomRepository.getRooms();
-
-    }
+//    @RequestMapping(value = "showrooms", method = RequestMethod.GET)
+//    public List<Room> showRooms() {
+//        return roomRepository.getRooms();
+//
+//    }
 
     /**
      * this method lets you change the properties of the room
@@ -45,20 +44,20 @@ public class Controller {
      * @param number    room number
      * @param RoomType room type
      */
-    @RequestMapping(value = "updateroom", method = RequestMethod.POST)
-    public void updateRoom(@RequestBody Room roomToUpdate) {
-        roomRepository.updateRoom(roomToUpdate);
-    }
+//    @RequestMapping(value = "updateroom", method = RequestMethod.POST)
+//    public void updateRoom(@RequestBody Room roomToUpdate) {
+//        roomRepository.updateRoom(roomToUpdate);
+//    }
 
     /**
      * delete a room from the array list of rooms
      *
      * @param number roomnumber
      */
-    @RequestMapping(value = "deleteroom", method = RequestMethod.DELETE)
-    public void deleteRoom(@RequestParam int number) {
-        roomRepository.deleteRoom(number);
-    }
+//    @RequestMapping(value = "deleteroom", method = RequestMethod.DELETE)
+//    public void deleteRoom(@RequestParam int number) {
+//        roomRepository.deleteRoom(number);
+//    }
 
     /**
      * @param guestToSave add Guest to guest list

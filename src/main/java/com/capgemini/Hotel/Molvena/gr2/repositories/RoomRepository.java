@@ -2,21 +2,22 @@ package com.capgemini.Hotel.Molvena.gr2.repositories;
 
 import com.capgemini.Hotel.Molvena.gr2.model.ERoomType;
 import com.capgemini.Hotel.Molvena.gr2.model.Room;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class RoomRepository {
+public interface RoomRepository extends CrudRepository<Room, Long>{
 
-    // creation of list of rooms
+    /*// creation of list of rooms
     List<Room> rooms = new ArrayList<>();
 
 
-    /**
+    *//**
      * constructor generates the first rooms
-     */
+     *//*
     public RoomRepository() {
         this.rooms = new ArrayList<>();
         Room room1 = new Room(ERoomType.STANDARD, 1);
@@ -32,18 +33,18 @@ public class RoomRepository {
         this.rooms.add(room5);
     }
 
-    /**
+    *//**
      * save a new room to the repository
-     */
+     *//*
     public Room saveRoom(Room room) {
         this.rooms.add(room);
         return room;
     }
 
-    /**
+    *//**
      * update the properties of a room
      * @param roomToUpdate properties to update the room to
-     */
+     *//*
     public void updateRoom(Room roomToUpdate) {
         for (Room room : this.rooms) {
             if (room.getNumber() == roomToUpdate.getNumber()) {
@@ -54,11 +55,11 @@ public class RoomRepository {
 
     }
 
-    /**
+    *//**
      * this method deletes a room from the repository
      *
      * @param roomNumber # of room to delete
-     */
+     *//*
     public void deleteRoom(int roomNumber) {
         for (Room room : this.rooms) {
             if (room.getNumber() == roomNumber) {
@@ -69,12 +70,12 @@ public class RoomRepository {
 
     }
 
-    /**
+    *//**
      * getter
      *
      * @return list of rooms
-     */
+     *//*
     public List<Room> getRooms() {
         return rooms;
-    }
+    }*/
 }

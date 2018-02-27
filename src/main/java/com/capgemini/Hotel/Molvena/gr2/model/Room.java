@@ -4,28 +4,31 @@ package com.capgemini.Hotel.Molvena.gr2.model;
 
 import com.capgemini.Hotel.Molvena.gr2.model.*;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.ArrayList;
 
 //@RequestMapping("/api/person/")
+@Entity
 public class Room {
     /**
      * properties
      */
-    private ERoomType roomType;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+  //  private ERoomType roomType;
 
     private boolean occupied;
 
-    private Price price;
-
-    private BabyBed babybed;
-
     private boolean Clean;
-
-   private ArrayList<Booking> roomBookings = new ArrayList<Booking>();
 
     private int number;
 
-    private ERoomOccupiedBy roomOccupiedBy;
+   // private ERoomOccupiedBy roomOccupiedBy;
 
     /**
      * constructor
@@ -33,12 +36,12 @@ public class Room {
      * @param roomType room type
      * @param number   room nr
      */
-    public Room(ERoomType roomType, int number) {
+    /*public Room(ERoomType roomType, int number) {
         this.roomType = roomType;
         this.number = number;
         this.Clean = true;
         this.occupied = false;
-    }
+    }*/
 
     // empty constructor
     public Room() {
@@ -46,16 +49,9 @@ public class Room {
 
     /**
      * getters & setters
+     *
      * @return value
      */
-
-    public ERoomType getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(ERoomType roomType) {
-        this.roomType = roomType;
-    }
 
     public boolean isOccupied() {
         return occupied;
@@ -65,28 +61,12 @@ public class Room {
         this.occupied = occupied;
     }
 
-    public Price getPrice() {
-        return price;
+    public boolean isClean() {
+        return Clean;
     }
 
-    public void setPrice(Price price) {
-        this.price = price;
-    }
-
-    public BabyBed getBabybed() {
-        return babybed;
-    }
-
-    public void setBabybed(BabyBed babybed) {
-        this.babybed = babybed;
-    }
-
-    public ArrayList<Booking> getRoomBookings() {
-        return roomBookings;
-    }
-
-    public void setRoomBookings(ArrayList<Booking> roomBookings) {
-        this.roomBookings = roomBookings;
+    public void setClean(boolean clean) {
+        Clean = clean;
     }
 
     public int getNumber() {
@@ -97,19 +77,7 @@ public class Room {
         this.number = number;
     }
 
-    public ERoomOccupiedBy getRoomOccupiedBy() {
-        return roomOccupiedBy;
-    }
-
-    public void setRoomOccupiedBy(ERoomOccupiedBy roomOccupiedBy) {
-        this.roomOccupiedBy = roomOccupiedBy;
-    }
-
-    public boolean isClean() {
-        return Clean;
-    }
-
-    public void setClean(boolean clean) {
-        Clean = clean;
+    public long getId() {
+        return id;
     }
 }
