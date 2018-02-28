@@ -4,6 +4,7 @@ import com.capgemini.Hotel.Molvena.gr2.model.Room;
 import com.capgemini.Hotel.Molvena.gr2.person.Guest;
 import com.capgemini.Hotel.Molvena.gr2.repositories.GuestRepository;
 import com.capgemini.Hotel.Molvena.gr2.repositories.RoomRepository;
+import com.capgemini.Hotel.Molvena.gr2.service.GuestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -64,23 +65,27 @@ public class Controller {
      */
 
     @Autowired
-    private GuestRepository guestRepository;
+    private GuestService guestService;
 
 
 
     @RequestMapping(value = "newguest", method = RequestMethod.POST)
     public void newguest(@RequestBody Guest guestToSave) {
 
-        guestRepository.newGuest(guestToSave);
-
+        guestService.newGuest(guestToSave);
 
     }
 
 
     @RequestMapping(value = "allguests", method = RequestMethod.GET)
-    public List<Guest> indexGuest() {
+    public Iterable<Guest> indexGuest() {
 
-        return guestRepository.getGuests();
+        return guestService.getGuests();
+    }
+
+    @RequestMapping(value = "deleteguest", method = RequestMethod.DELETE)
+    public void deleteguest(){
+
     }
 
     /**
