@@ -17,7 +17,9 @@ function getGuests(){
                     current.lastName + "</th> <th> " + current.address + "</th> <th> " + current.zipCode + "</th> <th> " +
                     current.city + "</th> <th> " + current.country + "</th> <th> " + current.phone + "</th> <th> " +
                     current.email + "</th> <th> " + current.passportNumber + "</th> <th> " + current.nationality +
-                    "</th><th><button type='button' class='btn btn-danger' onclick='javascript:deleteGuest(" +current.passportNumber+")'>Delete Guest</button></th></tr>";
+                    "</th><th><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateRoomModal' onclick='javascript:updateRoom("
+                    +current.number+")'>Update Room</button></th><th><button type='button' class='btn btn-danger' onclick='javascript:deleteGuest("
+                    +current.passportNumber+")'>Delete Guest</button></th></tr>";
 
                 guestList = guestList + guestString;
 
@@ -27,6 +29,24 @@ function getGuests(){
         }
     });
 
+
+}
+
+//Omwerken naar guest
+function deleteRoom(nr){
+console.log(nr);
+    alert("Room " + nr + " has been deleted.");
+    $.ajax({
+            // waar moet hij de request op uitvoeren
+            url : "http://localhost:8080/api/controller/deleteroom?number=" + nr,
+            // type actie
+            type : "delete",
+            // als de actie lukt, voer deze functie uit
+            success: function(nr){
+                rooms.deleteRoom(nr);
+
+            }
+        });
 
 }
 
