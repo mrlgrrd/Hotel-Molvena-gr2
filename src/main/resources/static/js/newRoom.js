@@ -11,7 +11,7 @@ function addRoom(){
 	var newRoom = JSON.stringify(newRoomObject);
         console.log(newRoom);
     $.ajax({
-        url : "http://localhost:8080/api/controller/addroom", //url van de api waar de save functie staat in java
+        url : "http://localhost:8080/api/roomcontroller/addroom", //url van de api waar de save functie staat in java
         type : "post",
         data : newRoom,
         contentType : "application/json",

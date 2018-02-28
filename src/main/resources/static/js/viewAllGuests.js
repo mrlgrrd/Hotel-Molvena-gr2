@@ -33,16 +33,15 @@ function getGuests(){
 }
 
 //Omwerken naar guest
-function deleteRoom(id){
+function deleteGuest(id){
 console.log(id);
-    alert("Room " + nr + " has been deleted.");
     $.ajax({
             // waar moet hij de request op uitvoeren
             url : "http://localhost:8080/api/guestcontroller/deleteguest?id=" + id,
             // type actie
             type : "delete",
             // als de actie lukt, voer deze functie uit
-            success: function(nr){
+            success: function(id){
                 getGuests();
             }
         });
@@ -54,41 +53,28 @@ $(document).ready(function(){
 
 })
 
-//function getData(){
-//
-//
-//
-//
-//        $.ajax({
-//        url:"http://localhost:8080/api/controller/allguests",
-//        type:"get",
-//        success : function(data){
-//                console.log("this is the data: "+ data);
-//
-//                var personList = "Dit zijn de personen: </br>";
-//                console.log(personList);
-//
-//                $.each(data, function(index, current){
-//                var niceString = "</br>" + current.address + current.country + current.city;
-//                console.log(niceString);
-//
-//
-//                personList = personList + niceString;
-//                console.log(personList);
-//
-//
-//
-//                });
-//                $("#guests").html(personList);
-//    }
-//
-//    });
-//
-//    }
-//
-//
-//
-//$(document).ready(function(){
-//    getData();
-//
-//})
+function updateRoom(nr){
+
+    var inputRoomType = Number($("#roomType"));
+
+    var newRoom = {
+        number : nr,
+        roomType : inputRoomType
+        };
+
+    var newRoomJson = JSON.stringify(newRoom);
+
+    $.ajax({
+        url : "http://localhost:8080/api/controller/updateroom?number=" + nr,
+        type : "update",
+        data : newRoomJson,
+        contentType : "application/json",
+        success : function(data){
+            console.log(newRoomJson);
+
+        rooms.updateRoom(current.number, current.roomType);
+        }
+
+    });
+
+}

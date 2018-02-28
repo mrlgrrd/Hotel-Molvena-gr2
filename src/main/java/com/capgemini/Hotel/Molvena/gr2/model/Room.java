@@ -4,10 +4,7 @@ package com.capgemini.Hotel.Molvena.gr2.model;
 
 import com.capgemini.Hotel.Molvena.gr2.model.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 
 //@RequestMapping("/api/person/")
@@ -20,11 +17,12 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-  //  private ERoomType roomType;
+    @Enumerated(EnumType.STRING)
+    private ERoomType roomType;
 
     private boolean occupied;
 
-    private boolean Clean;
+    private boolean clean;
 
     private int number;
 
@@ -36,12 +34,12 @@ public class Room {
      * @param roomType room type
      * @param number   room nr
      */
-    /*public Room(ERoomType roomType, int number) {
+    public Room(ERoomType roomType, int number) {
         this.roomType = roomType;
         this.number = number;
-        this.Clean = true;
+        this.clean = true;
         this.occupied = false;
-    }*/
+    }
 
     // empty constructor
     public Room() {
@@ -62,11 +60,11 @@ public class Room {
     }
 
     public boolean isClean() {
-        return Clean;
+        return this.clean;
     }
 
     public void setClean(boolean clean) {
-        Clean = clean;
+        this.clean = clean;
     }
 
     public int getNumber() {
@@ -79,5 +77,13 @@ public class Room {
 
     public long getId() {
         return id;
+    }
+
+    public ERoomType getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(ERoomType roomType) {
+        this.roomType = roomType;
     }
 }
