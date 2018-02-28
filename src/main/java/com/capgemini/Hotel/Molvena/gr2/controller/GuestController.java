@@ -1,26 +1,17 @@
 package com.capgemini.Hotel.Molvena.gr2.controller;
 
-
 import com.capgemini.Hotel.Molvena.gr2.person.Guest;
-import com.capgemini.Hotel.Molvena.gr2.service.RoomService;
 import com.capgemini.Hotel.Molvena.gr2.service.GuestService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/controller/")
-public class Controller {
+@RequestMapping("/api/guestcontroller/")
+public class GuestController {
 
-    @Autowired
-    private RoomService roomService;
-
-    public Controller() {
-    }
-
-    /**
-     * @param guestToSave add Guest to guest list
-     */
 
     @Autowired
     private GuestService guestService;
@@ -42,16 +33,9 @@ public class Controller {
     }
 
     @RequestMapping(value = "deleteguest", method = RequestMethod.DELETE)
-    public void deleteguest(){
-
+    public void deleteguest(Long id){
+        guestService.deleteGuest(id);
     }
-
-    /**
-     * getters & setters
-     *
-     * @return properties
-     */
-
 
 
 }

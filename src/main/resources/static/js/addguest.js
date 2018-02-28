@@ -7,9 +7,9 @@
 function postData(){
 
     //Get values from input texts
-    var inputFirstName = $("#fname").val();
+    var inputFirstname = $("#fname").val();
     var inputPreposition = $("#preposition").val();
-    var inputLastName = $("#lname").val();
+    var inputLastname = $("#lname").val();
     var inputAddress = $("#address").val();
     var inputZipcode = $("#zipcode").val();
     var inputCity = $("#city").val();
@@ -21,9 +21,9 @@ function postData(){
 
     //Put in a object
     var newGuestObject = {
-        firstName : inputFirstName,
+        firstname : inputFirstname,
         preposition : inputPreposition,
-        lastName : inputLastName,
+        lastname : inputLastname,
         address : inputAddress,
         zipCode : inputZipcode,
         city : inputCity,
@@ -47,7 +47,7 @@ function postData(){
         success : function(data){
 
             //Geef een bevestiging dat de gast is toegevoegd
-            $("#confirmation").text("You've successfully added "+inputFirstName+" "+inputLastName)
+            $("#confirmation").text("You've successfully added "+inputFirstname+" "+inputPreposition+" "+inputLastname)
 
             //Maak de velden leeg
             $("#fname").val("");

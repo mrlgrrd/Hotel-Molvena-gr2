@@ -1,11 +1,25 @@
 package com.capgemini.Hotel.Molvena.gr2.person;
 
-public class Guest extends Person {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Guest{
 
 
     /**
      * Variables
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    private String firstname;
+    private String preposition;
+    private String lastname;
+
     private String address;
     private String zipCode;
     private String city;
@@ -14,6 +28,8 @@ public class Guest extends Person {
     private String email;
     private String passportNumber;
     private String nationality;
+
+
 
 //    /**
 //     * Methods
@@ -43,9 +59,38 @@ public class Guest extends Person {
 
     }
 
+
     /**
      * Getters and setters
      */
+    public long getId() {
+        return id;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getPreposition() {
+        return preposition;
+    }
+
+    public void setPreposition(String preposition) {
+        this.preposition = preposition;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
     public String getAddress() {
         return address;
     }
