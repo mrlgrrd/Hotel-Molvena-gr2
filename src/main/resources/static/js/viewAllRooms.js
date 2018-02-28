@@ -5,7 +5,7 @@ function getRooms(){
     // ajax is een methode voor get/post requests
     $.ajax({
         // waar moet hij de request op uitvoeren
-        url : "http://localhost:8080/api/controller/showrooms",
+        url : "http://localhost:8080/api/roomcontroller/showrooms",
         // type actie
         type : "get",
         // als de actie lukt, voer deze functie uit
@@ -14,13 +14,10 @@ function getRooms(){
             var roomList = "";
 
             $.each(data, function(index, current){
+            console.log(current.clean);
+            console.log(current.roomType);
 
-                var roomString = "<tr> <th>" + current.number + "</th> <th>  " + current.roomType + "</th> <th> " +
-                current.occupied + "</th> <th> " + current.isClean +
-                "</th><th><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateRoomModal' onclick='javascript:updateRoom(" +
-                current.number+")'>Update Room</button></th> <th><button type='button' class='btn btn-danger' onclick='javascript:deleteRoom(" +current.number+
-                ")'>Delete Room</button></th></tr>";
-                var roomString = "<tr> <th>" + current.number + "</th> <th>  " + current.roomType + "</th> <th> " + current.occupied + "</th> <th> " + current.isClean + "</th><th><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateRoomModal' onclick='javascript:updateRoom(" +current.number+")' >Update Room</button></th> <th><button type='button' class='btn btn-danger' onclick='javascript:deleteRoom(" +current.number+")'>Delete Room</button></th></tr>";
+                var roomString = "<tr> <td>" + current.number + "</th> <td>  " + current.roomType + "</th> <td> " + current.occupied + "</td> <td> " + current.clean + "</td><td><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateRoomModal' onclick='javascript:updateRoom(" +current.id+")' >Update Room</button></th> <th><button type='button' class='btn btn-danger' onclick='javascript:deleteRoom(" +current.id+")'>Delete Room</button></td></td>";
 
                 roomList = roomList + roomString;
 
@@ -35,41 +32,45 @@ function getRooms(){
 
 $(document).ready(getRooms);
 
-function deleteRoom(nr){
+function deleteRoom(roomId){
+
+     var deletableRoom = { id : roomId};
+
+    var delRoomJson = JSON.stringify(roomId);
 
     $.ajax({
             // waar moet hij de request op uitvoeren
-            url : "http://localhost:8080/api/controller/deleteroom?number=" + nr,
+            url : "http://localhost:8080/api/roomcontroller/deleteroom?id=" + roomId,
             // type actie
             type : "delete",
+            contentType : "application/json",
+            data : delRoomJson,
             // als de actie lukt, voer deze functie uit
-            success: function(nr){
-                rooms.deleteRoom(nr);
+            success: function(data){
+               getRooms();
             }
         });
 
 }
 
-function updateRoom(nr){
+function updateRoom(roomId){
 
     var inputRoomType = Number($("#roomType"));
 
     var newRoom = {
-        number : nr,
+        id : roomId,
         roomType : inputRoomType
         };
 
     var newRoomJson = JSON.stringify(newRoom);
 
     $.ajax({
-        url : "http://localhost:8080/api/controller/updateroom?number=" + nr,
+        url : "http://localhost:8080/api/roomcontroller/updateroom?id=" + roomId,
         type : "update",
         data : newRoomJson,
         contentType : "application/json",
         success : function(data){
-            console.log(newRoomJson);
-
-        rooms.updateRoom(current.number, current.roomType);
+            getRooms();
         }
 
     });
