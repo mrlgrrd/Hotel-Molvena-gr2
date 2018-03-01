@@ -37,5 +37,4 @@ public class GuestController {
         guestService.deleteGuest(id);
     }
 
-
 }

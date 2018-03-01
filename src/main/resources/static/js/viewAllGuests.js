@@ -1,6 +1,4 @@
 function getGuests(){
-
-
     // ajax is een methode voor get/post requests
     $.ajax({
         // waar moet hij de request op uitvoeren
@@ -28,11 +26,8 @@ function getGuests(){
             $("#guests").html(guestList);
         }
     });
-
-
 }
 
-//Omwerken naar guest
 function deleteGuest(id){
 console.log(id);
     $.ajax({
@@ -48,33 +43,33 @@ console.log(id);
 
 }
 
+function updateGuest(guest){
+
+    console.log(guest.lastname);
+
+//    var inputRoomType = Number($("#roomType"));
+//
+//    var newRoom = {
+//        number : nr,
+//        roomType : inputRoomType
+//        };
+//
+//    var newRoomJson = JSON.stringify(newRoom);
+//
+//    $.ajax({
+//        url : "http://localhost:8080/api/controller/updateroom?number=" + nr,
+//        type : "update",
+//        data : newRoomJson,
+//        contentType : "application/json",
+//        success : function(data){
+//            console.log(newRoomJson);
+//
+//        rooms.updateRoom(current.number, current.roomType);
+//        }
+//
+//    });
+}
+
 $(document).ready(function(){
     getGuests();
-
 })
-
-function updateRoom(nr){
-
-    var inputRoomType = Number($("#roomType"));
-
-    var newRoom = {
-        number : nr,
-        roomType : inputRoomType
-        };
-
-    var newRoomJson = JSON.stringify(newRoom);
-
-    $.ajax({
-        url : "http://localhost:8080/api/controller/updateroom?number=" + nr,
-        type : "update",
-        data : newRoomJson,
-        contentType : "application/json",
-        success : function(data){
-            console.log(newRoomJson);
-
-        rooms.updateRoom(current.number, current.roomType);
-        }
-
-    });
-
-}
