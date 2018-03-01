@@ -17,7 +17,7 @@ public class Booking implements Serializable {
 
     @ManyToMany(mappedBy = "bookings")
     private List<Room> rooms;
-    
+
     private String desiredPeriodFrom;
     private String desiredPeriodTill;
 
