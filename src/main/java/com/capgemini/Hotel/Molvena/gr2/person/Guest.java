@@ -1,9 +1,8 @@
 package com.capgemini.Hotel.Molvena.gr2.person;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.capgemini.Hotel.Molvena.gr2.model.Booking;
+
+import javax.persistence.*;
 
 @Entity
 public class Guest{
@@ -28,6 +27,9 @@ public class Guest{
     private String email;
     private String passportNumber;
     private String nationality;
+
+    @ManyToOne
+    private Booking booking;
 
 
 

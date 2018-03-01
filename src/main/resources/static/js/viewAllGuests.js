@@ -17,8 +17,8 @@ function getGuests(){
                     current.lastname + "</th> <th> " + current.address + "</th> <th> " + current.zipCode + "</th> <th> " +
                     current.city + "</th> <th> " + current.country + "</th> <th> " + current.phone + "</th> <th> " +
                     current.email + "</th> <th> " + current.passportNumber + "</th> <th> " + current.nationality +
-                    "</th><th><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateRoomModal' onclick='javascript:updateRoom("
-                    +current.id+")'>Update Room</button></th><th><button type='button' class='btn btn-danger' onclick='javascript:deleteGuest("
+                    "</th><th><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateGuestModal' onclick='javascript:updateGuest("
+                    +current.id+")'>Update Guest</button></th><th><button type='button' class='btn btn-danger' onclick='javascript:deleteGuest("
                     +current.id+")'>Delete Guest</button></th></tr>";
 
                 guestList = guestList + guestString;
