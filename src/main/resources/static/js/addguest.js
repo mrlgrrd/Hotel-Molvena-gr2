@@ -40,7 +40,7 @@ function postData(){
 
     //Communicate with Java
     $.ajax({
-        url : "http://localhost:8080/api/controller/newguest",
+        url : "http://localhost:8080/api/guestcontroller/addtoguest",
         type : "post",
         data : newGuest,
         contentType: "application/json",

@@ -32,7 +32,7 @@ public class GuestService {
         return this.guestRepository.findAll();
     }
 
-    public Guest newGuest(Guest guest){
+    public Guest addToGuest(Guest guest){
         this.guestRepository.save(guest);
         return guest;
     }

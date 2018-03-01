@@ -18,10 +18,10 @@ public class GuestController {
 
 
 
-    @RequestMapping(value = "newguest", method = RequestMethod.POST)
+    @RequestMapping(value = "addtoguest", method = RequestMethod.POST)
     public void newguest(@RequestBody Guest guestToSave) {
 
-        guestService.newGuest(guestToSave);
+        guestService.addToGuest(guestToSave);
 
     }
 
@@ -35,6 +35,11 @@ public class GuestController {
     @RequestMapping(value = "deleteguest", method = RequestMethod.DELETE)
     public void deleteguest(Long id){
         guestService.deleteGuest(id);
+    }
+
+    @RequestMapping(value = "findguest", method = RequestMethod.GET)
+    public Guest findGuest(Long id){
+        return guestService.findById(id);
     }
 
 }
