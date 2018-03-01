@@ -34,7 +34,7 @@ public class RoomService {
 
     // default constructor
     public RoomService() {
-        initializeRooms();
+        
     }
 
     public Iterable<Room> allRooms(){
