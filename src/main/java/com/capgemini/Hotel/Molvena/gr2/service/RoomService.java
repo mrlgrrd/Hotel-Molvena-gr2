@@ -5,6 +5,7 @@ import com.capgemini.Hotel.Molvena.gr2.model.Room;
 import com.capgemini.Hotel.Molvena.gr2.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
@@ -34,7 +35,7 @@ public class RoomService {
 
     // default constructor
     public RoomService() {
-        
+
     }
 
     public Iterable<Room> allRooms(){
@@ -45,7 +46,7 @@ public class RoomService {
         return this.roomRepository.findOne(id);
     }
 
-    public void deleteRoom(long id){
-        this.roomRepository.delete(id);
+    public void deleteRoom(Room deleteRoom){
+        this.roomRepository.delete(deleteRoom);
     }
 }

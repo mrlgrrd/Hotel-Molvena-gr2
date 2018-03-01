@@ -1,3 +1,5 @@
+
+
 function getRooms(){
     // als de pagina geladen is, start deze functie
     $(document).ready(function(){
@@ -17,7 +19,7 @@ function getRooms(){
             console.log(current.clean);
             console.log(current.roomType);
 
-                var roomString = "<tr> <td>" + current.number + "</th> <td>  " + current.roomType + "</th> <td> " + current.occupied + "</td> <td> " + current.clean + "</td><td><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateRoomModal' onclick='javascript:updateRoom(" +current.id+")' >Update Room</button></th> <th><button type='button' class='btn btn-danger' onclick='javascript:deleteRoom(" +current.id+")'>Delete Room</button></td></td>";
+                var roomString = "<tr> <td>" + current.number + "</th> <td>  " + current.roomType + "</th> <td> " + current.occupied + "</td> <td> " + current.clean + "</td><td><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateRoomModal' data-id="+current.id+" >Update Room</button></th> <th><button type='button' class='btn btn-danger' onclick='openDeleteModal("+current.id+")'>Delete Room</button></td></td>";
 
                 roomList = roomList + roomString;
 
@@ -30,27 +32,35 @@ function getRooms(){
 
 };
 
-$(document).ready(getRooms);
+$(document).ready(getRooms());
+
+function openDeleteModal(id){
+    $("#deleteRoomModal").modal('show');
+    var generateDeleteButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button><button type='button' class='btn btn-primary' onclick='deleteRoom(id);'>Delete room</button>";
+
+    $("#deleteModalFooter").html(generateDeleteButtons);
+}
 
 function deleteRoom(roomId){
 
-     var deletableRoom = { id : roomId};
+    var deletableRoom = { id : roomId};
 
-    var delRoomJson = JSON.stringify(roomId);
+    var delRoomJson = JSON.stringify(deletableRoom);
 
     $.ajax({
             // waar moet hij de request op uitvoeren
             url : "http://localhost:8080/api/roomcontroller/deleteroom?id=" + roomId,
             // type actie
             type : "delete",
-            contentType : "application/json",
             data : delRoomJson,
+            contentType : "application/json"
             // als de actie lukt, voer deze functie uit
-            success: function(data){
-               getRooms();
+            success : function(data){
+
             }
         });
 
+    getRooms();
 }
 
 function updateRoom(roomId){
