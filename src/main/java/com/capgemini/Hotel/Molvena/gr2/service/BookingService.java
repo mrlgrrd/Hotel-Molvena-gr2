@@ -33,9 +33,15 @@ public class BookingService {
 
     }
 
-    public Iterable<Booking> findAll(){
+    public Iterable<Booking> allBookings(){
     return this.bookingRepository.findAll();
 
     }
+
+    public Booking newBooking(Booking booking){
+        this.bookingRepository.save(booking);
+        return booking;
+    }
+
 
 }
