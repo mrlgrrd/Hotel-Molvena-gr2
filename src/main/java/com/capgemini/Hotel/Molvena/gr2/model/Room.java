@@ -6,6 +6,7 @@ import com.capgemini.Hotel.Molvena.gr2.model.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 //@RequestMapping("/api/person/")
 @Entity
@@ -19,6 +20,9 @@ public class Room {
 
     @Enumerated(EnumType.STRING)
     private ERoomType roomType;
+
+    @ManyToMany
+    private List<Booking> bookings;
 
     private boolean occupied;
 

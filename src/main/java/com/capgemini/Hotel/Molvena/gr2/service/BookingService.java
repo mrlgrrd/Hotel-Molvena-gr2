@@ -19,7 +19,7 @@ public class BookingService {
     public void init(){
         Booking booking1 = new Booking();
         booking1.setGuestID("1");
-        booking1.setRoomID("1");
+       // booking1.setRoomID("1");
         booking1.setDesiredPeriodFrom("01-03-2018");
         booking1.setDesiredPeriodTill("01-04-2018");
 
@@ -33,9 +33,15 @@ public class BookingService {
 
     }
 
-    public Iterable<Booking> findAll(){
+    public Iterable<Booking> allBookings(){
     return this.bookingRepository.findAll();
 
     }
+
+    public Booking newBooking(Booking booking){
+        this.bookingRepository.save(booking);
+        return booking;
+    }
+
 
 }

@@ -32,6 +32,11 @@ public class RoomService {
         roomRepository.save(room5);
     }
 
+    // default constructor
+    public RoomService() {
+        
+    }
+
     public Iterable<Room> allRooms(){
         return this.roomRepository.findAll();
     }
