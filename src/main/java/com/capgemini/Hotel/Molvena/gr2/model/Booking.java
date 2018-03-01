@@ -1,10 +1,8 @@
 package com.capgemini.Hotel.Molvena.gr2.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 public class Booking implements Serializable {
@@ -16,7 +14,10 @@ public class Booking implements Serializable {
 
     //Variables
     private String guestID;
-    private String roomID;
+
+    @ManyToMany(mappedBy = "bookings")
+    private List<Room> rooms;
+    
     private String desiredPeriodFrom;
     private String desiredPeriodTill;
 
@@ -33,14 +34,6 @@ public class Booking implements Serializable {
         this.guestID = guestID;
     }
 
-    public String getRoomID() {
-        return roomID;
-    }
-
-    public void setRoomID(String roomID) {
-        this.roomID = roomID;
-    }
-
     public String getDesiredPeriodFrom() {
         return desiredPeriodFrom;
     }
@@ -55,5 +48,13 @@ public class Booking implements Serializable {
 
     public void setDesiredPeriodTill(String desiredPeriodTill) {
         this.desiredPeriodTill = desiredPeriodTill;
+    }
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
     }
 }
