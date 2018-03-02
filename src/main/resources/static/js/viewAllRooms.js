@@ -21,7 +21,7 @@ function getRooms(){
 
                 var roomString = "<tr> <td>" + current.number + "</th> <td>  " + current.roomType + "</th> <td> " + current.nrOfPeople + "</th> <td> " + current.occupied + "</td> <td> " + current.clean
                 + "</td><td><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateRoomModal' data-id="+current.id+" >Update Room</button></th>"
-                + "<th><button type='button' class='btn btn-danger' onclick='deleteRoom("+current.id+")'>Delete Room</button></td></td>";
+                + "<th><button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' + onclick='openDeleteModal("+current.id+")'>Delete Room</button></td></td>";
 
                 roomList = roomList + roomString;
 
@@ -36,22 +36,23 @@ function getRooms(){
 
 $(document).ready(getRooms());
 
-function openDeleteModal(id){
+function openDeleteModal(idRoom){
     $("#deleteRoomModal").modal('show');
-    var generateDeleteButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button><button type='button' class='btn btn-primary' onclick='deleteRoom(id);'>Delete room</button>";
+    var generateDeleteButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>"
+                                +"<button type='button' class='btn btn-danger' onclick='deleteRoom("+idRoom+");'>Delete room</button>";
 
     $("#deleteModalFooter").html(generateDeleteButtons);
 }
 
-function deleteRoom(roomId){
+function deleteRoom(idRoom){
 
     $.ajax({
             // waar moet hij de request op uitvoeren
-            url : "http://localhost:8080/api/roomcontroller/deleteroom?id=" + roomId,
+            url : "http://localhost:8080/api/roomcontroller/deleteroom?id=" + idRoom,
             // type actie
             type : "delete",
             // als de actie lukt, voer deze functie uit
-            success : function(roomId){
+            success : function(idRoom){
                 getRooms();
             }
         });

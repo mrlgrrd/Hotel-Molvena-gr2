@@ -47,11 +47,11 @@ public class RoomService {
      * @param id
      * @return
      */
-    public Room selectRoomById(long id){
+    public Room selectRoomById(Long id){
         return this.roomRepository.findOne(id);
     }
 
-    public void deleteRoom(Room deleteRoom){
-        this.roomRepository.delete(deleteRoom);
+    public void deleteRoom(Long roomId){
+        this.roomRepository.delete(roomId);
     }
 }

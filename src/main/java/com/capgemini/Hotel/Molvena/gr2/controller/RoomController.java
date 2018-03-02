@@ -25,7 +25,7 @@ public class RoomController {
     }
 
     @RequestMapping(value = "deleteroom", method = RequestMethod.DELETE)
-    public void deleteRoom(@RequestBody Room deleteRoom) {
+    public void deleteRoom(Long deleteRoom) {
         roomService.deleteRoom(deleteRoom);
     }
 

@@ -60,7 +60,7 @@ console.log(id);
             // type actie
             type : "delete",
             // als de actie lukt, voer deze functie uit
-            success: function(id){
+            success : function(id){
                 getGuests();
             }
         });
