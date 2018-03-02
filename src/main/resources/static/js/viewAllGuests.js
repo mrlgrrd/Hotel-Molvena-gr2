@@ -49,7 +49,7 @@ function showDeleteModal(id){
                 }
 
                 var generateButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>"+
-                                                "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='deleteGuest("+id+");'>Delete guest</button>";
+                                      "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='deleteGuest("+id+");'>Delete guest</button>";
 
                     $("#buttonsdeletemodal").html(generateButtons);
             }
