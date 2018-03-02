@@ -15,8 +15,8 @@ function getGuests(){
                     current.lastname + "</th> <th> " + current.address + "</th> <th> " + current.zipCode + "</th> <th> " +
                     current.city + "</th> <th> " + current.country + "</th> <th> " + current.phone + "</th> <th> " +
                     current.email + "</th> <th> " + current.passportNumber + "</th> <th> " + current.nationality +
-                    "</th><th><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateGuestModal' onclick='javascript:showModal("
-                    +current.id+")'>Update Guest</button></th><th><button type='button' class='btn btn-danger' onclick='javascript:deleteGuest("
+                    "</th><th><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateGuestModal' onclick='javascript:showGuestModal("
+                    +current.id+")'>Update Guest</button></th><th><button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' onclick='javascript:showDeleteModal("
                     +current.id+")'>Delete Guest</button></th></tr>";
 
                 guestList = guestList + guestString;
@@ -26,6 +26,30 @@ function getGuests(){
             $("#guests").html(guestList);
         }
     });
+}
+
+function showDeleteModal(id){
+
+    console.log("Ik zit in showdeletemodal")
+
+    $.ajax({
+            url : "http://localhost:8080/api/guestcontroller/findguest?id=" + id,
+            type : "get",
+            success: function(data){
+
+                var firstname = data.firstname;
+                var preposition = data.preposition;
+                var lastname = data.lastname;
+
+                $("#textdeletemodal").text("Are you sure you want to delete "+firstname+" "+preposition+" "+" "+lastname+" out of the system?");
+
+                var generateButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>"+
+                                                "<button type='button' class='btn btn-primary' data-dismiss='modal' onclick='deleteGuest("+id+");'>Delete guest</button>";
+
+                    $("#buttonsdeletemodal").html(generateButtons);
+            }
+        })
+
 }
 
 function deleteGuest(id){
@@ -43,7 +67,7 @@ console.log(id);
 
 }
 
-function showModal(id){
+function showGuestModal(id){
 
 
     console.log(id);
@@ -71,29 +95,8 @@ function showModal(id){
     var generateButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>"+
                                 "<button type='button' class='btn btn-primary' data-dismiss='modal' onclick='updateRoom("+id+");'>Save changes</button>";
 
-    $("#buttonsmodal").html(generateButtons);
+    $("#buttonsupdatemodal").html(generateButtons);
 
-//    var inputRoomType = Number($("#roomType"));
-//
-//    var newRoom = {
-//        number : nr,
-//        roomType : inputRoomType
-//        };
-//
-//    var newRoomJson = JSON.stringify(newRoom);
-//
-//    $.ajax({
-//        url : "http://localhost:8080/api/controller/updateroom?number=" + nr,
-//        type : "update",
-//        data : newRoomJson,
-//        contentType : "application/json",
-//        success : function(data){
-//            console.log(newRoomJson);
-//
-//        rooms.updateRoom(current.number, current.roomType);
-//        }
-//
-//    });
 }
 
 function updateRoom(guest_id){
@@ -140,24 +143,11 @@ function updateRoom(guest_id){
             data : updateGuest,
             contentType: "application/json",
             success : function(data){
-
-                //Maak de velden leeg
-                $("#fname").val("");
-                $("#preposition").val("");
-                $("#lname").val("");
-                $("#address").val("");
-                $("#zipcode").val("");
-                $("#city").val("");
-                $("#country").val("");
-                $("#phone").val("");
-                $("#email").val("");
-                $("#passportnr").val("");
-                $("#nationality").val("");
+                getGuests();
 
             }
         })
 
-        getGuests();
 
 }
 

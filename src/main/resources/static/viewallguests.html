@@ -10,8 +10,8 @@
     <title>Molvena</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <!--<link rel="stylesheet" href="/CSS/library/bootstrap.min.css">-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="/CSS/library/bootstrap.min.css">
     <style>
         .wide {
             width: 90%;
@@ -95,12 +95,31 @@
         </tbody>
     </table>
 
-    <!-- Modal -->
+    <!-- deleteGuestModal -->
+    <div class="modal fade" id="deleteGuestModal" tabindex="-1" role="dialog" aria-labelledby="deleteGuestModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Guest</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                   <p id="textdeletemodal"></p>
+                </div>
+                <div class="modal-footer" id="buttonsdeletemodal">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- updateGuestModal -->
     <div class="modal fade" id="updateGuestModal" tabindex="-1" role="dialog" aria-labelledby="updateGuestModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="GuestModal">Update room</h5>
+                    <h5 class="modal-title">Update Guest:</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -160,7 +179,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer" id="buttonsmodal">
+                <div class="modal-footer" id="buttonsupdatemodal">
                 </div>
             </div>
         </div>
@@ -172,12 +191,12 @@
     <p>&copy; Molvena 2017-2018</p>
 </footer>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<!--<script src="/js/library/jquery-3.3.1.min.js"></script>-->
-<!--<script src="/js/library/popper.min.js"></script>-->
-<!--<script src="/js/library/bootstrap.min.js"></script>-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
+<script src="/js/library/jquery-3.3.1.min.js"></script>
+<script src="/js/library/popper.min.js"></script>
+<script src="/js/library/bootstrap.min.js"></script>
 <script src="js/viewAllGuests.js"></script>
 <script src="js/country.js"></script>
 </body>
