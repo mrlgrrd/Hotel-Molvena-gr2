@@ -117,11 +117,11 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-5">
                         <label for="roomNumber">Room Number:</label>
                         <input type="number" class="form-control" id="roomNumber">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-5">
                         <label for="roomTheme">Room Theme:</label>
                         <input type="text" class="form-control" id="roomTheme">
                         </div>
@@ -131,22 +131,25 @@
                             <label for="nrOfBeds">Nr of Beds:</label>
                             <input type="number" class="form-control" id="nrOfBeds">
                         </div>
-                        <div class="form-group col-md-2">
-                            <label for="clean">Needs to be cleaned:
-                            <input type="checkbox" class="form-control" id="clean">
+                        <div class="form-group col-md-3">
+                            <label for="clean">Clean:
+                                <select class="form-control" id="clean">
+                                    <option value="false">Dirty</option>
+                                    <option value="true">Clean</option>
+                                </select>
                             </label>
                         </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-3">
                             <label for="occupied">Available:
                                 <select class="form-control" id="occupied">
-                                    <option value="1">Clean</option>
-                                    <option value="0">Dirty</option>
+                                    <option value="true">Occupied</option>
+                                    <option value="false">Available</option>
                                 </select>
                             </label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-10">
                             <label for="roomType">Room Type (select one):</label>
                             <select class="form-control" id="roomType">
                                 <option value="2">Standard Suite</option>

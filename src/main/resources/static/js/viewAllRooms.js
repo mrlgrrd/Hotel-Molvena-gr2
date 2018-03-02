@@ -35,8 +35,8 @@ function getRooms(){
 
             if(current.clean == null){
                 cleanRoom = ""}
-                else if (current.clean == false){cleanRoom = "Clean"}
-                else if (current.clean == true){cleanRoom = "Dirty"};
+                else if (current.clean == false){cleanRoom = "Dirty"}
+                else if (current.clean == true){cleanRoom = "Clean"};
 
             if(current.occupied == null){
                             occupied = ""}
@@ -91,6 +91,7 @@ function openUpdateModal(id){
                 var theme = "";
                 var typeRoom = "";
                 var occupied = "";
+                var clean = "";
 
                 if(data.roomTheme == null){
                     theme == ""}
@@ -106,15 +107,20 @@ function openUpdateModal(id){
 
                 if(data.occupied == null){
                     occupied = ""}
-                 else if (data.occupied == false){occupied = "Available"}
-                 else if (data.occupied == true){occupied = "Occupied"};
+                 else if (data.occupied == false){occupied = "false"}
+                 else if (data.occupied == true){occupied = "true"};
+
+                 if(data.clean == null){
+                    clean = ""}
+                    else if (data.clean == false){clean = "false"}
+                    else if (data.clean == true){clean = "true"};
 
                 $("#roomTheme").val(theme);
                 $("#roomType").val(typeRoom);
                 $("#roomNumber").val(data.number);
                 $("#nrOfBeds").val(data.nrOfPeople);
-                $("#clean").val(data.clean);
-                $("#occupied").val(data.occupied);
+                $("#clean").val(clean);
+                $("#occupied").val(occupied);
 
             }
         })
