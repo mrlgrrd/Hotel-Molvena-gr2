@@ -41,10 +41,15 @@ function showDeleteModal(id){
                 var preposition = data.preposition;
                 var lastname = data.lastname;
 
-                $("#textdeletemodal").text("Are you sure you want to delete "+firstname+" "+preposition+" "+" "+lastname+" out of the system?");
+                //In case of a preposition, it should be shown. Otherwise it shouldn't
+                if(preposition == null){
+                    $("#textdeletemodal").text("Are you sure you want to delete "+firstname+" "+lastname+" out of the system?");
+                } else{
+                    $("#textdeletemodal").text("Are you sure you want to delete "+firstname+" "+preposition+" "+" "+lastname+" out of the system?");
+                }
 
                 var generateButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>"+
-                                                "<button type='button' class='btn btn-primary' data-dismiss='modal' onclick='deleteGuest("+id+");'>Delete guest</button>";
+                                                "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='deleteGuest("+id+");'>Delete guest</button>";
 
                     $("#buttonsdeletemodal").html(generateButtons);
             }

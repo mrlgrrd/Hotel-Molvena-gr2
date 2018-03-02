@@ -9,7 +9,6 @@ import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
 @Service
-@Transactional
 public class GuestService {
 
     @Autowired
@@ -32,11 +31,13 @@ public class GuestService {
         return this.guestRepository.findAll();
     }
 
+    @Transactional
     public Guest addToGuest(Guest guest){
         this.guestRepository.save(guest);
         return guest;
     }
 
+    @Transactional
     public void deleteGuest(Long id){
         this.guestRepository.delete(id);
     }
