@@ -25,6 +25,11 @@ public class GuestController {
 
     }
 
+    @RequestMapping(value = "searchguest", method = RequestMethod.GET)
+    public Iterable<Guest> searchguest(String searchvalue){
+        return guestService.searchGuests(searchvalue);
+    }
+
 
     @RequestMapping(value = "allguests", method = RequestMethod.GET)
     public Iterable<Guest> indexGuest() {

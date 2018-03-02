@@ -98,13 +98,13 @@ function showGuestModal(id){
     })
 
     var generateButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>"+
-                                "<button type='button' class='btn btn-primary' data-dismiss='modal' onclick='updateRoom("+id+");'>Save changes</button>";
+                                "<button type='button' class='btn btn-primary' data-dismiss='modal' onclick='updateGuest("+id+");'>Save changes</button>";
 
     $("#buttonsupdatemodal").html(generateButtons);
 
 }
 
-function updateRoom(guest_id){
+function updateGuest(guest_id){
 
     console.log(guest_id);
 
@@ -154,6 +154,38 @@ function updateRoom(guest_id){
         })
 
 
+}
+
+function searchguest(){
+    var input = $("#searchGuest").val();
+    console.log(input);
+    // ajax is een methode voor get/post requests
+        $.ajax({
+            // waar moet hij de request op uitvoeren
+            url : "http://localhost:8080/api/guestcontroller/searchguest?searchvalue=" + input,
+            // type actie
+            type : "get",
+            // als de actie lukt, voer deze functie uit
+            success: function(data){
+
+                var guestList = "";
+
+                $.each(data, function(index, current){
+                    var guestString = "<tr> <th>" + current.firstname + "</th> <th>  " + current.preposition + "</th> <th> " +
+                        current.lastname + "</th> <th> " + current.address + "</th> <th> " + current.zipCode + "</th> <th> " +
+                        current.city + "</th> <th> " + current.country + "</th> <th> " + current.phone + "</th> <th> " +
+                        current.email + "</th> <th> " + current.passportNumber + "</th> <th> " + current.nationality +
+                        "</th><th><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateGuestModal' onclick='javascript:showGuestModal("
+                        +current.id+")'>Update Guest</button></th><th><button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' onclick='javascript:showDeleteModal("
+                        +current.id+")'>Delete Guest</button></th></tr>";
+
+                    guestList = guestList + guestString;
+
+                });
+
+                $("#guests").html(guestList);
+            }
+        });
 }
 
 $(document).ready(function(){

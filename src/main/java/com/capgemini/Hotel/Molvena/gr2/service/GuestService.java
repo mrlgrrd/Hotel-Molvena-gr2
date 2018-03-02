@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 
 @Service
 public class GuestService {
@@ -29,6 +30,48 @@ public class GuestService {
 
     public Iterable<Guest> getGuests(){
         return this.guestRepository.findAll();
+    }
+
+    public Iterable<Guest> searchGuests(String searchValue){
+        String searchWords[] = searchValue.split(" ");
+        int numberWords = searchWords.length;
+        Iterable<Guest> returnvalue = null;
+        switch(numberWords){
+            case 1: {
+                returnvalue = this.guestRepository.findByFirstnameContainingIgnoreCase(searchWords[0]);
+                break;
+            }
+            case 2: {
+                returnvalue = this.guestRepository.findByFirstnameContainingIgnoreCaseAndLastnameContainingIgnoreCase(searchWords[0],searchWords[1]);
+                break;
+            }
+            case 3: {
+                returnvalue = this.guestRepository.findByFirstnameContainingIgnoreCaseAndPrepositionContainingIgnoreCaseAndLastnameContainingIgnoreCase(searchWords[0],searchWords[1],searchWords[2]);
+                break;
+            }
+        }
+
+        return returnvalue;
+//        boolean removeRow;
+//
+//        Iterable<Guest> filteredList;
+//        Iterable<Guest> temporaryList1 = guestRepository.findByFirstnameContainingIgnoreCaseOrLastnameContainingIgnoreCase(searchWords[0], searchWords[0]);
+//        for(int i = 1; i < searchWords.length; i++) {
+//            Iterable<Guest> temporaryList2 = guestRepository.findByFirstnameContainingIgnoreCaseOrLastnameContainingIgnoreCase(searchWords[i], searchWords[i]);
+//            for(Guest guest1 : temporaryList1){
+//                removeRow = true;
+//                for(Guest guest2 : temporaryList2){
+//                    if(guest1.equals(guest2)){
+//                        filteredList.add(guest1);
+//                    }
+//                }
+//                if(removeRow){ ;
+//                }
+//
+//            }
+//
+//        }
+//        return filteredList;
     }
 
     @Transactional

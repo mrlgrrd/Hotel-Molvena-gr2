@@ -31,9 +31,26 @@ public class Guest{
     @ManyToOne
     private Booking booking;
 
+    @Override
+    public String toString() {
+        return "Guest{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", preposition='" + preposition + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", address='" + address + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", passportNumber='" + passportNumber + '\'' +
+                ", nationality='" + nationality + '\'' +
+                ", booking=" + booking +
+                '}';
+    }
 
-
-//    /**
+    //    /**
 //     * Methods
 //     */
 //    public void AddGuest(){
