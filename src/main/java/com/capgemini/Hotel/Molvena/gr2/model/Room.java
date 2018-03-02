@@ -26,6 +26,10 @@ public class Room {
 
     private boolean occupied;
 
+    private String roomTheme;
+
+    private int nrOfPeople;
+
     private boolean clean;
 
     private int number;
@@ -43,6 +47,7 @@ public class Room {
         this.number = number;
         this.clean = true;
         this.occupied = false;
+        this.nrOfPeople = 2;
     }
 
     // empty constructor
@@ -89,5 +94,29 @@ public class Room {
 
     public void setRoomType(ERoomType roomType) {
         this.roomType = roomType;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
+    public int getNrOfPeople() {
+        return nrOfPeople;
+    }
+
+    public void setNrOfPeople(int nrOfPeople) {
+        this.nrOfPeople = nrOfPeople;
+    }
+
+    public String getRoomTheme() {
+        return roomTheme;
+    }
+
+    public void setRoomTheme(String roomTheme) {
+        this.roomTheme = roomTheme;
     }
 }

@@ -19,7 +19,9 @@ function getRooms(){
             console.log(current.clean);
             console.log(current.roomType);
 
-                var roomString = "<tr> <td>" + current.number + "</th> <td>  " + current.roomType + "</th> <td> " + current.occupied + "</td> <td> " + current.clean + "</td><td><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateRoomModal' data-id="+current.id+" >Update Room</button></th> <th><button type='button' class='btn btn-danger' onclick='openDeleteModal("+current.id+")'>Delete Room</button></td></td>";
+                var roomString = "<tr> <td>" + current.number + "</th> <td>  " + current.roomType + "</th> <td> " + current.nrOfPeople + "</th> <td> " + current.occupied + "</td> <td> " + current.clean
+                + "</td><td><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateRoomModal' data-id="+current.id+" >Update Room</button></th>"
+                + "<th><button type='button' class='btn btn-danger' onclick='deleteRoom("+current.id+")'>Delete Room</button></td></td>";
 
                 roomList = roomList + roomString;
 
@@ -43,24 +45,16 @@ function openDeleteModal(id){
 
 function deleteRoom(roomId){
 
-    var deletableRoom = { id : roomId};
-
-    var delRoomJson = JSON.stringify(deletableRoom);
-
     $.ajax({
             // waar moet hij de request op uitvoeren
             url : "http://localhost:8080/api/roomcontroller/deleteroom?id=" + roomId,
             // type actie
             type : "delete",
-            data : delRoomJson,
-            contentType : "application/json"
             // als de actie lukt, voer deze functie uit
-            success : function(data){
-
+            success : function(roomId){
+                getRooms();
             }
         });
-
-    getRooms();
 }
 
 function updateRoom(roomId){
