@@ -36,23 +36,23 @@ function getRooms(){
 
 $(document).ready(getRooms());
 
-function openDeleteModal(idRoom){
+function openDeleteModal(id){
     $("#deleteRoomModal").modal('show');
     var generateDeleteButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>"
-                                +"<button type='button' class='btn btn-danger' onclick='deleteRoom("+idRoom+");'>Delete room</button>";
+                                +"<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='deleteRoom("+id+");'>Delete room</button>";
 
     $("#deleteModalFooter").html(generateDeleteButtons);
 }
 
-function deleteRoom(idRoom){
+function deleteRoom(id){
 
     $.ajax({
             // waar moet hij de request op uitvoeren
-            url : "http://localhost:8080/api/roomcontroller/deleteroom?id=" + idRoom,
+            url : "http://localhost:8080/api/roomcontroller/deleteroom?id=" + id,
             // type actie
             type : "delete",
             // als de actie lukt, voer deze functie uit
-            success : function(idRoom){
+            success : function(id){
                 getRooms();
             }
         });

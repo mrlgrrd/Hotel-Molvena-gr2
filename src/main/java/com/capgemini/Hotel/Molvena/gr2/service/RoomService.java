@@ -51,7 +51,7 @@ public class RoomService {
         return this.roomRepository.findOne(id);
     }
 
-    public void deleteRoom(Long roomId){
-        this.roomRepository.delete(roomId);
+    public void deleteRoom(Long id){
+        this.roomRepository.delete(id);
     }
 }
