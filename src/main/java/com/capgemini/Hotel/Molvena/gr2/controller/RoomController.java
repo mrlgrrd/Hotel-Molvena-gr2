@@ -29,4 +29,18 @@ public class RoomController {
         roomService.deleteRoom(id);
     }
 
+    @RequestMapping(value = "addroom", method = RequestMethod.POST)
+    public void addRoom(@RequestBody Room newRoom){
+        roomService.addRoom(newRoom);
+    }
+
+    public void updateRoom(@RequestBody Room updateRoom){
+
+    }
+
+    @RequestMapping(value = "findroombyid", method = RequestMethod.GET)
+    public Room findRoom(Long id){
+        return this.roomService.findRoomById(id);
+    }
+
 }

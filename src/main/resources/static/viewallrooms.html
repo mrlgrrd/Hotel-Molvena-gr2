@@ -71,6 +71,7 @@
         <thead>
         <tr>
             <th>Number</th>
+            <th>Room Theme</th>
             <th>Room Type</th>
             <th>Nr of beds</th>
             <th>Occupied</th>
@@ -115,17 +116,47 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p> Set the room type to: </p>
-                    <label for="roomType">Room Type (select one):</label>
-                    <select class="form-control" id="roomType">
-                        <option value="2">Standard Suite</option>
-                        <option value="1">Deluxe Suite</option>
-                        <option value="0">Honeymoon Suite</option>
-                    </select>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                        <label for="roomNumber">Room Number:</label>
+                        <input type="number" class="form-control" id="roomNumber">
+                        </div>
+                        <div class="form-group col-md-4">
+                        <label for="roomTheme">Room Theme:</label>
+                        <input type="text" class="form-control" id="roomTheme">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="nrOfBeds">Nr of Beds:</label>
+                            <input type="number" class="form-control" id="nrOfBeds">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="clean">Needs to be cleaned:
+                            <input type="checkbox" class="form-control" id="clean">
+                            </label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="occupied">Available:
+                                <select class="form-control" id="occupied">
+                                    <option value="1">Clean</option>
+                                    <option value="0">Dirty</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label for="roomType">Room Type (select one):</label>
+                            <select class="form-control" id="roomType">
+                                <option value="2">Standard Suite</option>
+                                <option value="1">Deluxe Suite</option>
+                                <option value="0">Honeymoon Suite</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="updateRoom();">Save changes</button>
+                <div class="modal-footer" id="updateModalFooter">
                 </div>
             </div>
         </div>

@@ -1,14 +1,8 @@
 package com.capgemini.Hotel.Molvena.gr2.model;
 
-//import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.capgemini.Hotel.Molvena.gr2.model.*;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
-//@RequestMapping("/api/person/")
 @Entity
 public class Room {
     /**
@@ -34,7 +28,10 @@ public class Room {
 
     private int number;
 
-   // private ERoomOccupiedBy roomOccupiedBy;
+    // private ERoomOccupiedBy roomOccupiedBy;
+
+    public Room() {
+    }
 
     /**
      * constructor
@@ -50,9 +47,6 @@ public class Room {
         this.nrOfPeople = 2;
     }
 
-    // empty constructor
-    public Room() {
-    }
 
     /**
      * getters & setters

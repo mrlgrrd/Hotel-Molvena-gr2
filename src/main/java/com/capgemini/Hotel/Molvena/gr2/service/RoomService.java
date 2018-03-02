@@ -54,4 +54,16 @@ public class RoomService {
     public void deleteRoom(Long id){
         this.roomRepository.delete(id);
     }
+
+    public void addRoom(Room room){
+        this.roomRepository.save(room);
+    }
+
+    public Room findRoomById(Long id){
+        return this.roomRepository.findOne(id);
+    }
+
+    public void updateRoom(Room room){
+        this.roomRepository.save(room);
+    }
 }
