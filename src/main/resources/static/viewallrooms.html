@@ -72,6 +72,7 @@
         <tr>
             <th>Number</th>
             <th>Room Type</th>
+            <th>Nr of beds</th>
             <th>Occupied</th>
             <th>Clean</th>
             <th>Update</th>
@@ -82,8 +83,29 @@
         </tbody>
     </table>
 
-    <!-- Modal -->
-    <div class="modal fade" id="updateRoomModal" tabindex="-1" role="dialog" aria-labelledby="updateRoomModalLabel" aria-hidden="true">
+    <!-- Modal delete room -->
+    <div class="modal fade" id="deleteRoomModal" tabindex="-1" role="dialog" aria-labelledby="deleteRoomModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteRoomModalTitle">Delete Room</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p> Are you sure?</p>
+                </div>
+                <div class="modal-footer" id = "deleteModalFooter">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal update room -->
+    <div class="modal fade" id="updateRoomModal" tabindex="-1" role="dialog" aria-labelledby="updateRoomModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -110,10 +132,9 @@
     </div>
 </main>
 
-</main>
 
 <footer class="container">
-    </br>
+    <br>
     <p>&copy; Molvena 2017-2018</p>
 </footer>
 
