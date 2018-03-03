@@ -67,7 +67,23 @@
         </div>
     </div>
 
-    <table style="width:100%" class="table table-striped">
+    <!-- line above the table where the search and add new room buttons are located -->
+    <div class="row">
+        <div class="col-md-1"></div>
+            <div class="col-md-1"><input type="text" id="searchRoomTheme" onkeyup="searchRoom()" placeholder="Search rooms" title="Search Rooms by Theme"></div>
+            <div class="col-md-8"></div>
+            <div class="col-md-1"><button type='button' class='btn btn-success' href="newroom.html">Add New Room</button>
+            </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+
+    </div>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+    <!-- Main table where the rooms are displayed -->
+    <table style="width:100%" class="display table-striped">
         <thead>
         <tr>
             <th>Number</th>
@@ -164,6 +180,9 @@
             </div>
         </div>
     </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>
 </main>
 
 

@@ -66,4 +66,27 @@ public class RoomService {
     public void updateRoom(Room room){
         this.roomRepository.save(room);
     }
+
+    public Iterable<Room> searchRoomTheme(String searchRooms){
+        String searchRoomList[] = searchRooms.split(" ");
+        int numberWords = searchRoomList.length;
+
+        Iterable<Room> foundRooms = null;
+
+        switch(numberWords){
+            case 1: {
+                foundRooms = this.roomRepository.findByRoomTheme(searchRoomList[0]);
+                break;
+            }
+            case 2: {
+                foundRooms = this.roomRepository.findByRoomTheme(searchRoomList[1]);
+                break;
+            }
+            case 3: {
+                foundRooms = this.roomRepository.findByRoomTheme(searchRoomList[2]);
+                break;
+            }
+        }
+        return foundRooms;
+    }
 }
