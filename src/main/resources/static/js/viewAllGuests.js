@@ -220,13 +220,13 @@ function searchguest(){
                 var guestList = "";
 
                 $.each(data, function(index, current){
-                    var guestString = "<tr> <th>" + current.firstname + "</th> <th>  " + current.preposition + "</th> <th> " +
-                        current.lastname + "</th> <th> " + current.address + "</th> <th> " + current.zipCode + "</th> <th> " +
-                        current.city + "</th> <th> " + current.country + "</th> <th> " + current.phone + "</th> <th> " +
-                        current.email + "</th> <th> " + current.passportNumber + "</th> <th> " + current.nationality +
-                        "</th><th><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateGuestModal' onclick='javascript:showGuestModal("
-                        +current.id+")'>Update Guest</button></th><th><button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' onclick='javascript:showDeleteModal("
-                        +current.id+")'>Delete Guest</button></th></tr>";
+                   var guestString = "<tr> <th>" + current.firstname + "</th> <th>  " + current.preposition + "</th> <th> " +
+                                       current.lastname + "</th> <th> " +
+                                       current.city + "</th> <th> " + current.country + "</th> <th> " + current.phone + "</th> <th> " +
+                                       current.email + "</th> <th><button type='button' class='btn btn-warning' data-toggle='modal' data-target='#updateGuestModal' onclick='javascript:showGuestModalReadOnly("
+                                       +current.id+")'>See details</button></th><th><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateGuestModal' onclick='javascript:showGuestModalUpdate("
+                                       +current.id+")'>Update Guest</button></th><th><button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' onclick='javascript:showDeleteModal("
+                                       +current.id+")'>Delete Guest</button></th></tr>";
 
                     guestList = guestList + guestString;
 
