@@ -1,4 +1,5 @@
 package com.capgemini.Hotel.Molvena.gr2.model;
+import com.capgemini.Hotel.Molvena.gr2.person.Guest;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,25 +14,37 @@ public class Booking implements Serializable {
     private long id;
 
     //Variables
-    private String guestID;
-
-    @ManyToMany(mappedBy = "bookings")
-    private List<Room> rooms;
-
     private String desiredPeriodFrom;
     private String desiredPeriodTill;
 
+    @ManyToOne
+    private Guest guest;
+
+//    @ManyToMany(mappedBy = "bookings")
+//    private List<Room> rooms;
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id=" + id +
+                ", desiredPeriodFrom='" + desiredPeriodFrom + '\'' +
+                ", desiredPeriodTill='" + desiredPeriodTill + '\'' +
+                ", guest=" + guest +
+                '}';
+    }
+
     //Getters & Setters
+
+    public Guest getGuest() {
+        return guest;
+    }
+
+    public void setGuest(Guest guest) {
+        this.guest = guest;
+    }
+
     public long getId() {
         return id;
-    }
-
-    public String getGuestID() {
-        return guestID;
-    }
-
-    public void setGuestID(String guestID) {
-        this.guestID = guestID;
     }
 
     public String getDesiredPeriodFrom() {
@@ -50,11 +63,11 @@ public class Booking implements Serializable {
         this.desiredPeriodTill = desiredPeriodTill;
     }
 
-    public List<Room> getRooms() {
-        return rooms;
-    }
-
-    public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
-    }
+//    public List<Room> getRooms() {
+//        return rooms;
+//    }
+//
+//    public void setRooms(List<Room> rooms) {
+//        this.rooms = rooms;
+//    }
 }

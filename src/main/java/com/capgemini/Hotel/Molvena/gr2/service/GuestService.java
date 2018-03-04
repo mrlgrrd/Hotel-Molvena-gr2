@@ -15,14 +15,6 @@ public class GuestService {
     @Autowired
     private GuestRepository guestRepository;
 
-    @PostConstruct
-    public void init(){
-        Guest guest1 = new Guest();
-        guest1.setFirstname("Henk");
-        guest1.setLastname("Jansen");
-
-        this.guestRepository.save(guest1);
-    }
 
     public Guest findById(long id){
         return this.guestRepository.findOne(id);
