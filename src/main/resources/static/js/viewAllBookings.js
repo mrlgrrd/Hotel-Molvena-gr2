@@ -11,22 +11,28 @@ function showBookingList(){
         // als de actie lukt, voer deze functie uit
         success: function(showBookingData){
 
-            var bookingList = "";
+                    var bookingList = "";
 
-            $.each(showBookingData, function(bookingIndex, booking){
+                    $.each(showBookingData, function(bookingIndex, booking){
 
+                        var roomString = "";
+                        var bookingString = "<tr> <td>" + booking.id + "</td> <td>  " + booking.desiredPeriodFrom + "</td> <td> " + booking.desiredPeriodTill + "</td> <td> " + booking.guest.id + "</td> <td> " + booking.guest.firstname + "</td> <td> " + booking.guest.lastname + "</td> ";
 
-                var bookingString = "<tr> <td>" + booking.id + "</th> <td>  " + booking.desiredPeriodFrom + "</th> <td> " + booking.desiredPeriodTill + "</td> <td> "+ booking.guest.id + "</td> <td> " + booking.guest.firstname + "</td> <td> " + booking.guest.lastname + "</td></td>";
+                        // geeft de data van de snowboards weer die bij de persoon horen (ManyToMany)
+                        $.each(booking.rooms, function(roomIndex, room) {
+                            roomString = roomString + "#"+ room.id+ " " +room.roomTheme +";          ";
+                        });
+                        bookingString = bookingString+ "<td> " + roomString + "</td>";
 
-                bookingList = bookingList + bookingString;
+                        bookingList += bookingString;
 
+                    });
+
+                    $("#bookings").html(bookingList);
+                }
+            });
             });
 
-            $("#bookings").html(bookingList);
-        }
-    });
-    });
+        };
 
-};
-
-$(document).ready(showBookingList);
+        $(document).ready(showBookingList);

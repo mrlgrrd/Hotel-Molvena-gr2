@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Guest implements Serializable{
@@ -32,7 +32,7 @@ public class Guest implements Serializable{
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, mappedBy= "guest")
-    private List<Booking> bookings;
+    private Set<Booking> bookings;
 
     @Override
     public String toString() {
@@ -81,13 +81,15 @@ public class Guest implements Serializable{
 
     }
 
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
     /**
      * Getters and setters
      */
 
-    public List<Booking> getBookings() {
-        return bookings;
-    }
+
 
     public long getId() {
         return id;

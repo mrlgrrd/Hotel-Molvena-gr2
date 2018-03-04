@@ -1,9 +1,10 @@
 package com.capgemini.Hotel.Molvena.gr2.model;
 import com.capgemini.Hotel.Molvena.gr2.person.Guest;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Entity
 public class Booking implements Serializable {
@@ -20,6 +21,9 @@ public class Booking implements Serializable {
     @ManyToOne
     private Guest guest;
 
+    @ManyToMany(mappedBy = "bookings", fetch = FetchType.EAGER)
+    private Set<Room> rooms = new HashSet<>();
+
 //    @ManyToMany(mappedBy = "bookings")
 //    private List<Room> rooms;
 
@@ -34,6 +38,9 @@ public class Booking implements Serializable {
     }
 
     //Getters & Setters
+    public Set<Room> getRooms() {
+        return rooms;
+    }
 
     public Guest getGuest() {
         return guest;
@@ -70,4 +77,12 @@ public class Booking implements Serializable {
 //    public void setRooms(List<Room> rooms) {
 //        this.rooms = rooms;
 //    }
+
+    public void addRoom (Room room){
+        if(this.rooms == null){
+            this.rooms = new HashSet<>();
+        }
+        this.rooms.add(room);
+        room.getBookings().add(this);
+    }
 }
