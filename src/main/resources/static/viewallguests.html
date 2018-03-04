@@ -71,22 +71,26 @@
             <h1 class="display-4">View all guests</h1>
         </div>
     </div>
+    <!--Search guest button-->
+    <div class="row">
+        <div class="col-md-1"></div>
+        <input type="text" id="searchGuest" onkeyup="searchguest()" placeholder="Search guest" title="Type in a guest">
+        <div class="col-md-7"></div>
 
-    <input type="text" id="searchGuest" onkeyup="searchguest()" placeholder="Search guest" title="Type in a guest">
+        <button type='button' class='btn btn-success' data-toggle='modal' data-target='#updateGuestModal' onclick='javascript:showGuestModalUpdate()'>Add new guest</button>
+
+    </div>
     <table style="width:100%" class="table table-striped">
         <thead>
         <tr>
             <th>First name</th>
             <th> Preposition</th>
             <th> Last name</th>
-            <th> Address</th>
-            <th> Zip code</th>
             <th> City</th>
             <th> Country</th>
-            <th> Phone</th>
+            <th> Telephone number</th>
             <th> Email</th>
-            <th> Passport number</th>
-            <th> Nationality</th>
+            <th> See details</th>
             <th> Update</th>
             <th> Delete</th>
         </tr>
@@ -119,7 +123,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Update Guest:</h5>
+                    <h5 class="modal-title" id="updateModalHeader"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

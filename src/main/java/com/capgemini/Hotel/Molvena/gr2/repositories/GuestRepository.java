@@ -8,7 +8,8 @@ import java.util.ArrayList;
 
 @Repository
 public interface GuestRepository extends CrudRepository<Guest,Long> {
-    ArrayList<Guest> findByFirstnameContainingIgnoreCase(String searchFirstname);
+    ArrayList<Guest> findByFirstnameContainingIgnoreCaseOrPrepositionContainingIgnoreCaseOrLastnameContainingIgnoreCaseOrAddressContainingIgnoreCaseOrZipCodeContainingIgnoreCaseOrCityContainingIgnoreCaseOrCountryContainingIgnoreCaseOrPhoneContainingIgnoreCaseOrEmailContainingIgnoreCase(String searchFirstname, String searchPreposition, String searchLastname, String searchAddress, String searchZipCode, String searchCity, String searchCountry, String searchPhone, String searchEmail);
     ArrayList<Guest> findByFirstnameContainingIgnoreCaseAndLastnameContainingIgnoreCase(String searchFirstname, String searchLastname);
     ArrayList<Guest> findByFirstnameContainingIgnoreCaseAndPrepositionContainingIgnoreCaseAndLastnameContainingIgnoreCase(String searchFirstname,String searchPreposition, String searchLastname);
+
 }
