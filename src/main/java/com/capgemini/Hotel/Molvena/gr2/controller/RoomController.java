@@ -29,4 +29,24 @@ public class RoomController {
         roomService.deleteRoom(id);
     }
 
+    @RequestMapping(value = "addroom", method = RequestMethod.POST)
+    public void addRoom(@RequestBody Room newRoom){
+        roomService.addRoom(newRoom);
+    }
+
+    @RequestMapping(value = "findroombyid", method = RequestMethod.GET)
+    public Room findRoom(Long id){
+        return this.roomService.findRoomById(id);
+    }
+
+    /**
+     * search the collection of rooms for the given parameters
+     * @param searchRoomTheme search parameters
+     * @return list of found rooms
+     */
+    @RequestMapping(value = "searchroomtheme", method = RequestMethod.GET)
+    public Iterable<Room> searchRoom(String searchRoomTheme){
+        return roomService.searchRoomTheme(searchRoomTheme);
+    }
+
 }

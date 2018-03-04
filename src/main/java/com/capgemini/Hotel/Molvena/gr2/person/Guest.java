@@ -1,11 +1,14 @@
 package com.capgemini.Hotel.Molvena.gr2.person;
 
 import com.capgemini.Hotel.Molvena.gr2.model.Booking;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 @Entity
-public class Guest{
+public class Guest implements Serializable{
 
 
     /**
@@ -18,7 +21,6 @@ public class Guest{
     private String firstname;
     private String preposition;
     private String lastname;
-
     private String address;
     private String zipCode;
     private String city;
@@ -28,8 +30,9 @@ public class Guest{
     private String passportNumber;
     private String nationality;
 
-    @ManyToOne
-    private Booking booking;
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER, mappedBy= "guest")
+    private Set<Booking> bookings;
 
     @Override
     public String toString() {
@@ -46,7 +49,7 @@ public class Guest{
                 ", email='" + email + '\'' +
                 ", passportNumber='" + passportNumber + '\'' +
                 ", nationality='" + nationality + '\'' +
-                ", booking=" + booking +
+                ", bookings=" + bookings +
                 '}';
     }
 
@@ -78,10 +81,16 @@ public class Guest{
 
     }
 
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
 
     /**
      * Getters and setters
      */
+
+
+
     public long getId() {
         return id;
     }

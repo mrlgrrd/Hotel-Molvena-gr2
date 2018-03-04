@@ -71,21 +71,51 @@
         <h2>Add a room</h2>
         <p>Please fill in the form below:</p>
         <form>
-            <div class="form-group">
-                <label for="roomNumber">Room Number:</label>
-                <input type="number" class="form-control" id="roomNumber">
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="roomNumber">Room Number:</label>
+                    <input type="number" class="form-control" id="roomNumber">
+                </div>
+                <div class="form-group col-md-5">
+                    <label for="roomType">Room Type (select one):</label>
+                    <select class="form-control" id="roomType">
+                        <option value="2">Standard Suite</option>
+                        <option value="1">Deluxe Suite</option>
+                        <option value="0">Honeymoon Suite</option>
+                    </select>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="roomType">Room Type (select one):</label>
-                <select class="form-control" id="roomType">
-                    <option value="2">Standard Suite</option>
-                    <option value="1">Deluxe Suite</option>
-                    <option value="0">Honeymoon Suite</option>
-                </select>
+            <div class="row">
+                <div class="form-group col-md-5">
+                    <label for="roomTheme">Room Theme:</label>
+                    <input type="text" class="form-control" id="roomTheme">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="nrOfBeds">Nr of Beds:</label>
+                    <input type="number" class="form-control" id="nrOfBeds">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="clean">Clean:
+                        <select class="form-control" id="clean">
+                            <option value="false">Dirty</option>
+                            <option value="true">Clean</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="occupied">Available:
+                        <select class="form-control" id="occupied">
+                            <option value="true">Occupied</option>
+                            <option value="false">Available</option>
+                        </select>
+                    </label>
+                </div>
             </div>
         </form>
         <a class="btn btn-secondary" href="index.html" role="button">Cancel &raquo;</a>
-        <a class="btn btn-secondary" onclick="addRoom();" role="button">Submit &raquo;</a>
+        <a class="btn btn-primary" href="viewallrooms.html" onclick="addRoom();" role="button">Submit &raquo;</a>
 
     </div>
 

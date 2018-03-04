@@ -16,14 +16,38 @@ function getRooms(){
             var roomList = "";
 
             $.each(data, function(index, current){
-            console.log(current.clean);
-            console.log(current.roomType);
+            var theme = "";
+            var cleanRoom = "";
+            var typeRoom = "";
+            var occupied = "";
 
-                var roomString = "<tr> <td>" + current.number + "</th> <td>  " + current.roomType + "</th> <td> " + current.nrOfPeople + "</th> <td> " + current.occupied + "</td> <td> " + current.clean
-                + "</td><td><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateRoomModal' data-id="+current.id+" >Update Room</button></th>"
-                + "<th><button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' + onclick='openDeleteModal("+current.id+")'>Delete Room</button></td></td>";
+            if(current.roomTheme == null){
+                theme == ""}
+                else {theme = current.roomTheme};
 
-                roomList = roomList + roomString;
+            if(current.roomType == "HONEYMOON"){
+                typeRoom = "Honeymoon"}
+            else if(current.roomType == "DELUXE"){
+                typeRoom = "Deluxe"}
+            else if (current.roomType == "STANDARD"){
+                typeRoom="Standard"}
+                else {typeRoom = "not defined"};
+
+            if(current.clean == null){
+                cleanRoom = ""}
+                else if (current.clean == false){cleanRoom = "Dirty"}
+                else if (current.clean == true){cleanRoom = "Clean"};
+
+            if(current.occupied == null){
+                            occupied = ""}
+                            else if (current.occupied == false){occupied = "Available"}
+                            else if (current.occupied == true){occupied = "Occupied"};
+
+            var roomString = "<tr> <td>" + current.number + "</th> <td>  " + theme + "</th> <td>  " + typeRoom +"</th> <td> " + current.nrOfPeople + "</th> <td> " + occupied + "</td> <td> " + cleanRoom
+            + "</td><td><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateRoomModal' onclick='openUpdateModal("+current.id+")'>Update Room</button></th>"
+            + "<th><button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' + onclick='openDeleteModal("+current.id+")'>Delete Room</button></td></td>";
+
+            roomList = roomList + roomString;
 
             });
 
@@ -58,20 +82,87 @@ function deleteRoom(id){
         });
 }
 
-function updateRoom(roomId){
+function openUpdateModal(id){
 
-    var inputRoomType = Number($("#roomType"));
+    $.ajax({
+            url : "http://localhost:8080/api/roomcontroller/findroombyid?id=" + id,
+            type : "get",
+            success: function(data){
+                var theme = "";
+                var typeRoom = "";
+                var occupied = "";
+                var clean = "";
+
+                if(data.roomTheme == null){
+                    theme == ""}
+                else {theme == data.roomTheme};
+
+                if(data.roomType == "HONEYMOON"){
+                    typeRoom = 0}
+                 else if(data.roomType == "DELUXE"){
+                      typeRoom = 1}
+                 else if (data.roomType == "STANDARD"){
+                      typeRoom = 2}
+                 else {typeRoom = "not defined"};
+
+                if(data.occupied == null){
+                    occupied = ""}
+                 else if (data.occupied == false){occupied = "false"}
+                 else if (data.occupied == true){occupied = "true"};
+
+                 if(data.clean == null){
+                    clean = ""}
+                    else if (data.clean == false){clean = "false"}
+                    else if (data.clean == true){clean = "true"};
+
+                $("#roomTheme").val(theme);
+                $("#roomType").val(typeRoom);
+                $("#roomNumber").val(data.number);
+                $("#nrOfBeds").val(data.nrOfPeople);
+                $("#clean").val(clean);
+                $("#occupied").val(occupied);
+
+            }
+        })
+
+    var generateUpdateButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>"
+                                +"<button type='button' class='btn btn-primary' data-dismiss='modal' onclick='updateRoom("+id+");'>Update room</button>";
+
+    $("#updateModalFooter").html(generateUpdateButtons);
+
+}
+
+function updateRoom(id){
+
+    var inputTheme = $("#roomTheme").val();
+    var inputTypeRoom = $("#roomType").val();
+    var numberTypeRoom = Number(inputTypeRoom);
+    var inputNumber=  $("#roomNumber").val();
+    var numberRoomNumber = Number(inputNumber);
+    var inputNrOfPeople = $("#nrOfBeds").val();
+    var numberNrOfPeople = Number(inputNrOfPeople);
+    var inputClean = $("#clean").val();
+    var inputOccupied = $("#occupied").val();
+
+    console.log("clean = " + inputClean);
 
     var newRoom = {
-        id : roomId,
-        roomType : inputRoomType
+        id : id,
+        roomType : numberTypeRoom,
+        nrOfPeople : numberNrOfPeople,
+        number : numberRoomNumber,
+        clean : inputClean,
+        roomTheme : inputTheme,
+        occupied : inputOccupied
         };
 
     var newRoomJson = JSON.stringify(newRoom);
 
+    console.log(newRoomJson);
+
     $.ajax({
-        url : "http://localhost:8080/api/roomcontroller/updateroom?id=" + roomId,
-        type : "update",
+        url : "http://localhost:8080/api/roomcontroller/addroom",
+        type : "post",
         data : newRoomJson,
         contentType : "application/json",
         success : function(data){
@@ -80,4 +171,58 @@ function updateRoom(roomId){
 
     });
 
+}
+
+function searchRoom(){
+    var input = $('#searchRoomTheme').val();
+    console.log("search on: " + input);
+        $.ajax({
+                // waar moet hij de request op uitvoeren
+                url : "http://localhost:8080/api/roomcontroller/searchroomtheme?searchvalue=" + input,
+                // type actie
+                type : "get",
+                // als de actie lukt, voer deze functie uit
+                success: function(input){
+                var roomList = "";
+                    $.each(data, function(index, current){
+
+
+                    var theme = "";
+                    var cleanRoom = "";
+                    var typeRoom = "";
+                    var occupied = "";
+
+                    if(current.roomTheme == null){
+                        theme == ""}
+                        else {theme = current.roomTheme};
+
+                    if(current.roomType == "HONEYMOON"){
+                        typeRoom = "Honeymoon"}
+                    else if(current.roomType == "DELUXE"){
+                        typeRoom = "Deluxe"}
+                    else if (current.roomType == "STANDARD"){
+                        typeRoom="Standard"}
+                        else {typeRoom = "not defined"};
+
+                    if(current.clean == null){
+                        cleanRoom = ""}
+                        else if (current.clean == false){cleanRoom = "Dirty"}
+                        else if (current.clean == true){cleanRoom = "Clean"};
+
+                    if(current.occupied == null){
+                        occupied = ""}
+                        else if (current.occupied == false){occupied = "Available"}
+                        else if (current.occupied == true){occupied = "Occupied"};
+
+                    var roomString = "<tr> <td>" + current.number + "</th> <td>  " + theme + "</th> <td>  " + typeRoom +"</th> <td> " + current.nrOfPeople + "</th> <td> " + occupied + "</td> <td> " + cleanRoom
+                    + "</td><td><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateRoomModal' onclick='openUpdateModal("+current.id+")'>Update Room</button></th>"
+                    + "<th><button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' + onclick='openDeleteModal("+current.id+")'>Delete Room</button></td></td>";
+
+                    roomList = roomList + roomString;
+
+                    });
+
+                    $("#rooms").html(roomList);
+                    }
+        });
 }

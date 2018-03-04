@@ -16,8 +16,6 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
 
-
-
     @RequestMapping(value = "newbooking", method = RequestMethod.POST)
     public void newBooking(@RequestBody Booking bookingToSave) {
 
@@ -25,8 +23,7 @@ public class BookingController {
 
     }
 
-
-    @RequestMapping(value = "allbookings", method = RequestMethod.GET)
+    @RequestMapping(value = "showbookings", method = RequestMethod.GET)
     public Iterable<Booking> showBookings() {
 
         return bookingService.allBookings();

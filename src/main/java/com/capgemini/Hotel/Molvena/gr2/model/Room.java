@@ -1,16 +1,12 @@
 package com.capgemini.Hotel.Molvena.gr2.model;
-
-//import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.capgemini.Hotel.Molvena.gr2.model.*;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
-//@RequestMapping("/api/person/")
 @Entity
-public class Room {
+public class Room implements Serializable {
     /**
      * properties
      */
@@ -21,20 +17,20 @@ public class Room {
     @Enumerated(EnumType.STRING)
     private ERoomType roomType;
 
-    @ManyToMany
-    private List<Booking> bookings;
-
     private boolean occupied;
-
     private String roomTheme;
-
     private int nrOfPeople;
-
     private boolean clean;
-
     private int number;
 
-   // private ERoomOccupiedBy roomOccupiedBy;
+    @JsonIgnore
+    @ManyToMany (fetch = FetchType.EAGER)
+    private Set<Booking> bookings = new HashSet<>();
+
+    // private ERoomOccupiedBy roomOccupiedBy;
+
+    public Room() {
+    }
 
     /**
      * constructor
@@ -50,8 +46,9 @@ public class Room {
         this.nrOfPeople = 2;
     }
 
-    // empty constructor
-    public Room() {
+
+    public Set<Booking> getBookings() {
+        return bookings;
     }
 
     /**
@@ -59,6 +56,8 @@ public class Room {
      *
      * @return value
      */
+
+
 
     public boolean isOccupied() {
         return occupied;
@@ -96,14 +95,6 @@ public class Room {
         this.roomType = roomType;
     }
 
-    public List<Booking> getBookings() {
-        return bookings;
-    }
-
-    public void setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
-    }
-
     public int getNrOfPeople() {
         return nrOfPeople;
     }
@@ -118,5 +109,14 @@ public class Room {
 
     public void setRoomTheme(String roomTheme) {
         this.roomTheme = roomTheme;
+    }
+
+    //Methode om persoon te adden aan set van snowboards
+    public void addBooking (Booking booking){
+        if(this.bookings == null){
+            this.bookings = new HashSet<>();
+        }
+        this.bookings.add(booking);
+        booking.getRooms().add(this);
     }
 }

@@ -67,10 +67,27 @@
         </div>
     </div>
 
-    <table style="width:100%" class="table table-striped">
+    <!-- line above the table where the search and add new room buttons are located -->
+    <div class="row">
+        <div class="col-md-1"></div>
+            <div class="col-md-1"><input type="text" id="searchRoomTheme" onkeyup="searchRoom()" placeholder="Search rooms" title="Search Rooms by Theme"></div>
+            <div class="col-md-8"></div>
+            <div class="col-md-1"><button type='button' class='btn btn-success' href="newroom.html">Add New Room</button>
+            </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+
+    </div>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+    <!-- Main table where the rooms are displayed -->
+    <table style="width:100%" class="display table-striped">
         <thead>
         <tr>
             <th>Number</th>
+            <th>Room Theme</th>
             <th>Room Type</th>
             <th>Nr of beds</th>
             <th>Occupied</th>
@@ -115,21 +132,57 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p> Set the room type to: </p>
-                    <label for="roomType">Room Type (select one):</label>
-                    <select class="form-control" id="roomType">
-                        <option value="2">Standard Suite</option>
-                        <option value="1">Deluxe Suite</option>
-                        <option value="0">Honeymoon Suite</option>
-                    </select>
+                    <div class="row">
+                        <div class="form-group col-md-5">
+                        <label for="roomNumber">Room Number:</label>
+                        <input type="number" class="form-control" id="roomNumber">
+                        </div>
+                        <div class="form-group col-md-5">
+                        <label for="roomTheme">Room Theme:</label>
+                        <input type="text" class="form-control" id="roomTheme">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="nrOfBeds">Nr of Beds:</label>
+                            <input type="number" class="form-control" id="nrOfBeds">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="clean">Clean:
+                                <select class="form-control" id="clean">
+                                    <option value="false">Dirty</option>
+                                    <option value="true">Clean</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="occupied">Available:
+                                <select class="form-control" id="occupied">
+                                    <option value="true">Occupied</option>
+                                    <option value="false">Available</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-10">
+                            <label for="roomType">Room Type (select one):</label>
+                            <select class="form-control" id="roomType">
+                                <option value="2">Standard Suite</option>
+                                <option value="1">Deluxe Suite</option>
+                                <option value="0">Honeymoon Suite</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="updateRoom();">Save changes</button>
+                <div class="modal-footer" id="updateModalFooter">
                 </div>
             </div>
         </div>
     </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>
 </main>
 
 

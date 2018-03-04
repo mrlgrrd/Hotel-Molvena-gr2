@@ -15,7 +15,7 @@ public class GuestService {
 
     @Autowired
     private GuestRepository guestRepository;
-
+    
     @PostConstruct
     public void init(){
         Guest guest1 = new Guest();
