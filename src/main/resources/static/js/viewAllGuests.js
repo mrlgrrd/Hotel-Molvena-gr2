@@ -115,9 +115,22 @@ function showGuestModalUpdate(id){
 }
 
 function showGuestModal(id){
-
     console.log(id);
 
+    if (id == null){
+        $("#fname").val("");
+                                            $("#preposition").val("");
+                                            $("#lname").val("");
+                                            $("#address").val("");
+                                            $("#zipcode").val("");
+                                            $("#city").val("");
+                                            $("#country").val("");
+                                            $("#phone").val("");
+                                            $("#email").val("");
+                                            $("#passportnr").val("");
+                                            $("#nationality").val("");
+    }
+    else {
     $.ajax({
         url : "http://localhost:8080/api/guestcontroller/findguest?id=" + id,
         type : "get",
@@ -137,6 +150,7 @@ function showGuestModal(id){
                         $("#nationality").val(data.nationality);
         }
     })
+    }
 
 
 }
@@ -208,10 +222,14 @@ function updateGuest(guest_id){
 function searchguest(){
     var input = $("#searchGuest").val();
     console.log(input);
+
+    if(input == ""){
+        getGuests();
+    } else {
     // ajax is een methode voor get/post requests
         $.ajax({
             // waar moet hij de request op uitvoeren
-            url : "http://localhost:8080/api/guestcontroller/searchguest?searchvalue=" + input,
+            url : "http://localhost:8080/api/guestcontroller/searchguest/" + input,
             // type actie
             type : "get",
             // als de actie lukt, voer deze functie uit
@@ -235,6 +253,7 @@ function searchguest(){
                 $("#guests").html(guestList);
             }
         });
+    }
 }
 
 $(document).ready(function(){

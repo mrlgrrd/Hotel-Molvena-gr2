@@ -3,10 +3,7 @@ package com.capgemini.Hotel.Molvena.gr2.controller;
 import com.capgemini.Hotel.Molvena.gr2.person.Guest;
 import com.capgemini.Hotel.Molvena.gr2.service.GuestService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/guestcontroller/")
@@ -25,8 +22,8 @@ public class GuestController {
 
     }
 
-    @RequestMapping(value = "searchguest", method = RequestMethod.GET)
-    public Iterable<Guest> searchguest(String searchvalue){
+    @RequestMapping(value = "searchguest/{searchvalue}", method = RequestMethod.GET)
+    public Iterable<Guest> searchguest(@PathVariable String searchvalue){
         return guestService.searchGuests(searchvalue);
     }
 
