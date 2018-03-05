@@ -43,7 +43,7 @@ public class GenericService {
         Room room1 = new Room();
         room1.setNumber(1);
 
-        room1.setTheme("Flower Power");
+        room1.setTheme("Red");
         room1.setRoomType(ERoomType.DELUXE);
 
         this.roomRepository.save(room1);
@@ -51,7 +51,7 @@ public class GenericService {
         Room room2 = new Room ();
         room2.setNumber(2);
 
-        room2.setTheme("Rock & Roll");
+        room2.setTheme("Green");
         room2.setRoomType(ERoomType.DELUXE);
 
         this.roomRepository.save(room2);

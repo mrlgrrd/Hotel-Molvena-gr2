@@ -20,7 +20,7 @@ function showBookingList(){
 
                         // geeft de data van de snowboards weer die bij de persoon horen (ManyToMany)
                         $.each(booking.rooms, function(roomIndex, room) {
-                            roomString = roomString + "#"+ room.id+ " " +room.roomTheme +";          ";
+                            roomString = roomString + "#"+ room.id+ " " +room.theme +";          ";
                         });
                         bookingString = bookingString+ "<td> " + roomString + "</td>" + "<td><button type='button' class='btn btn-info'>Update Room</button></th>" + "<th><button type='button' class='btn btn-danger'>Delete Room</button></td></td>";;
 
