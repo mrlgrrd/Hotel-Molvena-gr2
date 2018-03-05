@@ -2,6 +2,7 @@ package com.capgemini.Hotel.Molvena.gr2.service;
 
 import com.capgemini.Hotel.Molvena.gr2.model.ERoomType;
 import com.capgemini.Hotel.Molvena.gr2.model.Room;
+import com.capgemini.Hotel.Molvena.gr2.repositories.BookingRepository;
 import com.capgemini.Hotel.Molvena.gr2.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class RoomService {
 
     @Autowired
     private RoomRepository roomRepository;
+
+    @Autowired
+    private BookingRepository bookingRepository;
 
 
     // default constructor
@@ -41,7 +45,7 @@ public class RoomService {
         this.roomRepository.delete(id);
     }
 
-    public void addRoom(Room room){
+    public void addRoom(Room room) {
         this.roomRepository.save(room);
     }
 
@@ -53,23 +57,28 @@ public class RoomService {
         this.roomRepository.save(room);
     }
 
-    public Iterable<Room> searchRoomTheme(String searchRooms){
-        String searchRoomList[] = searchRooms.split(" ");
+    public Iterable<Room> searchRoomTheme(String theme){
+        String searchRoomList[] = theme.split(" ");
+
+        if(theme.equals("")){
+            allRooms();
+        }
+
         int numberWords = searchRoomList.length;
 
         Iterable<Room> foundRooms = null;
 
         switch(numberWords){
             case 1: {
-                foundRooms = this.roomRepository.findByRoomTheme(searchRoomList[0]);
+                foundRooms = this.roomRepository.findByThemeContainingIgnoreCase(searchRoomList[0]);
                 break;
             }
             case 2: {
-                foundRooms = this.roomRepository.findByRoomTheme(searchRoomList[1]);
+                foundRooms = this.roomRepository.findByThemeContainingIgnoreCase(searchRoomList[1]);
                 break;
             }
             case 3: {
-                foundRooms = this.roomRepository.findByRoomTheme(searchRoomList[2]);
+                foundRooms = this.roomRepository.findByThemeContainingIgnoreCase(searchRoomList[2]);
                 break;
             }
         }

@@ -41,12 +41,12 @@ public class RoomController {
 
     /**
      * search the collection of rooms for the given parameters
-     * @param searchRoomTheme search parameters
+     * @param theme search parameters
      * @return list of found rooms
      */
     @RequestMapping(value = "searchroomtheme", method = RequestMethod.GET)
-    public Iterable<Room> searchRoom(String searchRoomTheme){
-        return roomService.searchRoomTheme(searchRoomTheme);
+    public Iterable<Room> searchRoom(String theme){
+        return roomService.searchRoomTheme(theme);
     }
 
 }

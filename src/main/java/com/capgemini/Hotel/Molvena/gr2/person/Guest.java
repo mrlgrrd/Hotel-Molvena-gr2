@@ -81,15 +81,15 @@ public class Guest implements Serializable{
 
     }
 
-    public Set<Booking> getBookings() {
-        return bookings;
-    }
+
 
     /**
      * Getters and setters
      */
 
-
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
 
     public long getId() {
         return id;
