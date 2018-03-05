@@ -41,7 +41,7 @@ public class GuestService {
         return this.guestRepository.findAll();
     }
 
-    public List<Guest> searchGuests(String searchValue){
+    public Iterable<Guest> searchGuests(String searchValue){
 
 //        int numberWords = searchWords.length;
 //        ArrayList<Guest> returnvalue = null;
