@@ -42,7 +42,7 @@ public class RoomController {
      * @return list of found rooms
      */
     @RequestMapping(value = "searchroomtheme/{theme}", method = RequestMethod.GET)
-    public Iterable<Room> searchRoom(@PathVariable String theme){
+    public Iterable<Room> searchRoom(@PathVariable(required = false) String theme){
         return roomService.searchRoomTheme(theme);
     }
 

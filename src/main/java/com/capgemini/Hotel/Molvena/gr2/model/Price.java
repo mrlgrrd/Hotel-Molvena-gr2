@@ -2,14 +2,21 @@ package com.capgemini.Hotel.Molvena.gr2.model;
 
 import com.capgemini.Hotel.Molvena.gr2.model.ERoomType;
 
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
+@Entity
 public class Price {
-
-    /**
+     /**
      * Variables
      */
-    private ERoomType roomtype;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @ManyToMany
+    private Set<Booking> bookings;
 
     private double roomPrice;
 
@@ -20,6 +27,7 @@ public class Price {
 
     private Date UntilDateSeason;
 
+    // discount percentage
     private double Discount;
 
     /**
@@ -27,7 +35,12 @@ public class Price {
      */
 
     public Price(){
+    }
 
+    public Price(double roomPrice, Date fromDateSeason, Date untilDateSeason) {
+        this.roomPrice = roomPrice;
+        this.fromDateSeason = fromDateSeason;
+        UntilDateSeason = untilDateSeason;
     }
 
     /**
@@ -35,20 +48,12 @@ public class Price {
      */
     public void constructPrice(){}
 
-    public void updatePrice(){}
+    public void newPrice(){}
 
     /**
      * Getters & Setters
      * @return
      */
-
-    public ERoomType getRoomtype() {
-        return roomtype;
-    }
-
-    public void setRoomtype(ERoomType roomtype) {
-        this.roomtype = roomtype;
-    }
 
     public double getRoomPrice() {
         return roomPrice;
@@ -88,5 +93,17 @@ public class Price {
 
     public void setDiscount(double discount) {
         Discount = discount;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
     }
 }
