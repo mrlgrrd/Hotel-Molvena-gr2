@@ -47,14 +47,18 @@ public class GenericService {
 
         Room room1 = new Room();
         room1.setNumber(1);
-        room1.setTheme("Flower Power");
+
+        room1.setTheme("Red");
         room1.setRoomType(ERoomType.DELUXE);
+
         this.roomRepository.save(room1);
 
         Room room2 = new Room ();
         room2.setNumber(2);
-        room2.setTheme("Rock & Roll");
+
+        room2.setTheme("Green");
         room2.setRoomType(ERoomType.DELUXE);
+
         this.roomRepository.save(room2);
 
         Price price = new Price();
@@ -77,11 +81,14 @@ public class GenericService {
         Room room6 = new Room(ERoomType.DELUXE, 6);
         Room room7 = new Room(ERoomType.HONEYMOON, 7);
 
-        roomRepository.save(room3);
-        roomRepository.save(room4);
-        roomRepository.save(room5);
-        roomRepository.save(room6);
-        roomRepository.save(room7);
+        this.roomRepository.save(room3);
+        this.roomRepository.save(room4);
+        this.roomRepository.save(room5);
+        this.roomRepository.save(room6);
+        this.roomRepository.save(room7);
+
+
+
 
 
 
