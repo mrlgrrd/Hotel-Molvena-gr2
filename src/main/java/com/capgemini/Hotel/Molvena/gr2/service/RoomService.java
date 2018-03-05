@@ -53,9 +53,9 @@ public class RoomService {
         return this.roomRepository.findOne(id);
     }
 
-    public void updateRoom(Room room){
+/*    public void updateRoom(Room room){
         this.roomRepository.save(room);
-    }
+    }*/
 
     public Iterable<Room> searchRoomTheme(String theme){
         String searchRoomList[] = theme.split(" ");

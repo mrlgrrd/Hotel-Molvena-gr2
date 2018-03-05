@@ -178,13 +178,13 @@ function searchRoom(){
     console.log("search on: " + input);
         $.ajax({
                 // waar moet hij de request op uitvoeren
-                url : "http://localhost:8080/api/roomcontroller/searchroomtheme?searchvalue=" + input,
+                url : "http://localhost:8080/api/roomcontroller/searchroomtheme/" + input,
                 // type actie
                 type : "get",
                 // als de actie lukt, voer deze functie uit
                 success: function(input){
                 var roomList = "";
-                    $.each(data, function(index, current){
+                    $.each(input, function(index, current){
 
 
                     var theme = "";
