@@ -29,4 +29,8 @@ public class BookingService {
         return booking;
     }
 
+    public Iterable<Booking> guestBooking(long id){
+        return this.bookingRepository.findByGuest_id(id);
+    }
+
 }

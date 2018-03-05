@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -19,12 +20,14 @@ public class Guest implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    //@NotNull
+    @NotNull
+    @Size(min=1)
     private String firstname;
 
     private String preposition;
 
-    //@NotNull
+    @NotNull
+    @Size(min=1)
     private String lastname;
 
     private String address;

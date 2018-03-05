@@ -10,8 +10,8 @@
     <title>Molveno Lake Resort</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <!--<link rel="stylesheet" href="/CSS/library/bootstrap.min.css">-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="/CSS/library/bootstrap.min.css">
     <style>
         .wide {
             width: 90%;
@@ -84,6 +84,7 @@
         <button type='button' class='btn btn-success' data-toggle='modal' data-target='#updateGuestModal' onclick='javascript:showGuestModalUpdate()'>Add new guest</button>
 
     </div>
+
     <table style="width:100%" class="table table-striped">
         <thead>
         <tr>
@@ -186,6 +187,29 @@
                             <select class="form-control countryselect" id="nationality"></select>
                         </div>
                     </div>
+                    <div id="row">
+                        <div id="bookingtable" class="col-md-12">
+                            <!--<table style="width:100%" class="table table-striped">-->
+                            <!--<thead>-->
+                            <!--<tr>-->
+                            <!--<th>Booking ID</th>-->
+                            <!--<th>From</th>-->
+                            <!--<th>Till</th>-->
+                            <!--<th>Guest ID</th>-->
+                            <!--<th>First name</th>-->
+                            <!--<th>Last name</th>-->
+                            <!--<th>Rooms</th>-->
+                            <!--<th>Update</th>-->
+                            <!--<th>Delete</th>-->
+
+                            <!--</tr>-->
+                            <!--</thead>-->
+                            <!--<tbody id="bookings">-->
+                            <!--</tbody>-->
+                            <!--</table>-->
+
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer" id="buttonsupdatemodal">
                 </div>
@@ -199,12 +223,12 @@
     <p>&copy; Molveno Lake Resort 2017-2018</p>
 </footer>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<!--<script src="/js/library/jquery-3.3.1.min.js"></script>-->
-<!--<script src="/js/library/popper.min.js"></script>-->
-<!--<script src="/js/library/bootstrap.min.js"></script>-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
+<script src="/js/library/jquery-3.3.1.min.js"></script>
+<script src="/js/library/popper.min.js"></script>
+<script src="/js/library/bootstrap.min.js"></script>
 <script src="js/viewAllGuests.js"></script>
 <script src="js/country.js"></script>
 </body>
