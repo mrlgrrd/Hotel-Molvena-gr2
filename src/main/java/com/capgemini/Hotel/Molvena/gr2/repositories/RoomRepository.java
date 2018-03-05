@@ -12,6 +12,8 @@ import java.util.List;
 @Repository
 public interface RoomRepository extends CrudRepository<Room, Long>{
 
-    ArrayList<Room> findByRoomTheme(String searchTheme);
+    Iterable<Room> findByThemeContainingIgnoreCaseOrNumberContaining(String theme, int number);
+
+    Iterable<Room> findByThemeContainingIgnoreCase(String theme);
 
 }

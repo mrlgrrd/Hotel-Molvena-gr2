@@ -3,10 +3,7 @@ package com.capgemini.Hotel.Molvena.gr2.controller;
 import com.capgemini.Hotel.Molvena.gr2.model.Room;
 import com.capgemini.Hotel.Molvena.gr2.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/roomcontroller/")
@@ -41,12 +38,16 @@ public class RoomController {
 
     /**
      * search the collection of rooms for the given parameters
-     * @param searchRoomTheme search parameters
+     * @param theme search parameters
      * @return list of found rooms
      */
-    @RequestMapping(value = "searchroomtheme", method = RequestMethod.GET)
-    public Iterable<Room> searchRoom(String searchRoomTheme){
-        return roomService.searchRoomTheme(searchRoomTheme);
+    @RequestMapping(value = "searchroomtheme/{theme}", method = RequestMethod.GET)
+    public Iterable<Room> searchRoom(@PathVariable String theme){
+        return roomService.searchRoomTheme(theme);
     }
 
+    @RequestMapping(value = "searchroomtheme/", method = RequestMethod.GET)
+    public Iterable<Room> searchRoom(){
+        return roomService.allRooms();
+    }
 }

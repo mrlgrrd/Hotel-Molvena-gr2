@@ -4,6 +4,7 @@ import com.capgemini.Hotel.Molvena.gr2.model.Booking;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -18,15 +19,23 @@ public class Guest implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    //@NotNull
     private String firstname;
+
     private String preposition;
+
+    //@NotNull
     private String lastname;
+
     private String address;
     private String zipCode;
     private String city;
     private String country;
     private String phone;
+
+    //@NotNull
     private String email;
+
     private String passportNumber;
     private String nationality;
 
@@ -53,20 +62,6 @@ public class Guest implements Serializable{
                 '}';
     }
 
-    //    /**
-//     * Methods
-//     */
-//    public void AddGuest(){
-//
-//    }
-//
-//    public void AlterGuest(){
-//
-//    }
-//
-//    public void SearchForGuest(){
-//
-//    }
 
     /**
      * Constructors
@@ -81,15 +76,15 @@ public class Guest implements Serializable{
 
     }
 
-    public Set<Booking> getBookings() {
-        return bookings;
-    }
+
 
     /**
      * Getters and setters
      */
 
-
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
 
     public long getId() {
         return id;

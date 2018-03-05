@@ -11,11 +11,17 @@ function getGuests(){
             var guestList = "";
 
             $.each(data, function(index, current){
+                var nationality
+                if(current.nationality == null){
+                    nationality = "";
+                } else {
+                    nationality = current.nationality;
+                }
                 var guestString = "<tr> <th>" + current.firstname + "</th> <th>  " + current.preposition + "</th> <th> " +
-                    current.lastname + "</th> <th> " + current.address + "</th> <th> " + current.zipCode + "</th> <th> " +
+                    current.lastname + "</th> <th> " +
                     current.city + "</th> <th> " + current.country + "</th> <th> " + current.phone + "</th> <th> " +
-                    current.email + "</th> <th> " + current.passportNumber + "</th> <th> " + current.nationality +
-                    "</th><th><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateGuestModal' onclick='javascript:showGuestModal("
+                    current.email + "</th> <th><button type='button' class='btn btn-warning' data-toggle='modal' data-target='#updateGuestModal' onclick='javascript:showGuestModalReadOnly("
+                    +current.id+")'>See details</button></th><th><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateGuestModal' onclick='javascript:showGuestModalUpdate("
                     +current.id+")'>Update Guest</button></th><th><button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' onclick='javascript:showDeleteModal("
                     +current.id+")'>Delete Guest</button></th></tr>";
 
@@ -72,11 +78,59 @@ console.log(id);
 
 }
 
+function showGuestModalReadOnly(id){
+
+    $('.countryselect').prop('disabled',true);
+    $('.form-control').prop('readonly', true);
+
+    $("#updateModalHeader").text("Details:");
+
+    showGuestModal(id);
+
+    $("#buttonsupdatemodal").html("");
+}
+
+function showGuestModalUpdate(id){
+ var modaltext
+
+    if(id == null){
+        modaltext = "Add new guest";
+        $("#updateModalHeader").text(modaltext+":");
+
+    }
+    else {
+        modaltext = "Update guest";
+        $("#updateModalHeader").text(modaltext+":");
+    }
+
+    $('.countryselect').prop('disabled',false);
+    $('.form-control').prop('readonly', false);
+
+    showGuestModal(id);
+
+    var generateButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>"+
+                                    "<button type='button' class='btn btn-primary' data-dismiss='modal' onclick='updateGuest("+id+");'>"+modaltext+"</button>";
+
+    $("#buttonsupdatemodal").html(generateButtons);
+}
+
 function showGuestModal(id){
-
-
     console.log(id);
 
+    if (id == null){
+        $("#fname").val("");
+                                            $("#preposition").val("");
+                                            $("#lname").val("");
+                                            $("#address").val("");
+                                            $("#zipcode").val("");
+                                            $("#city").val("");
+                                            $("#country").val("");
+                                            $("#phone").val("");
+                                            $("#email").val("");
+                                            $("#passportnr").val("");
+                                            $("#nationality").val("");
+    }
+    else {
     $.ajax({
         url : "http://localhost:8080/api/guestcontroller/findguest?id=" + id,
         type : "get",
@@ -96,11 +150,8 @@ function showGuestModal(id){
                         $("#nationality").val(data.nationality);
         }
     })
+    }
 
-    var generateButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>"+
-                                "<button type='button' class='btn btn-primary' data-dismiss='modal' onclick='updateGuest("+id+");'>Save changes</button>";
-
-    $("#buttonsupdatemodal").html(generateButtons);
 
 }
 
@@ -149,6 +200,18 @@ function updateGuest(guest_id){
             contentType: "application/json",
             success : function(data){
                 getGuests();
+                //Maak de velden leeg
+                                    $("#fname").val("");
+                                    $("#preposition").val("");
+                                    $("#lname").val("");
+                                    $("#address").val("");
+                                    $("#zipcode").val("");
+                                    $("#city").val("");
+                                    $("#country").val("");
+                                    $("#phone").val("");
+                                    $("#email").val("");
+                                    $("#passportnr").val("");
+                                    $("#nationality").val("");
 
             }
         })
@@ -159,10 +222,14 @@ function updateGuest(guest_id){
 function searchguest(){
     var input = $("#searchGuest").val();
     console.log(input);
+
+    if(input == ""){
+        getGuests();
+    } else {
     // ajax is een methode voor get/post requests
         $.ajax({
             // waar moet hij de request op uitvoeren
-            url : "http://localhost:8080/api/guestcontroller/searchguest?searchvalue=" + input,
+            url : "http://localhost:8080/api/guestcontroller/searchguest/" + input,
             // type actie
             type : "get",
             // als de actie lukt, voer deze functie uit
@@ -171,13 +238,13 @@ function searchguest(){
                 var guestList = "";
 
                 $.each(data, function(index, current){
-                    var guestString = "<tr> <th>" + current.firstname + "</th> <th>  " + current.preposition + "</th> <th> " +
-                        current.lastname + "</th> <th> " + current.address + "</th> <th> " + current.zipCode + "</th> <th> " +
-                        current.city + "</th> <th> " + current.country + "</th> <th> " + current.phone + "</th> <th> " +
-                        current.email + "</th> <th> " + current.passportNumber + "</th> <th> " + current.nationality +
-                        "</th><th><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateGuestModal' onclick='javascript:showGuestModal("
-                        +current.id+")'>Update Guest</button></th><th><button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' onclick='javascript:showDeleteModal("
-                        +current.id+")'>Delete Guest</button></th></tr>";
+                   var guestString = "<tr> <th>" + current.firstname + "</th> <th>  " + current.preposition + "</th> <th> " +
+                                       current.lastname + "</th> <th> " +
+                                       current.city + "</th> <th> " + current.country + "</th> <th> " + current.phone + "</th> <th> " +
+                                       current.email + "</th> <th><button type='button' class='btn btn-warning' data-toggle='modal' data-target='#updateGuestModal' onclick='javascript:showGuestModalReadOnly("
+                                       +current.id+")'>See details</button></th><th><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateGuestModal' onclick='javascript:showGuestModalUpdate("
+                                       +current.id+")'>Update Guest</button></th><th><button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' onclick='javascript:showDeleteModal("
+                                       +current.id+")'>Delete Guest</button></th></tr>";
 
                     guestList = guestList + guestString;
 
@@ -186,6 +253,7 @@ function searchguest(){
                 $("#guests").html(guestList);
             }
         });
+    }
 }
 
 $(document).ready(function(){

@@ -21,9 +21,9 @@ function getRooms(){
             var typeRoom = "";
             var occupied = "";
 
-            if(current.roomTheme == null){
+            if(current.theme == null){
                 theme == ""}
-                else {theme = current.roomTheme};
+                else {theme = current.theme};
 
             if(current.roomType == "HONEYMOON"){
                 typeRoom = "Honeymoon"}
@@ -93,9 +93,9 @@ function openUpdateModal(id){
                 var occupied = "";
                 var clean = "";
 
-                if(data.roomTheme == null){
+                if(data.theme == null){
                     theme == ""}
-                else {theme == data.roomTheme};
+                else {theme = data.theme};
 
                 if(data.roomType == "HONEYMOON"){
                     typeRoom = 0}
@@ -115,7 +115,7 @@ function openUpdateModal(id){
                     else if (data.clean == false){clean = "false"}
                     else if (data.clean == true){clean = "true"};
 
-                $("#roomTheme").val(theme);
+                $("#theme").val(theme);
                 $("#roomType").val(typeRoom);
                 $("#roomNumber").val(data.number);
                 $("#nrOfBeds").val(data.nrOfPeople);
@@ -134,7 +134,7 @@ function openUpdateModal(id){
 
 function updateRoom(id){
 
-    var inputTheme = $("#roomTheme").val();
+    var inputTheme = $("#theme").val();
     var inputTypeRoom = $("#roomType").val();
     var numberTypeRoom = Number(inputTypeRoom);
     var inputNumber=  $("#roomNumber").val();
@@ -152,7 +152,7 @@ function updateRoom(id){
         nrOfPeople : numberNrOfPeople,
         number : numberRoomNumber,
         clean : inputClean,
-        roomTheme : inputTheme,
+        theme : inputTheme,
         occupied : inputOccupied
         };
 
@@ -178,13 +178,13 @@ function searchRoom(){
     console.log("search on: " + input);
         $.ajax({
                 // waar moet hij de request op uitvoeren
-                url : "http://localhost:8080/api/roomcontroller/searchroomtheme?searchvalue=" + input,
+                url : "http://localhost:8080/api/roomcontroller/searchroomtheme/" + input,
                 // type actie
                 type : "get",
                 // als de actie lukt, voer deze functie uit
                 success: function(input){
                 var roomList = "";
-                    $.each(data, function(index, current){
+                    $.each(input, function(index, current){
 
 
                     var theme = "";
@@ -192,9 +192,9 @@ function searchRoom(){
                     var typeRoom = "";
                     var occupied = "";
 
-                    if(current.roomTheme == null){
+                    if(current.theme == null){
                         theme == ""}
-                        else {theme = current.roomTheme};
+                        else {theme = current.theme};
 
                     if(current.roomType == "HONEYMOON"){
                         typeRoom = "Honeymoon"}
@@ -225,4 +225,8 @@ function searchRoom(){
                     $("#rooms").html(roomList);
                     }
         });
+}
+
+function relocateNewRoom(){
+    location.href = "http://localhost:8080/newroom.html";
 }
