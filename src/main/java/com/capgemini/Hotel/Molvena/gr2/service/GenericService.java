@@ -2,10 +2,12 @@ package com.capgemini.Hotel.Molvena.gr2.service;
 
 import com.capgemini.Hotel.Molvena.gr2.model.Booking;
 import com.capgemini.Hotel.Molvena.gr2.model.ERoomType;
+import com.capgemini.Hotel.Molvena.gr2.model.Price;
 import com.capgemini.Hotel.Molvena.gr2.model.Room;
 import com.capgemini.Hotel.Molvena.gr2.person.Guest;
 import com.capgemini.Hotel.Molvena.gr2.repositories.BookingRepository;
 import com.capgemini.Hotel.Molvena.gr2.repositories.GuestRepository;
+import com.capgemini.Hotel.Molvena.gr2.repositories.PriceRepository;
 import com.capgemini.Hotel.Molvena.gr2.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,9 @@ public class GenericService {
 
     @Autowired
     private RoomRepository roomRepository;
+
+    @Autowired
+    private PriceRepository priceRepository;
 
     @PostConstruct
     public void init(){
@@ -52,10 +57,14 @@ public class GenericService {
         room2.setRoomType(ERoomType.DELUXE);
         this.roomRepository.save(room2);
 
-        room1.addBooking(b1);
-        room2.addBooking(b1);
-        b1.addRoom(room1);
-        b1.addRoom(room2);
+        Price price = new Price();
+        price.setRoomPrice(79);
+        this.priceRepository.save(price);
+
+        room1.addBookingToRoom(b1);
+        room2.addBookingToRoom(b1);
+        b1.addRoomToBooking(room1);
+        b1.addRoomToBooking(room2);
 
         this.bookingRepository.save(b1);
         this.roomRepository.save(room2);

@@ -24,6 +24,9 @@ public class Booking implements Serializable {
     @ManyToMany(mappedBy = "bookings", fetch = FetchType.EAGER)
     private Set<Room> rooms = new HashSet<>();
 
+    @ManyToMany(mappedBy = "bookings", fetch = FetchType.EAGER)
+    private Set<Price> prices = new HashSet<>();
+
 //    @ManyToMany(mappedBy = "bookings")
 //    private List<Room> rooms;
 
@@ -70,7 +73,19 @@ public class Booking implements Serializable {
         this.desiredPeriodTill = desiredPeriodTill;
     }
 
-//    public List<Room> getRooms() {
+    public void setRooms(Set<Room> rooms) {
+        this.rooms = rooms;
+    }
+
+    public Set<Price> getPrices() {
+        return prices;
+    }
+
+    public void setPrices(Set<Price> prices) {
+        this.prices = prices;
+    }
+
+    //    public List<Room> getRooms() {
 //        return rooms;
 //    }
 //
@@ -78,11 +93,19 @@ public class Booking implements Serializable {
 //        this.rooms = rooms;
 //    }
 
-    public void addRoom (Room room){
+    public void addRoomToBooking(Room room){
         if(this.rooms == null){
             this.rooms = new HashSet<>();
         }
         this.rooms.add(room);
         room.getBookings().add(this);
+    }
+
+    public void addPriceToBooking(Price price){
+        if(this.prices == null){
+            this.prices = new HashSet<>();
+        }
+        this.prices.add(price);
+        price.getBookings().add(this);
     }
 }

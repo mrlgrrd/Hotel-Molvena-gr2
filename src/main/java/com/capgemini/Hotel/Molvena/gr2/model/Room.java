@@ -111,8 +111,8 @@ public class Room implements Serializable {
         this.theme = theme;
     }
 
-    //Methode om persoon te adden aan set van snowboards
-    public void addBooking (Booking booking){
+    //Methode om room te adden aan set van bookings
+    public void addBookingToRoom(Booking booking){
         if(this.bookings == null){
             this.bookings = new HashSet<>();
         }
