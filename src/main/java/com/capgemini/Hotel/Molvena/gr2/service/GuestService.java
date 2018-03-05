@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class GuestService {
@@ -40,7 +41,7 @@ public class GuestService {
         return this.guestRepository.findAll();
     }
 
-    public ArrayList<Guest> searchGuests(String searchValue){
+    public List<Guest> searchGuests(String searchValue){
 
 //        int numberWords = searchWords.length;
 //        ArrayList<Guest> returnvalue = null;
@@ -70,15 +71,15 @@ public class GuestService {
         boolean removeRow;
 
         //Make arraylists to work with
-        ArrayList<Guest> temporaryList1 = new ArrayList<>();
-        ArrayList<Guest> temporaryList2 = new ArrayList<>();
-        ArrayList<Guest> filteredList = new ArrayList<>();
+        List<Guest> temporaryList1 = new ArrayList<>();
+        List<Guest> temporaryList2 = new ArrayList<>();
+        List<Guest> filteredList = new ArrayList<>();
 
         //Get list of guests that would be found by the first searchword
         filteredList = guestRepository.findByFirstnameContainingIgnoreCaseOrPrepositionContainingIgnoreCaseOrLastnameContainingIgnoreCaseOrAddressContainingIgnoreCaseOrZipCodeContainingIgnoreCaseOrCityContainingIgnoreCaseOrCountryContainingIgnoreCaseOrPhoneContainingIgnoreCaseOrEmailContainingIgnoreCase(searchWords[0], searchWords[0], searchWords[0], searchWords[0], searchWords[0], searchWords[0], searchWords[0], searchWords[0], searchWords[0]);
         //Loop through the amount of searchwords
         for(int i = 1; i < searchWords.length; i++) {
-            temporaryList1 = (ArrayList<Guest>)filteredList.clone();
+            //temporaryList1 = (ArrayList<Guest>)filteredList.clone();
             temporaryList2 = guestRepository.findByFirstnameContainingIgnoreCaseOrPrepositionContainingIgnoreCaseOrLastnameContainingIgnoreCaseOrAddressContainingIgnoreCaseOrZipCodeContainingIgnoreCaseOrCityContainingIgnoreCaseOrCountryContainingIgnoreCaseOrPhoneContainingIgnoreCaseOrEmailContainingIgnoreCase(searchWords[i], searchWords[i], searchWords[i], searchWords[i], searchWords[i], searchWords[i], searchWords[i], searchWords[i], searchWords[i]);
             //You only want the guests that have to do with each searchword, so get rid of all results that do
             //not have to do with every result
@@ -91,12 +92,15 @@ public class GuestService {
                 }
                 //remove the guest from a temporary list
                 if(removeRow){
-                    temporaryList1.remove(guest1);
+                    temporaryList1.add(guest1);
                 }
 
             }
             //Make the filtered list equal to the temporary list
-            filteredList = (ArrayList<Guest>)temporaryList1.clone();
+            for(Guest rguest : temporaryList1) {
+                filteredList.remove(rguest);
+            }
+            //filteredList = (ArrayList<Guest>)temporaryList1.clone();
 
 
         }
