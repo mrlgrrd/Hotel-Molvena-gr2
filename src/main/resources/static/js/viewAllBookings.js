@@ -22,7 +22,7 @@ function showBookingList(){
                         $.each(booking.rooms, function(roomIndex, room) {
                             roomString = roomString + "#"+ room.id+ " " +room.theme +";          ";
                         });
-                        bookingString = bookingString+ "<td> " + roomString + "</td>" + "<td><button type='button' class='btn btn-info'>Update Room</button></th>" + "<th><button type='button' class='btn btn-danger'>Delete Room</button></td></td>";;
+                        bookingString = bookingString+ "<td> " + roomString + "</td>" + "<td><button type='button' class='btn btn-info'>Update Booking</button></th>" + "<th><button type='button' class='btn btn-danger'>Delete Booking</button></td></td>";;
 
                         bookingList += bookingString;
 
@@ -36,3 +36,7 @@ function showBookingList(){
         };
 
         $(document).ready(showBookingList);
+
+        function goToNewBooking(){
+        location.href = "http://localhost:8080/newbooking.html";
+        }
