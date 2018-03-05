@@ -22,7 +22,7 @@ function showBookingList(){
                         $.each(booking.rooms, function(roomIndex, room) {
                             roomString = roomString + "#"+ room.id+ " " +room.roomTheme +";          ";
                         });
-                        bookingString = bookingString+ "<td> " + roomString + "</td>";
+                        bookingString = bookingString+ "<td> " + roomString + "</td>" + "<td><button type='button' class='btn btn-info'>Update Room</button></th>" + "<th><button type='button' class='btn btn-danger'>Delete Room</button></td></td>";;
 
                         bookingList += bookingString;
 
