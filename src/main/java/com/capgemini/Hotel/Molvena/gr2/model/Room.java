@@ -18,7 +18,7 @@ public class Room implements Serializable {
     private ERoomType roomType;
 
     private boolean occupied;
-    private String roomTheme;
+    private String theme;
     private int nrOfPeople;
     private boolean clean;
     private int number;
@@ -27,7 +27,7 @@ public class Room implements Serializable {
     @ManyToMany (fetch = FetchType.EAGER)
     private Set<Booking> bookings = new HashSet<>();
 
-    // private ERoomOccupiedBy roomOccupiedBy;
+
 
     public Room() {
     }
@@ -103,12 +103,12 @@ public class Room implements Serializable {
         this.nrOfPeople = nrOfPeople;
     }
 
-    public String getRoomTheme() {
-        return roomTheme;
+    public String getTheme() {
+        return theme;
     }
 
-    public void setRoomTheme(String roomTheme) {
-        this.roomTheme = roomTheme;
+    public void setTheme(String theme) {
+        this.theme = theme;
     }
 
     //Methode om persoon te adden aan set van snowboards
