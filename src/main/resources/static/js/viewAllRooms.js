@@ -161,11 +161,11 @@ function updateRoom(id){
     console.log(newRoomJson);
 
     $.ajax({
-        url : "http://localhost:8080/api/roomcontroller/addroom",
-        type : "post",
+        url : "http://localhost:8080/api/roomcontroller/updateroom/"+ id,
+        type : "put",
         data : newRoomJson,
         contentType : "application/json",
-        success : function(data){
+        success : function(id, data){
             getRooms();
         }
 

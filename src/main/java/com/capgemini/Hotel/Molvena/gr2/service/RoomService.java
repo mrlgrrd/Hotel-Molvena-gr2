@@ -6,6 +6,7 @@ import com.capgemini.Hotel.Molvena.gr2.repositories.BookingRepository;
 import com.capgemini.Hotel.Molvena.gr2.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
@@ -26,22 +27,22 @@ public class RoomService {
 
     /**
      * this method returns a list of all rooms
+     *
      * @return list of all rooms
-     * */
-    public Iterable<Room> allRooms(){
+     */
+    public Iterable<Room> allRooms() {
         return this.roomRepository.findAll();
     }
 
     /**
-     * 
      * @param id
      * @return
      */
-    public Room selectRoomById(Long id){
+    public Room selectRoomById(Long id) {
         return this.roomRepository.findOne(id);
     }
 
-    public void deleteRoom(Long id){
+    public void deleteRoom(Long id) {
         this.roomRepository.delete(id);
     }
 
@@ -49,7 +50,7 @@ public class RoomService {
         this.roomRepository.save(room);
     }
 
-    public Room findRoomById(Long id){
+    public Room findRoomById(Long id) {
         return this.roomRepository.findOne(id);
     }
 
@@ -57,10 +58,10 @@ public class RoomService {
         this.roomRepository.save(room);
     }*/
 
-    public Iterable<Room> searchRoomTheme(String theme){
+    public Iterable<Room> searchRoomTheme(String theme) {
         String searchRoomList[] = theme.split(" ");
 
-        if(theme.equals("")){
+        if (theme.equals("")) {
             allRooms();
         }
 
@@ -68,7 +69,7 @@ public class RoomService {
 
         Iterable<Room> foundRooms = null;
 
-        switch(numberWords){
+        switch (numberWords) {
             case 1: {
                 foundRooms = this.roomRepository.findByThemeContainingIgnoreCase(searchRoomList[0]);
                 break;
@@ -83,5 +84,19 @@ public class RoomService {
             }
         }
         return foundRooms;
+    }
+
+    public void updateRoom(long id, Room updateRoom) {
+        Room room = this.roomRepository.findOne(id);
+        if (room != null) {
+            room.setRoomType(updateRoom.getRoomType());
+            room.setNumber(updateRoom.getNumber());
+            room.setTheme(updateRoom.getTheme());
+            room.setOccupied(updateRoom.isOccupied());
+            room.setClean(updateRoom.isClean());
+            room.setNrOfPeople(updateRoom.getNrOfPeople());
+            this.roomRepository.save(room);
+        }
+
     }
 }
