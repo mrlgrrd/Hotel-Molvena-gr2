@@ -31,6 +31,11 @@ public class RoomController {
         roomService.addRoom(newRoom);
     }
 
+    @RequestMapping(value = "updateroom/{id}", method = RequestMethod.PUT)
+    public void updateRoom(@PathVariable long id, @RequestBody Room newRoom){
+        roomService.addRoom(newRoom);
+    }
+
     @RequestMapping(value = "findroombyid", method = RequestMethod.GET)
     public Room findRoom(Long id){
         return this.roomService.findRoomById(id);
