@@ -46,11 +46,17 @@ public class GenericService {
         guest1.setLastname("Jones");
         this.guestRepository.save(guest1);
 
-        b2.setGuest(guest1);
+        Guest guest2 = new Guest();
+        guest2.setFirstname("Travis");
+        guest2.setLastname("Rice");
+        this.guestRepository.save(guest2);
+
+        b2.setGuest(guest2);
         b1.setGuest(guest1);
         this.bookingRepository.save(b1);
         this.bookingRepository.save(b2);
         this.guestRepository.save(guest1);
+        this.guestRepository.save(guest2);
 
         Room room1 = new Room();
         room1.setNumber(1);
@@ -73,10 +79,11 @@ public class GenericService {
         this.priceRepository.save(price);
 
         room1.addBookingToRoom(b1);
-        room2.addBookingToRoom(b1);
+        room2.addBookingToRoom(b2);
         b1.addRoomToBooking(room1);
-        b1.addRoomToBooking(room2);
+        b2.addRoomToBooking(room2);
 
+        this.bookingRepository.save(b2);
         this.bookingRepository.save(b1);
         this.roomRepository.save(room2);
         this.roomRepository.save(room1);

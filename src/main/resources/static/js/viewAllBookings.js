@@ -40,3 +40,48 @@ function showBookingList(){
         function goToNewBooking(){
         location.href = "http://localhost:8080/newbooking.html";
         }
+
+
+        function searchBooking(){
+        	var input = $("#searchBooking").val();
+        	console.log(input);
+
+        	if(input == ""){
+        		showBookingList();
+        	} else {
+            // ajax is een methode voor get/post requests
+            $.ajax({
+                    // waar moet hij de request op uitvoeren
+                    url : "/api/bookingcontroller/searchbooking/" + input,
+                    // type actie
+                    type : "get",
+                    // als de actie lukt, voer deze functie uit
+                    success: function(showBookingData){
+                     console.log(input);
+                        var bookingList = "";
+
+                                                $.each(showBookingData, function(bookingIndex, booking){
+
+                                                var roomString = "";
+                                                var bookingString = "<tr> <td>" + booking.id + "</td> <td>  " + booking.desiredPeriodFrom + "</td> <td> " + booking.desiredPeriodTill + "</td> <td> " + booking.guest.id + "</td> <td> " + booking.guest.firstname + "</td> <td> " + booking.guest.lastname + "</td> ";
+
+                                                // geeft de data van de snowboards weer die bij de persoon horen (ManyToMany)
+                                                $.each(booking.rooms, function(roomIndex, room) {
+                                                    roomString = roomString + "#"+ room.id+ " " +room.theme +";          ";
+                                                });
+                                                bookingString = bookingString+ "<td> " + roomString + "</td>" + "<td><button type='button' class='btn btn-info'>Update Booking</button></th>" + "<th><button type='button' class='btn btn-danger'>Delete Booking</button></td></td>";;
+
+                                                bookingList += bookingString;
+
+                                            });
+
+
+                    	$("#bookings").html(bookingList);
+                    }
+                });
+        }
+        }
+
+        $(document).ready(function(){
+        	showBookingList();
+        })
