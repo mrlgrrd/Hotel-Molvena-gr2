@@ -2,6 +2,7 @@ package com.capgemini.Hotel.Molvena.gr2.service;
 
 import com.capgemini.Hotel.Molvena.gr2.model.ERoomType;
 import com.capgemini.Hotel.Molvena.gr2.model.Room;
+import com.capgemini.Hotel.Molvena.gr2.model.SearchRoom;
 import com.capgemini.Hotel.Molvena.gr2.repositories.BookingRepository;
 import com.capgemini.Hotel.Molvena.gr2.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
+import java.util.Date;
 
 @Service
 @Transactional
@@ -97,6 +99,17 @@ public class RoomService {
             room.setNrOfPeople(updateRoom.getNrOfPeople());
             this.roomRepository.save(room);
         }
+
+    }
+
+    public Iterable<Room> selectRoomForBooking(SearchRoom searchRoom) {
+        Date checkInDate = searchRoom.getCheckIn();
+        Date checkOutDate = searchRoom.getCheckOut();
+        int nrOfBeds = searchRoom.getNrOfBeds();
+        String roomType = searchRoom.getRoomType();
+        String roomTheme = searchRoom.getRoomTheme();
+
+        return this.roomRepository.selectRoomForBooking(checkInDate,checkOutDate, nrOfBeds, roomTheme, roomType);
 
     }
 }
