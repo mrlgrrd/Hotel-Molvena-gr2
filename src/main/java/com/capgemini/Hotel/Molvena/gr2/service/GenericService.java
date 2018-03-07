@@ -36,13 +36,20 @@ public class GenericService {
         b1.setDesiredPeriodTill("06-03-2018");
         this.bookingRepository.save(b1);
 
+        Booking b2 = new Booking();
+        b2.setDesiredPeriodFrom("07-03-2018");
+        b2.setDesiredPeriodTill("08-03-2018");
+        this.bookingRepository.save(b2);
+
         Guest guest1 = new Guest();
         guest1.setFirstname("Jeremy");
         guest1.setLastname("Jones");
         this.guestRepository.save(guest1);
 
+        b2.setGuest(guest1);
         b1.setGuest(guest1);
         this.bookingRepository.save(b1);
+        this.bookingRepository.save(b2);
         this.guestRepository.save(guest1);
 
         Room room1 = new Room();
