@@ -95,17 +95,8 @@ function showGuestModalUpdate(id){
 
     removeBookingTable();
 
-	var modaltext
-
-	if(id == null){
-		modaltext = "Add new guest";
-		$("#updateModalHeader").text(modaltext+":");
-
-	}
-	else {
-		modaltext = "Update guest";
-		$("#updateModalHeader").text(modaltext+":");
-	}
+	modaltext = "Update guest";
+	$("#updateModalHeader").text(modaltext+":");
 
 	$('.countryselect').prop('disabled',false);
 	$('.form-control').prop('readonly', false);
@@ -116,6 +107,30 @@ function showGuestModalUpdate(id){
 	"<button type='button' class='btn btn-primary' data-dismiss='modal' onclick='updateGuest("+id+");'>"+modaltext+"</button>";
 
 	$("#buttonsupdatemodal").html(generateButtons);
+}
+
+function showModalAddGuest(){
+
+	removeBookingTable();
+
+	var modaltext
+
+		modaltext = "Add new guest";
+		$("#updateModalHeader").text(modaltext+":");
+
+	
+
+	$('.countryselect').prop('disabled',false);
+	$('.form-control').prop('readonly', false);
+
+	var id = null;
+	showGuestModal(id);
+
+	var generateButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>"+
+	"<button type='button' class='btn btn-primary' data-dismiss='modal' onclick='addGuest();'>"+modaltext+"</button>";
+
+	$("#buttonsupdatemodal").html(generateButtons);
+
 }
 
 function showGuestModal(id){
@@ -138,9 +153,7 @@ function showGuestModal(id){
 
 }
 
-function updateGuest(guest_id){
-
-	console.log(guest_id);
+function getGuestDetails(guest_id){
 
     //Get values from input texts
     var inputFirstname = $("#fname").val();
@@ -156,7 +169,7 @@ function updateGuest(guest_id){
     var inputNationality = $("#nationality").val();
 
         //Put in a object
-        var updateGuestObject = {
+        var guestObject = {
         	id : guest_id,
         	firstname : inputFirstname,
         	preposition : inputPreposition,
@@ -171,17 +184,62 @@ function updateGuest(guest_id){
         	nationality : inputNationality,
         };
 
-        var updateGuest = JSON.stringify(updateGuestObject);
+        var guest = JSON.stringify(guestObject);
+        return guest;
 
-        console.log(updateGuest);
+}
+
+function addGuest(){
+
+	var newGuest = getGuestDetails(null);
+
 
         //Communicate with Java
         $.ajax({
-        	url : "http://localhost:8080/api/guestcontroller/addtoguest",
+        	url : "http://localhost:8080/api/guestcontroller/addguest",
         	type : "post",
+        	data : newGuest,
+        	contentType: "application/json",
+        	success : function(id,data){
+        		getGuests();
+                        //Maak de velden leeg
+                        $("#fname").val("");
+                        $("#preposition").val("");
+                        $("#lname").val("");
+                        $("#address").val("");
+                        $("#zipcode").val("");
+                        $("#city").val("");
+                        $("#country").val("");
+                        $("#phone").val("");
+                        $("#email").val("");
+                        $("#passportnr").val("");
+                        $("#nationality").val("");
+
+                    }
+                })
+
+
+
+
+    }
+
+function updateGuest(guest_id){
+
+	console.log(guest_id);
+
+	var updateGuest = getGuestDetails(guest_id);
+
+        console.log(updateGuest);
+
+        
+
+        //Communicate with Java
+        $.ajax({
+        	url : "http://localhost:8080/api/guestcontroller/updateguest/"+guest_id,
+        	type : "put",
         	data : updateGuest,
         	contentType: "application/json",
-        	success : function(data){
+        	success : function(guest_id,data){
         		getGuests();
                 //Maak de velden leeg
                 $("#fname").val("");
@@ -198,17 +256,18 @@ function updateGuest(guest_id){
 
             }
         })
+    
 
 
-    }
+}
 
-    function searchguest(){
-    	var input = $("#searchGuest").val();
-    	console.log(input);
+function searchguest(){
+	var input = $("#searchGuest").val();
+	console.log(input);
 
-    	if(input == ""){
-    		getGuests();
-    	} else {
+	if(input == ""){
+		getGuests();
+	} else {
     // ajax is een methode voor get/post requests
     $.ajax({
             // waar moet hij de request op uitvoeren

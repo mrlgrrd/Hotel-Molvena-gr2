@@ -109,7 +109,27 @@ public class GuestService {
     }
 
     @Transactional
-    public Guest addToGuest(Guest guest){
+    public Guest addGuest(Guest guest){
+        this.guestRepository.save(guest);
+        return guest;
+    }
+
+    @Transactional
+    public Guest updateGuest(long id, Guest updateGuest){
+        Guest guest = this.guestRepository.findOne(id);
+        if(updateGuest != null){
+            guest.setFirstname(updateGuest.getFirstname());
+            guest.setPreposition(updateGuest.getPreposition());
+            guest.setLastname(updateGuest.getLastname());
+            guest.setAddress(updateGuest.getAddress());
+            guest.setZipCode(updateGuest.getZipCode());
+            guest.setCity(updateGuest.getCity());
+            guest.setCountry(updateGuest.getCountry());
+            guest.setEmail(updateGuest.getEmail());
+            guest.setPhone(updateGuest.getPhone());
+            guest.setPassportNumber(updateGuest.getPassportNumber());
+            guest.setNationality(updateGuest.getNationality());
+        }
         this.guestRepository.save(guest);
         return guest;
     }

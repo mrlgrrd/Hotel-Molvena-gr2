@@ -15,10 +15,17 @@ public class GuestController {
 
 
 
-    @RequestMapping(value = "addtoguest", method = RequestMethod.POST)
+    @RequestMapping(value = "addguest", method = RequestMethod.POST)
     public void newguest(@RequestBody Guest guestToSave) {
 
-        guestService.addToGuest(guestToSave);
+        guestService.addGuest(guestToSave);
+
+    }
+
+    @RequestMapping(value = "updateguest/{id}", method = RequestMethod.PUT)
+    public void newguest(@PathVariable long id ,@RequestBody Guest guestToSave) {
+
+        guestService.updateGuest(id, guestToSave);
 
     }
 
