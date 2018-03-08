@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface BookingRepository extends CrudRepository<Booking, Long>{
     Iterable<Booking> findByGuest_id(long id);
-    List<Booking> findByDesiredPeriodFromContainingIgnoreCaseOrDesiredPeriodTillContainingIgnoreCaseOrGuest_firstnameContainingIgnoreCaseOrRooms_themeContainingIgnoreCase(String searchDesiredPeriodFrom, String searchDesiredPeriodTill, String searchGuest_firstname, String searchRooms_theme);
+    List<Booking> findByGuest_firstnameContainingIgnoreCaseOrGuest_prepositionContainingIgnoreCaseOrGuest_lastnameContainingIgnoreCaseOrGuest_emailContainingIgnoreCaseOrGuest_phoneContainingIgnoreCase(String searchGuest_firstname, String searchGuest_preposition, String searchGuest_lastname, String searchGuest_email, String searchGuest_phone);
 }
