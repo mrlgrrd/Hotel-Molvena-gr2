@@ -93,11 +93,13 @@ public class BookingService {
         List<Booking> filteredList = new ArrayList<>();
 
         //Get list of guests that would be found by the first searchword
-        filteredList = bookingRepository.findByDesiredPeriodFromContainingIgnoreCaseOrDesiredPeriodTillContainingIgnoreCaseOrGuest_firstnameContainingIgnoreCaseOrRooms_themeContainingIgnoreCase(searchWords[0], searchWords[0], searchWords[0] , searchWords[0]);
+
+        filteredList = bookingRepository.findByGuest_firstnameContainingIgnoreCaseOrGuest_prepositionContainingIgnoreCaseOrGuest_lastnameContainingIgnoreCaseOrGuest_emailContainingIgnoreCaseOrGuest_phoneContainingIgnoreCase(searchWords[0], searchWords[0], searchWords[0] , searchWords[0] , searchWords[0]);
         //Loop through the amount of searchwords
         for(int i = 1; i < searchWords.length; i++) {
             //temporaryList1 = (ArrayList<Guest>)filteredList.clone();
-            temporaryList2 = bookingRepository.findByDesiredPeriodFromContainingIgnoreCaseOrDesiredPeriodTillContainingIgnoreCaseOrGuest_firstnameContainingIgnoreCaseOrRooms_themeContainingIgnoreCase(searchWords[0], searchWords[0], searchWords[0], searchWords[0]);
+            temporaryList2 = bookingRepository.findByGuest_firstnameContainingIgnoreCaseOrGuest_prepositionContainingIgnoreCaseOrGuest_lastnameContainingIgnoreCaseOrGuest_emailContainingIgnoreCaseOrGuest_phoneContainingIgnoreCase(searchWords[0], searchWords[0], searchWords[0], searchWords[0], searchWords[0]);
+
             //You only want the guests that have to do with each searchword, so get rid of all results that do
             //not have to do with every result
             for(Booking booking1 : filteredList){

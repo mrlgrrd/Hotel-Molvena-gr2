@@ -2,6 +2,7 @@ package com.capgemini.Hotel.Molvena.gr2.model;
 import com.capgemini.Hotel.Molvena.gr2.person.Guest;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,8 +16,8 @@ public class Booking implements Serializable {
     private long id;
 
     //Variables
-    private String desiredPeriodFrom;
-    private String desiredPeriodTill;
+    private Date desiredPeriodFrom;
+    private Date desiredPeriodTill;
 
     @ManyToOne
     private Guest guest;
@@ -57,19 +58,19 @@ public class Booking implements Serializable {
         return id;
     }
 
-    public String getDesiredPeriodFrom() {
+    public Date getDesiredPeriodFrom() {
         return desiredPeriodFrom;
     }
 
-    public void setDesiredPeriodFrom(String desiredPeriodFrom) {
+    public void setDesiredPeriodFrom(Date desiredPeriodFrom) {
         this.desiredPeriodFrom = desiredPeriodFrom;
     }
 
-    public String getDesiredPeriodTill() {
+    public Date getDesiredPeriodTill() {
         return desiredPeriodTill;
     }
 
-    public void setDesiredPeriodTill(String desiredPeriodTill) {
+    public void setDesiredPeriodTill(Date desiredPeriodTill) {
         this.desiredPeriodTill = desiredPeriodTill;
     }
 

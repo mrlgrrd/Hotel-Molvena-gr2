@@ -16,15 +16,15 @@ function showBookingList(){
                     $.each(showBookingData, function(bookingIndex, booking){
 
                         var roomString = "";
-                        var bookingString = "<tr> <td>" + booking.id + "</td> <td>  " + booking.desiredPeriodFrom + "</td> <td> " + booking.desiredPeriodTill + "</td> <td> " + booking.guest.id + "</td> <td> " + booking.guest.firstname + "</td> <td> " + booking.guest.lastname + "</td> ";
+                                                                        var bookingString = "<tr> <td>" + booking.id + "</td> <td>  " + booking.desiredPeriodFrom + "</td> <td> " + booking.desiredPeriodTill + "</td> <td> " + booking.guest.firstname + " " + booking.guest.lastname + "</td> <td> " + booking.guest.email + "</td> <td>" + booking.guest.phone + "</td> ";
 
-                        // geeft de data van de snowboards weer die bij de persoon horen (ManyToMany)
-                        $.each(booking.rooms, function(roomIndex, room) {
-                            roomString = roomString + "#"+ room.id+ " " +room.theme +";          ";
-                        });
-                        bookingString = bookingString+ "<td> " + roomString + "</td>" + "<td><button type='button' class='btn btn-info'>Update Booking</button></th>" + "<th><button type='button' class='btn btn-danger'>Delete Booking</button></td></td>";;
+                                                                        // geeft de data van de snowboards weer die bij de persoon horen (ManyToMany)
+                                                                        $.each(booking.rooms, function(roomIndex, room) {
+                                                                            roomString = roomString + "#"+ room.number+ ";          ";
+                                                                        });
+                                                                        bookingString = bookingString+ "<td> " + roomString + "</td>" + "<td><button type='button' class='btn btn-info'>Edit</button></th>" + "<th><button type='button' class='btn btn-danger'>Delete</button></td></td>";;
 
-                        bookingList += bookingString;
+                                                                        bookingList += bookingString;
 
                     });
 
@@ -63,13 +63,13 @@ function showBookingList(){
                                                 $.each(showBookingData, function(bookingIndex, booking){
 
                                                 var roomString = "";
-                                                var bookingString = "<tr> <td>" + booking.id + "</td> <td>  " + booking.desiredPeriodFrom + "</td> <td> " + booking.desiredPeriodTill + "</td> <td> " + booking.guest.id + "</td> <td> " + booking.guest.firstname + "</td> <td> " + booking.guest.lastname + "</td> ";
+                                                var bookingString = "<tr> <td>" + booking.id + "</td> <td>  " + booking.desiredPeriodFrom + "</td> <td> " + booking.desiredPeriodTill + "</td> <td> " + booking.guest.firstname + " " + booking.guest.lastname + "</td> <td> " + booking.guest.email + "</td><td> " + booking.guest.phone + "</td> ";
 
                                                 // geeft de data van de snowboards weer die bij de persoon horen (ManyToMany)
                                                 $.each(booking.rooms, function(roomIndex, room) {
-                                                    roomString = roomString + "#"+ room.id+ " " +room.theme +";          ";
+                                                    roomString = roomString + "#"+ room.number+ ";          ";
                                                 });
-                                                bookingString = bookingString+ "<td> " + roomString + "</td>" + "<td><button type='button' class='btn btn-info'>Update Booking</button></th>" + "<th><button type='button' class='btn btn-danger'>Delete Booking</button></td></td>";;
+                                                bookingString = bookingString+ "<td> " + roomString + "</td>" + "<td><button type='button' class='btn btn-info'>Edit</button></th>" + "<th><button type='button' class='btn btn-danger'>Delete</button></td></td>";;
 
                                                 bookingList += bookingString;
 

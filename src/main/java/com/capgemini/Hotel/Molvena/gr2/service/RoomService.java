@@ -8,10 +8,10 @@ import com.capgemini.Hotel.Molvena.gr2.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
@@ -107,12 +107,29 @@ public class RoomService {
         Date checkInDate = searchRoom.getCheckIn();
         Date checkOutDate = searchRoom.getCheckOut();
         int nrOfBeds = searchRoom.getNrOfBeds();
-        String roomType = searchRoom.getRoomType();
+        Enum<ERoomType> roomType = searchRoom.getRoomType();
         String roomTheme = searchRoom.getRoomTheme();
+<<<<<<< HEAD
 
         //return this.roomRepository.selectRoomForBooking(checkInDate,checkOutDate, nrOfBeds, roomTheme, roomType);
         return new ArrayList<>();
 
 
+=======
+        List<Room> theseRooms = new ArrayList<>();
+
+        Iterable<Room> foundRooms = new ArrayList<>();
+        foundRooms = this.roomRepository.findByBookings_DesiredPeriodTillBeforeOrBookings_DesiredPeriodFromAfter(checkInDate,checkOutDate);
+        for (Room room:foundRooms) {
+            if(room.getNrOfPeople() <= nrOfBeds){
+                if(room.getTheme().equals(roomTheme)){
+                    if(room.getRoomType() == roomType){
+                        theseRooms.add(room);
+                    }
+                }
+            }
+        }
+        return theseRooms;
+>>>>>>> daa64229b7da71aa83b7df9a58694a0450475bf9
     }
 }
