@@ -2,13 +2,13 @@ package com.capgemini.Hotel.Molvena.gr2.model;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class SearchRoom {
 
-    private Date checkIn;
+    private LocalDate checkIn;
 
-    private Date checkOut;
+    private LocalDate checkOut;
 
     @Enumerated(EnumType.STRING)
     private ERoomType roomType;
@@ -20,20 +20,28 @@ public class SearchRoom {
     public SearchRoom() {
     }
 
-    public Date getCheckIn() {
+    public LocalDate getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(Date checkIn) {
+    public void setCheckIn(LocalDate checkIn) {
         this.checkIn = checkIn;
     }
 
-    public Date getCheckOut() {
+    public LocalDate getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(Date checkOut) {
+    public void setCheckOut(LocalDate checkOut) {
         this.checkOut = checkOut;
+    }
+
+    public ERoomType getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(ERoomType roomType) {
+        this.roomType = roomType;
     }
 
     public int getNrOfBeds() {
@@ -50,13 +58,5 @@ public class SearchRoom {
 
     public void setRoomTheme(String roomTheme) {
         this.roomTheme = roomTheme;
-    }
-
-    public ERoomType getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(ERoomType roomType) {
-        this.roomType = roomType;
     }
 }

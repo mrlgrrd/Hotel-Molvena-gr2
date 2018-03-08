@@ -17,7 +17,7 @@ function searchguest(){
             	var guestList = "";
 
             	$.each(data, function(index, current){
-            		var guestString = guestString = composeGuestString(current);
+            		var guestString = composeGuestString(current);
 
             		guestList = guestList + guestString;
 

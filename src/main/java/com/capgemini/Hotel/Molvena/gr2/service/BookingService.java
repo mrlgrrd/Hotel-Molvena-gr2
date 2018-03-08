@@ -1,12 +1,16 @@
 package com.capgemini.Hotel.Molvena.gr2.service;
+import com.capgemini.Hotel.Molvena.gr2.data.BookingModel;
 import com.capgemini.Hotel.Molvena.gr2.model.Booking;
 import com.capgemini.Hotel.Molvena.gr2.model.Room;
+import com.capgemini.Hotel.Molvena.gr2.person.Guest;
 import com.capgemini.Hotel.Molvena.gr2.repositories.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -14,6 +18,12 @@ public class BookingService {
 
     @Autowired
     private BookingRepository bookingRepository;
+
+    @Autowired
+    private GuestService guestService;
+
+    @Autowired
+    private RoomService roomService;
 
 
     public Booking findById(long id){
@@ -27,7 +37,21 @@ public class BookingService {
 
     }
 
-    public Booking newBooking(Booking booking){
+    public Booking addBooking(BookingModel bookingModel){
+
+        Guest guest = guestService.findById(bookingModel.getGuestId());
+
+        Set<Room> rooms = new HashSet<>();
+        long[] roomids = bookingModel.getRoomIds();
+        if(roomids != null) {
+            for (int i = 0; i < roomids.length; i++) {
+                rooms.add(roomService.findRoomById(roomids[i]));
+            }
+        }
+        Booking booking = bookingModel.getBooking();
+        booking.setGuest(guest);
+        booking.setRooms(rooms);
+        System.out.println(booking);
         this.bookingRepository.save(booking);
         return booking;
     }

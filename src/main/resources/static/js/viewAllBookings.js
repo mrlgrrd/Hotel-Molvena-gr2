@@ -15,16 +15,38 @@ function showBookingList(){
 
                     $.each(showBookingData, function(bookingIndex, booking){
 
+                        console.log(booking);
+
+
+                        if (booking.desiredPeriodFrom != null){
+                        var checkInDay = booking.desiredPeriodFrom.dayOfMonth;
+                        var checkInMonth = booking.desiredPeriodFrom.monthValue;
+                        var checkInYear = booking.desiredPeriodFrom.year;
+                        var checkIn = checkInDay + "-" + checkInMonth + "-" + checkInYear;
+                        }
+                        else {checkIn = "00-00-0000"};
+
+
+                        if (booking.desiredPeriodTill != null){
+                        var checkOutDay = booking.desiredPeriodFrom.dayOfMonth;
+                        var checkOutMonth = booking.desiredPeriodFrom.monthValue;
+                        var checkOutYear = booking.desiredPeriodFrom.year;
+                        var checkOut = checkOutDay + "-" + checkOutMonth + "-" + checkOutYear;
+                        }
+                        else { checkOut = "00-00-0000"};
+
                         var roomString = "";
-                        var bookingString = "<tr> <td>" + booking.id + "</td> <td>  " + booking.desiredPeriodFrom + "</td> <td> " + booking.desiredPeriodTill + "</td> <td> " + booking.guest.firstname + " " + booking.guest.lastname + "</td> <td> " + booking.guest.email + "</td> <td>" + booking.guest.phone + "</td> ";
 
-                        // geeft de data van de snowboards weer die bij de persoon horen (ManyToMany)
-                        $.each(booking.rooms, function(roomIndex, room) {
-                        roomString = roomString + "#"+ room.number+ ";          ";
-                        });
-                        bookingString = bookingString+ "<td> " + roomString + "</td>" + "<td><button type='button' class='btn btn-info'>Edit</button></th>" + "<th><button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteBookingModal' onclick='javascript:showDeleteModal("+booking.id+")'>Delete</button></td></td>";
+                        var bookingString = "<tr> <td>" + booking.id + "</td> <td>  " + checkIn + "</td> <td> " + checkOut + "</td> <td> " + booking.guest.firstname + " " + booking.guest.lastname + "</td> <td> " + booking.guest.email + "</td> <td>" + booking.guest.phone + "</td> ";
 
-                        bookingList += bookingString;
+                            // geeft de data van de snowboards weer die bij de persoon horen (ManyToMany)
+                            $.each(booking.rooms, function(roomIndex, room) {
+                                roomString = roomString + "#"+ room.number+ ";          ";
+                            });
+                            bookingString = bookingString+ "<td> " + roomString + "</td>" + "<td><button type='button' class='btn btn-info'>Edit</button></th>" + "<th><button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteBookingModal' onclick='javascript:showDeleteModal("+booking.id+")'>Delete</button></td></td>";;
+
+                            bookingList += bookingString;
+
 
                     });
 
