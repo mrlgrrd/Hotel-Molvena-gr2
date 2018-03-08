@@ -6,7 +6,7 @@ public class BookingModel {
 
     private Booking booking;
     private long guestId;
-    private long roomIds[];
+    private long[] roomIds;
 
     public Booking getBooking() {
         return booking;
