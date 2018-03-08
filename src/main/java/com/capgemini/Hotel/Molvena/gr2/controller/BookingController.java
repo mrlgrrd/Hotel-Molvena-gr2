@@ -1,5 +1,6 @@
 package com.capgemini.Hotel.Molvena.gr2.controller;
 
+import com.capgemini.Hotel.Molvena.gr2.data.BookingModel;
 import com.capgemini.Hotel.Molvena.gr2.model.Booking;
 import com.capgemini.Hotel.Molvena.gr2.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,10 @@ public class BookingController {
     private BookingService bookingService;
 
     @RequestMapping(value = "newbooking", method = RequestMethod.POST)
-    public void newBooking(@RequestBody Booking bookingToSave) {
+    public void newBooking(@RequestBody BookingModel bookingModel) {
 
-        bookingService.newBooking(bookingToSave);
+
+        bookingService.addBooking(bookingModel);
 
     }
 

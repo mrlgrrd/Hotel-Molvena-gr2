@@ -1,3 +1,8 @@
+var guest_id;
+var beginStay;
+var endStay;
+var roomids;
+
 function composeGuestString(current){
 	var guestString = "<tr> <th>" + removenull(current.firstname) + "</th> <th>  " + removenull(current.preposition) + "</th> <th> " +
 	removenull(current.lastname) + "</th> <th> " +
@@ -46,7 +51,7 @@ function makeGuestBooking(){
     showModalAddGuest();
     var generateButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>"+
     	"<button type='button' class='btn btn-primary' data-dismiss='modal' onclick='addSelectGuest();'>Add guest</button>";
-
+        console.log("generate buttons");
     	$("#buttonsupdatemodal").html(generateButtons);
 }
 
@@ -61,8 +66,9 @@ function addSelectGuest(){
         	type : "post",
         	data : newGuest,
         	contentType: "application/json",
-        	success : function(id,data){
-        		getGuests();
+        	success : function(data){
+               alert(data.id);
+               getGuests();
                         //Maak de velden leeg
                         $("#fname").val("");
                         $("#preposition").val("");
@@ -75,10 +81,18 @@ function addSelectGuest(){
                         $("#email").val("");
                         $("#passportnr").val("");
                         $("#nationality").val("");
-                        findLastEntry();
+                        var personString;
+                        if(data.preposition == null){
+                         personString = data.firstname + " " + data.lastname;
+                     } else {
+                         personString = data.firstname + " " + data.preposition + " " + data.lastname;
+                     }
+                     $("#guest").text(personString);
+                     console.log(personString);
+                     $("#guestid").text(data.id);
 
-                    }
-                })
+                 }
+             })
     }
 
 function findLastEntry(){
@@ -98,50 +112,31 @@ function findLastEntry(){
                 			    personString = data.firstname + " " + data.preposition + " " + data.lastname;
                 			}
                 			$("#guest").text(personString);
-                			console.log(personString);
-                			$("#guestid").text(data.id);
+                			guest_id = data.id;
         }
     });
 }
 
-function makeGuestBooking(){
-
-    var id = $("#guestid").text();
-    console.log(id);
-    $.ajax({
-        	url : "http://localhost:8080/api/guestcontroller/findguest?id=" + id,
-        	type : "get",
-        	success: function(data){
-
-                makeBooking(data);
-                console.log(data);
-
-        	}
-        })
-}
-
-function makeBooking(bookingGuest){
+function makeBooking(){
 
         var bookingObject = {
-                	guest : bookingGuest,
-                	desiredPeriodFrom : null,
+                	guestId : guestid,
+                	desiredPeriodFrom : beginStay,
+                	desiredPeriodTill : endStay,
+                	roomIds : roomids,
                 };
 
         var booking = JSON.stringify(bookingObject);
 
-        console.log(bookingGuest);
-        console.log(bookingObject);
-
-
         //Communicate with Java
         $.ajax({
-        	url : "http://localhost:8080/api/bookingcontroller/newbooking/"+booking,
+        	url : "http://localhost:8080/api/bookingcontroller/newbooking",
         	type : "post",
         	data : booking,
         	contentType: "application/json",
         	success : function(){
 
-                    }
-                })
+            }
+        })
 
     }

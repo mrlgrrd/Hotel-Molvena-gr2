@@ -21,10 +21,10 @@ public interface RoomRepository extends CrudRepository<Room, Long>{
     // * @param roomTheme room theme
     // * @param roomType room type
      * @return list of rooms that qualify
+     */
 
     @Query("SELECT r FROM ROOM r LEFT OUTER JOIN ROOM_BOOKINGS rb ON (r.ID = rb.ROOMS_ID) LEFT OUTER JOIN BOOKING b ON (rb.BOOKINGS_ID = b.ID) WHERE ((b.desiredPeriodTill < (:checkInDate)) OR (b.desiredPeriodFrom > (:checkOutDate)) AND (r.nrOfPeople >= (:nrOfBeds)) AND (r.theme = (:roomTheme)) AND (r.roomType = (:roomType))")
     Iterable<Room> selectRoomForBooking(@Param("checkInDate") Date checkInDate,@Param("checkOutDate") Date checkOutDate,@Param("nrOfBeds") int nrOfBeds,@Param("roomTheme") String roomTheme,@Param("roomType") int roomType);
-*/
 
     Iterable<Room> findByBookings_DesiredPeriodTillBeforeOrBookings_DesiredPeriodFromAfter(LocalDate checkInDate, LocalDate checkOutDate);
 }
