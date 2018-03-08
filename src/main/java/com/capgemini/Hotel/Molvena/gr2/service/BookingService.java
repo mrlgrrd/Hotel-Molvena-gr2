@@ -1,5 +1,6 @@
 package com.capgemini.Hotel.Molvena.gr2.service;
 import com.capgemini.Hotel.Molvena.gr2.model.Booking;
+import com.capgemini.Hotel.Molvena.gr2.model.Room;
 import com.capgemini.Hotel.Molvena.gr2.repositories.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -103,4 +104,16 @@ public class BookingService {
         //Only the guests that have to do with each searchword will be displayed on the screen
         return filteredList;
     }
+
+    public void deleteBooking(Long id){
+
+        // hier haal je de kamers uit de booking die wordt aangeroepen
+        Booking victim = this.bookingRepository.findOne(id);
+        for (Room r : victim.getRooms()){
+            r.getBookings().remove(victim);
+            victim.getRooms().remove(r);
+        }
+        this.bookingRepository.delete(id);
+    }
 }
+

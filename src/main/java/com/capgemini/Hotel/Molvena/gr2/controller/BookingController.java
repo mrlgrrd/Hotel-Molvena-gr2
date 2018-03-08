@@ -37,6 +37,16 @@ public class BookingController {
         return bookingService.searchBooking(searchvalue);
     }
 
+    @RequestMapping(value = "deletebooking/{id}", method = RequestMethod.DELETE)
+    public void deletebooking(@PathVariable Long id){
+        bookingService.deleteBooking(id);
+    }
+
+    @RequestMapping(value = "findbooking/{id}", method = RequestMethod.GET)
+    public Booking findBooking(@PathVariable Long id){
+        return bookingService.findById(id);
+    }
+
 //    @RequestMapping(value = "deletebooking", method = RequestMethod.DELETE)
 //    public void deletebooking(Long id){
 //
