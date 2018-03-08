@@ -42,14 +42,16 @@ public class BookingService {
         Guest guest = guestService.findById(bookingModel.getGuestId());
 
         Set<Room> rooms = new HashSet<>();
-        long roomids[] = bookingModel.getRoomIds();
-        for(int i = 0; i < roomids.length; i++){
-            rooms.add(roomService.findRoomById(roomids[i]));
+        long[] roomids = bookingModel.getRoomIds();
+        if(roomids != null) {
+            for (int i = 0; i < roomids.length; i++) {
+                rooms.add(roomService.findRoomById(roomids[i]));
+            }
         }
         Booking booking = bookingModel.getBooking();
         booking.setGuest(guest);
         booking.setRooms(rooms);
-
+        System.out.println(booking);
         this.bookingRepository.save(booking);
         return booking;
     }

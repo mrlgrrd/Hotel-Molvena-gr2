@@ -39,7 +39,8 @@ function selectGuest(id){
     			}
     			$("#guest").text(personString);
     			console.log(personString);
-    			$("#guestid").text(data.id);
+    			guest_id = id;
+    			console.log(guest_id);
 
 
     	}
@@ -67,7 +68,7 @@ function addSelectGuest(){
         	data : newGuest,
         	contentType: "application/json",
         	success : function(data){
-               alert(data.id);
+               guest_id = data.id;
                getGuests();
                         //Maak de velden leeg
                         $("#fname").val("");
@@ -89,50 +90,33 @@ function addSelectGuest(){
                      }
                      $("#guest").text(personString);
                      console.log(personString);
-                     $("#guestid").text(data.id);
+                     console.log(guest_id);
 
                  }
              })
     }
 
-function findLastEntry(){
-// ajax is een methode voor get/post requests
-    $.ajax({
-        // waar moet hij de request op uitvoeren
-        url : "http://localhost:8080/api/guestcontroller/findlastentry",
-        // type actie
-        type : "get",
-        // als de actie lukt, voer deze functie uit
-        success: function(data){
-
-        	var personString;
-                			if(data.preposition == null){
-                			    personString = data.firstname + " " + data.lastname;
-                			} else {
-                			    personString = data.firstname + " " + data.preposition + " " + data.lastname;
-                			}
-                			$("#guest").text(personString);
-                			guest_id = data.id;
-        }
-    });
-}
-
 function makeBooking(){
 
         var bookingObject = {
-                	guestId : guestid,
                 	desiredPeriodFrom : beginStay,
                 	desiredPeriodTill : endStay,
-                	roomIds : roomids,
                 };
 
-        var booking = JSON.stringify(bookingObject);
+        var bookingModelObject = {
+            booking : bookingObject,
+            guestId : guest_id,
+            roomIds : roomids,
+        };
+
+        var bookingModel = JSON.stringify(bookingModelObject);
+        console.log(bookingModel);
 
         //Communicate with Java
         $.ajax({
         	url : "http://localhost:8080/api/bookingcontroller/newbooking",
         	type : "post",
-        	data : booking,
+        	data : bookingModel,
         	contentType: "application/json",
         	success : function(){
 
