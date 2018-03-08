@@ -2,13 +2,16 @@ package com.capgemini.Hotel.Molvena.gr2.service;
 
 import com.capgemini.Hotel.Molvena.gr2.model.ERoomType;
 import com.capgemini.Hotel.Molvena.gr2.model.Room;
+import com.capgemini.Hotel.Molvena.gr2.model.SearchRoom;
 import com.capgemini.Hotel.Molvena.gr2.repositories.BookingRepository;
 import com.capgemini.Hotel.Molvena.gr2.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
@@ -98,5 +101,27 @@ public class RoomService {
             this.roomRepository.save(room);
         }
 
+    }
+
+    public Iterable<Room> selectRoomForBooking(SearchRoom searchRoom) {
+        Date checkInDate = searchRoom.getCheckIn();
+        Date checkOutDate = searchRoom.getCheckOut();
+        int nrOfBeds = searchRoom.getNrOfBeds();
+        Enum<ERoomType> roomType = searchRoom.getRoomType();
+        String roomTheme = searchRoom.getRoomTheme();
+        List<Room> theseRooms = new ArrayList<>();
+
+        Iterable<Room> foundRooms = new ArrayList<>();
+        foundRooms = this.roomRepository.findByBookings_DesiredPeriodTillBeforeOrBookings_DesiredPeriodFromAfter(checkInDate,checkOutDate);
+        for (Room room:foundRooms) {
+            if(room.getNrOfPeople() <= nrOfBeds){
+                if(room.getTheme().equals(roomTheme)){
+                    if(room.getRoomType() == roomType){
+                        theseRooms.add(room);
+                    }
+                }
+            }
+        }
+        return theseRooms;
     }
 }
