@@ -14,7 +14,6 @@ public class GuestController {
     private GuestService guestService;
 
 
-
     @RequestMapping(value = "addguest", method = RequestMethod.POST)
     public void newguest(@RequestBody Guest guestToSave) {
 
@@ -49,6 +48,11 @@ public class GuestController {
     @RequestMapping(value = "findguest", method = RequestMethod.GET)
     public Guest findGuest(Long id){
         return guestService.findById(id);
+    }
+
+    @RequestMapping(value = "findlastentry", method = RequestMethod.GET)
+    public Guest findLastEntry(){
+        return guestService.findLastEntry();
     }
 
 }

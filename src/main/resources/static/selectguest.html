@@ -13,13 +13,34 @@
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="/CSS/library/bootstrap.min.css">
     <style>
-        .wide {
-            width: 90%;
+        .guestlist {
+            border-right: 1px solid #333;
         }
-    </style>
 
-    <!-- Custom styles for this template -->
-    <!--<link href="jumbotron.css" rel="stylesheet">-->
+        .booking{
+            border-left: 1px solid #333;
+        }
+
+        ul.breadcrumb li {
+            display: inline;
+            font-size: 18px;
+        }
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
+        ul.breadcrumb li a {
+        color: #0275d8;
+        text-decoration: none;
+        }
+        ul.breadcrumb li a:hover {
+            color: #01447e;
+            text-decoration: underline;
+        }
+
+
+    </style>
 </head>
 
 <body>
@@ -36,10 +57,10 @@
                 <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Booking</a>
+                <a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Booking</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     <a class="dropdown-item" href="newbooking.html">New booking</a>
-                    <a class="dropdown-item" href="viewallbookings">View all</a>
+                    <a class="dropdown-item" href="viewallbookings.html">View all</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -50,7 +71,7 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle active" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Guest</a>
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Guest</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     <a class="dropdown-item" href="newguest.html">New guest</a>
                     <a class="dropdown-item" href="viewallguests.html">View all</a>
@@ -72,56 +93,110 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
         <div class="container">
-            <h1 class="display-4">View all guests</h1>
+            <h1 class="display-4">Select guest for booking</h1>
+            <ul class="breadcrumb">
+                <li><a href='javascript:showchooseroom()'>Choose Room</a></li>
+                <li><a href='javascript:showaddguest()'>Add Guest</a></li>
+            </ul>
         </div>
     </div>
-    <!--Search guest button-->
-    <div class="row">
-        <div class="col-md-1"></div>
-        <input type="text" id="searchGuest" onkeyup="searchguest()" placeholder="Search guest" title="Type in a guest">
-        <div class="col-md-7"></div>
 
-        <button type='button' class='btn btn-success' data-toggle='modal' data-target='#updateGuestModal' onclick='javascript:showModalAddGuest()'>Add new guest</button>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="container" id="containersearchroom">hallo</div>
 
-    </div>
-
-    <table style="width:100%" class="table table-striped">
-        <thead>
-        <tr>
-            <th>First name</th>
-            <th> Preposition</th>
-            <th> Last name</th>
-            <th> City</th>
-            <th> Country</th>
-            <th> Telephone number</th>
-            <th> Email</th>
-            <th> See details</th>
-            <th> Update</th>
-            <th> Delete</th>
-        </tr>
-        </thead>
-        <tbody id="guests">
-        </tbody>
-    </table>
-
-    <!-- deleteGuestModal -->
-    <div class="modal fade" id="deleteGuestModal" tabindex="-1" role="dialog" aria-labelledby="deleteGuestModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Delete Guest</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+    <div class="container" id="containersearchguest" style="display: none;">
+        <div class="row">
+            <div class="col-md-8">
+                <input type="text" id="searchGuest" onkeyup="searchguest()" placeholder="Search guest" title="Type in a guest">
+                <button type='button' class='btn btn-success' data-toggle='modal' data-target='#updateGuestModal' onclick='javascript:makeGuestBooking()'>Add new guest</button>
+            </div>
+        </div>
+        <div class="row">
+            <!--Guestlist:-->
+            <div class="col-md-8 guestlist">
+                <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th> First name</th>
+                        <th> Preposition</th>
+                        <th> Last name</th>
+                        <th> City</th>
+                        <th> Country</th>
+                        <th> See details</th>
+                        <th> Select</th>
+                    </tr>
+                    </thead>
+                    <tbody id="guests">
+                    </tbody>
+                </table>
                 </div>
-                <div class="modal-body">
-                   <p id="textdeletemodal"></p>
+            </div>
+            <!--Bookingdetails-->
+            <div class="col-md-4 booking">
+                <div class="row">
+                    <h4>Booking details:</h4></br>
                 </div>
-                <div class="modal-footer" id="buttonsdeletemodal">
+                <div class="row">
+                    <div class="col-md-6">
+                        From:
+                        </br>
+                        <div id="bookingfrom"></div>
+                        <br>
+                    </div>
+                    <div class="col-md-6">
+                        Until:
+                        </br>
+                        <div id="bookinguntil"></div>
+                        <br>
+                    </div>
+                </div>
+                <div class="row"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        Rooms:
+                        </br>
+                        <div  id="rooms"></div>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        Guest:
+                        <div id="guest"></div>
+                        <div id="guestid" style="display: none"></div>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" align="right">
+                        <button type='button' class='btn btn-success' onclick='javascript:makeGuestBooking()'>Make Booking</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+            <!--<table style="width:100%" class="table table-striped">-->
+                <!--<thead>-->
+                <!--<tr>-->
+                    <!--<th>Booking ID</th>-->
+                    <!--<th>From</th>-->
+                    <!--<th>Till</th>-->
+                    <!--<th>Guest ID</th>-->
+                    <!--<th>First name</th>-->
+                    <!--<th>Last name</th>-->
+                    <!--<th>Rooms</th>-->
+                    <!--<th>Update</th>-->
+                    <!--<th>Delete</th>-->
+
+                <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody id="bookings">-->
+                <!--</tbody>-->
+            <!--</table>-->
+
+        <!--</div> &lt;!&ndash; /container &ndash;&gt;-->
 
     <!-- updateGuestModal -->
     <div class="modal fade" id="updateGuestModal" tabindex="-1" role="dialog" aria-labelledby="updateGuestModalLabel" aria-hidden="true">
@@ -216,12 +291,10 @@
             </div>
         </div>
     </div>
+
 </main>
 
-<footer class="container">
-    </br>
-    <p>&copy; Molveno Lake Resort 2017-2018</p>
-</footer>
+
 
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>-->
@@ -229,15 +302,10 @@
 <script src="/js/library/jquery-3.3.1.min.js"></script>
 <script src="/js/library/popper.min.js"></script>
 <script src="/js/library/bootstrap.min.js"></script>
-<script src="/js/viewGuests.js"></script>
-<script src="/js/showModal.js"></script>
-<script src="/js/deleteGuest.js"></script>
-<script src="/js/getGuests.js"></script>
-<script src="/js/getGuestDetails.js"></script>
-<script src="/js/updateGuest.js"></script>
-<script src="/js/addGuest.js"></script>
-<script src="/js/searchGuest.js"></script>
-
-<script src="js/country.js"></script>
+<script src="js/getGuests.js"></script>
+<script src="js/showModal.js"></script>
+<script src="js/searchGuest.js"></script>
+<script src="js/getGuestDetails.js"></script>
+<script src="js/selectGuest.js"></script>
 </body>
 </html>
