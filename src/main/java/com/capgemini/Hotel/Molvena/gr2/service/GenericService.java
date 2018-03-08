@@ -54,11 +54,15 @@ public class GenericService {
         Guest guest1 = new Guest();
         guest1.setFirstname("Jeremy");
         guest1.setLastname("Jones");
+        guest1.setEmail("jeremyjones@gmail.com");
+        guest1.setPhone("0689425900");
         this.guestRepository.save(guest1);
 
         Guest guest2 = new Guest();
         guest2.setFirstname("Travis");
         guest2.setLastname("Rice");
+        guest2.setEmail("travisrice@gmail.com");
+        guest2.setPhone("0678529872");
         this.guestRepository.save(guest2);
 
         b2.setGuest(guest2);
