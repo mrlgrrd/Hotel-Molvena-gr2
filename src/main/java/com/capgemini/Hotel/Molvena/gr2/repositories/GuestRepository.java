@@ -12,5 +12,5 @@ public interface GuestRepository extends CrudRepository<Guest,Long> {
     List<Guest> findByFirstnameContainingIgnoreCaseOrPrepositionContainingIgnoreCaseOrLastnameContainingIgnoreCaseOrAddressContainingIgnoreCaseOrZipCodeContainingIgnoreCaseOrCityContainingIgnoreCaseOrCountryContainingIgnoreCaseOrPhoneContainingIgnoreCaseOrEmailContainingIgnoreCase(String searchFirstname, String searchPreposition, String searchLastname, String searchAddress, String searchZipCode, String searchCity, String searchCountry, String searchPhone, String searchEmail);
     //ArrayList<Guest> findByFirstnameContainingIgnoreCaseAndLastnameContainingIgnoreCase(String searchFirstname, String searchLastname);
     //ArrayList<Guest> findByFirstnameContainingIgnoreCaseAndPrepositionContainingIgnoreCaseAndLastnameContainingIgnoreCase(String searchFirstname,String searchPreposition, String searchLastname);
-
+    Guest findTopByOrderByIdDesc();
 }

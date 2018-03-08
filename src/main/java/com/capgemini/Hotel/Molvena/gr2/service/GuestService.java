@@ -1,6 +1,7 @@
 package com.capgemini.Hotel.Molvena.gr2.service;
 
 import com.capgemini.Hotel.Molvena.gr2.person.Guest;
+import com.capgemini.Hotel.Molvena.gr2.repositories.BookingRepository;
 import com.capgemini.Hotel.Molvena.gr2.repositories.GuestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,9 @@ public class GuestService {
 
     @Autowired
     private GuestRepository guestRepository;
+
+    @Autowired
+    private BookingRepository bookingRepository;
 
     @PostConstruct
     public void init(){
@@ -72,8 +76,8 @@ public class GuestService {
 
         //Make arraylists to work with
         List<Guest> temporaryList1 = new ArrayList<>();
-        List<Guest> temporaryList2 = new ArrayList<>();
-        List<Guest> filteredList = new ArrayList<>();
+        List<Guest> temporaryList2;
+        List<Guest> filteredList;
 
         //Get list of guests that would be found by the first searchword
         filteredList = guestRepository.findByFirstnameContainingIgnoreCaseOrPrepositionContainingIgnoreCaseOrLastnameContainingIgnoreCaseOrAddressContainingIgnoreCaseOrZipCodeContainingIgnoreCaseOrCityContainingIgnoreCaseOrCountryContainingIgnoreCaseOrPhoneContainingIgnoreCaseOrEmailContainingIgnoreCase(searchWords[0], searchWords[0], searchWords[0], searchWords[0], searchWords[0], searchWords[0], searchWords[0], searchWords[0], searchWords[0]);
@@ -138,6 +142,13 @@ public class GuestService {
     public void deleteGuest(Long id){
         this.guestRepository.delete(id);
     }
+
+    public Guest findLastEntry(){
+
+        Guest guest = this.guestRepository.findTopByOrderByIdDesc();
+        return guest;
+    }
+
 
     //package com.capgemini.Hotel.Molvena.gr2.repositories;
 //import com.capgemini.Hotel.Molvena.gr2.person.Guest;
