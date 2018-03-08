@@ -117,13 +117,19 @@ public class RoomService {
         foundRooms = this.roomRepository.findByBookings_DesiredPeriodTillBeforeOrBookings_DesiredPeriodFromAfter(checkInDate,checkOutDate);
         for (Room room:foundRooms) {
             if(room.getNrOfPeople() <= nrOfBeds){
-                if(room.getTheme().equals(roomTheme)){
+                if(roomTheme == null){
+                    if(room.getRoomType() == roomType){
+                        theseRooms.add(room);
+                    }
+                }
+                else if(room.getTheme().equals(roomTheme)){
                     if(room.getRoomType() == roomType){
                         theseRooms.add(room);
                     }
                 }
             }
         }
+
         return theseRooms;
     }
 }
