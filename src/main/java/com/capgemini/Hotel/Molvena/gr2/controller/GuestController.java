@@ -3,6 +3,8 @@ package com.capgemini.Hotel.Molvena.gr2.controller;
 import com.capgemini.Hotel.Molvena.gr2.person.Guest;
 import com.capgemini.Hotel.Molvena.gr2.service.GuestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,9 +17,9 @@ public class GuestController {
 
 
     @RequestMapping(value = "addguest", method = RequestMethod.POST)
-    public void newguest(@RequestBody Guest guestToSave) {
+    public ResponseEntity<Guest> newguest(@RequestBody Guest guestToSave) {
 
-        guestService.addGuest(guestToSave);
+        return new ResponseEntity<>(guestService.addGuest(guestToSave), HttpStatus.CREATED);
 
     }
 

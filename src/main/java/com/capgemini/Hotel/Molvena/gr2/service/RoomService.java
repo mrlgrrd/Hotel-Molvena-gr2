@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Service
@@ -109,7 +110,9 @@ public class RoomService {
         String roomType = searchRoom.getRoomType();
         String roomTheme = searchRoom.getRoomTheme();
 
-        return this.roomRepository.selectRoomForBooking(checkInDate,checkOutDate, nrOfBeds, roomTheme, roomType);
+        //return this.roomRepository.selectRoomForBooking(checkInDate,checkOutDate, nrOfBeds, roomTheme, roomType);
+        return new ArrayList<>();
+
 
     }
 }
