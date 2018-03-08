@@ -113,8 +113,8 @@ public class RoomService {
 
         List<Room> theseRooms = new ArrayList<>();
 
-        Iterable<Room> foundRooms = new ArrayList<>();
-        foundRooms = this.roomRepository.findByBookings_DesiredPeriodTillBeforeOrBookings_DesiredPeriodFromAfter(checkInDate,checkOutDate);
+        List<Room> foundRooms = new ArrayList<>();
+        foundRooms = this.roomRepository.findByBookings_DesiredPeriodTillBeforeOrBookings_DesiredPeriodFromAfterOrBookingsIsNull(checkInDate,checkOutDate);
         for (Room room:foundRooms) {
             if(room.getNrOfPeople() <= nrOfBeds){
                 if(roomTheme == null){
