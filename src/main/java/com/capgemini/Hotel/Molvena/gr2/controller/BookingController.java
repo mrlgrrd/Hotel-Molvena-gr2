@@ -32,6 +32,11 @@ public class BookingController {
         return bookingService.guestBooking(guest_id);
     }
 
+    @RequestMapping(value = "searchbooking/{searchvalue}", method = RequestMethod.GET)
+    public Iterable<Booking> searchbooking(@PathVariable String searchvalue){
+        return bookingService.searchBooking(searchvalue);
+    }
+
 //    @RequestMapping(value = "deletebooking", method = RequestMethod.DELETE)
 //    public void deletebooking(Long id){
 //

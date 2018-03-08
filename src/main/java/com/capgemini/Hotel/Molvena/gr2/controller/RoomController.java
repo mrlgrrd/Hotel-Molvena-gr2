@@ -1,9 +1,12 @@
 package com.capgemini.Hotel.Molvena.gr2.controller;
 
 import com.capgemini.Hotel.Molvena.gr2.model.Room;
+import com.capgemini.Hotel.Molvena.gr2.model.SearchRoom;
 import com.capgemini.Hotel.Molvena.gr2.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @RestController
 @RequestMapping("/api/roomcontroller/")
@@ -34,6 +37,11 @@ public class RoomController {
     @RequestMapping(value = "updateroom/{id}", method = RequestMethod.PUT)
     public void updateRoom(@PathVariable long id, @RequestBody Room newRoom){
         roomService.updateRoom(id, newRoom);
+    }
+
+    @RequestMapping(value = "selectroom", method = RequestMethod.POST)
+    public Iterable<Room> selectRoom(@RequestBody SearchRoom searchRoom){
+       return roomService.selectRoomForBooking(searchRoom);
     }
 
     @RequestMapping(value = "findroombyid", method = RequestMethod.GET)

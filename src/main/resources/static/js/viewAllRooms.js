@@ -95,15 +95,15 @@ function openUpdateModal(id){
 
                 if(data.theme == null){
                     theme == ""}
-                else {theme = data.theme};
+                    else {theme = data.theme};
 
                 if(data.roomType == "HONEYMOON"){
                     typeRoom = 0}
-                 else if(data.roomType == "DELUXE"){
+                    else if(data.roomType == "DELUXE"){
                       typeRoom = 1}
-                 else if (data.roomType == "STANDARD"){
+                    else if (data.roomType == "STANDARD"){
                       typeRoom = 2}
-                 else {typeRoom = "not defined"};
+                    else {typeRoom = "not defined"};
 
                 if(data.occupied == null){
                     occupied = ""}
@@ -158,8 +158,6 @@ function updateRoom(id){
 
     var newRoomJson = JSON.stringify(newRoom);
 
-    console.log(newRoomJson);
-
     $.ajax({
         url : "http://localhost:8080/api/roomcontroller/updateroom/"+ id,
         type : "put",
@@ -175,7 +173,7 @@ function updateRoom(id){
 
 function searchRoom(){
     var input = $('#searchRoomTheme').val();
-    console.log("search on: " + input);
+
         $.ajax({
                 // waar moet hij de request op uitvoeren
                 url : "http://localhost:8080/api/roomcontroller/searchroomtheme/" + input,
