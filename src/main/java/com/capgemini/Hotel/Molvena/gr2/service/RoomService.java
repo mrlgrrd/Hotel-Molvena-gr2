@@ -110,13 +110,7 @@ public class RoomService {
         int nrOfBeds = searchRoom.getNrOfBeds();
         Enum<ERoomType> roomType = searchRoom.getRoomType();
         String roomTheme = searchRoom.getRoomTheme();
-<<<<<<< HEAD
 
-        //return this.roomRepository.selectRoomForBooking(checkInDate,checkOutDate, nrOfBeds, roomTheme, roomType);
-        return new ArrayList<>();
-
-
-=======
         List<Room> theseRooms = new ArrayList<>();
 
         Iterable<Room> foundRooms = new ArrayList<>();
@@ -131,6 +125,5 @@ public class RoomService {
             }
         }
         return theseRooms;
->>>>>>> daa64229b7da71aa83b7df9a58694a0450475bf9
     }
 }
