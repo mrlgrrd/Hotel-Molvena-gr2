@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -104,8 +105,8 @@ public class RoomService {
     }
 
     public Iterable<Room> selectRoomForBooking(SearchRoom searchRoom) {
-        Date checkInDate = searchRoom.getCheckIn();
-        Date checkOutDate = searchRoom.getCheckOut();
+        LocalDate checkInDate = searchRoom.getCheckIn();
+        LocalDate checkOutDate = searchRoom.getCheckOut();
         int nrOfBeds = searchRoom.getNrOfBeds();
         Enum<ERoomType> roomType = searchRoom.getRoomType();
         String roomTheme = searchRoom.getRoomTheme();

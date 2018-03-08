@@ -1,11 +1,10 @@
 package com.capgemini.Hotel.Molvena.gr2.repositories;
 
 import com.capgemini.Hotel.Molvena.gr2.model.Room;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import java.util.Date;
+import java.time.LocalDate;
+
 
 @Repository
 public interface RoomRepository extends CrudRepository<Room, Long>{
@@ -27,5 +26,5 @@ public interface RoomRepository extends CrudRepository<Room, Long>{
     Iterable<Room> selectRoomForBooking(@Param("checkInDate") Date checkInDate,@Param("checkOutDate") Date checkOutDate,@Param("nrOfBeds") int nrOfBeds,@Param("roomTheme") String roomTheme,@Param("roomType") int roomType);
 */
 
-    Iterable<Room> findByBookings_DesiredPeriodTillBeforeOrBookings_DesiredPeriodFromAfter(Date checkInDate, Date checkOutDate);
+    Iterable<Room> findByBookings_DesiredPeriodTillBeforeOrBookings_DesiredPeriodFromAfter(LocalDate checkInDate, LocalDate checkOutDate);
 }
