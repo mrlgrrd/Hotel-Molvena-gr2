@@ -4,56 +4,56 @@ function getRooms(){
     // als de pagina geladen is, start deze functie
     $(document).ready(function(){
 
-    // ajax is een methode voor get/post requests
-    $.ajax({
-        // waar moet hij de request op uitvoeren
-        url : "http://localhost:8080/api/roomcontroller/showrooms",
-        // type actie
-        type : "get",
-        // als de actie lukt, voer deze functie uit
-        success: function(data){
+        // ajax is een methode voor get/post requests
+        $.ajax({
+            // waar moet hij de request op uitvoeren
+            url : "http://localhost:8080/api/roomcontroller/showrooms",
+            // type actie
+            type : "get",
+            // als de actie lukt, voer deze functie uit
+            success: function(data){
 
-            var roomList = "";
+                var roomList = "";
 
-            $.each(data, function(index, current){
-            var theme = "";
-            var cleanRoom = "";
-            var typeRoom = "";
-            var occupied = "";
+                $.each(data, function(index, current){
+                var theme = "";
+                var cleanRoom = "";
+                var typeRoom = "";
+                var occupied = "";
 
-            if(current.theme == null){
-                theme == ""}
-                else {theme = current.theme};
+                if(current.theme == null){
+                    theme == ""}
+                    else {theme = current.theme};
 
-            if(current.roomType == "HONEYMOON"){
-                typeRoom = "Honeymoon"}
-            else if(current.roomType == "DELUXE"){
-                typeRoom = "Deluxe"}
-            else if (current.roomType == "STANDARD"){
-                typeRoom="Standard"}
-                else {typeRoom = "not defined"};
+                if(current.roomType == "HONEYMOON"){
+                    typeRoom = "Honeymoon"}
+                else if(current.roomType == "DELUXE"){
+                    typeRoom = "Deluxe"}
+                else if (current.roomType == "STANDARD"){
+                    typeRoom="Standard"}
+                    else {typeRoom = "not defined"};
 
-            if(current.clean == null){
-                cleanRoom = ""}
-                else if (current.clean == false){cleanRoom = "Dirty"}
-                else if (current.clean == true){cleanRoom = "Clean"};
+                if(current.clean == null){
+                    cleanRoom = ""}
+                    else if (current.clean == false){cleanRoom = "Dirty"}
+                    else if (current.clean == true){cleanRoom = "Clean"};
 
-            if(current.occupied == null){
-                            occupied = ""}
-                            else if (current.occupied == false){occupied = "Available"}
-                            else if (current.occupied == true){occupied = "Occupied"};
+                if(current.occupied == null){
+                                occupied = ""}
+                                else if (current.occupied == false){occupied = "Available"}
+                                else if (current.occupied == true){occupied = "Occupied"};
 
-            var roomString = "<tr> <td>" + current.number + "</th> <td>  " + theme + "</th> <td>  " + typeRoom +"</th> <td> " + current.nrOfPeople + "</th> <td> " + occupied + "</td> <td> " + cleanRoom
-            + "</td><td><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateRoomModal' onclick='openUpdateModal("+current.id+")'>Update Room</button></th>"
-            + "<th><button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' + onclick='openDeleteModal("+current.id+")'>Delete Room</button></td></td>";
+                var roomString = "<tr> <td>" + current.number + "</th> <td>  " + theme + "</th> <td>  " + typeRoom +"</th> <td> " + current.nrOfPeople + "</th> <td> " + occupied + "</td> <td> " + cleanRoom
+                + "</td><td><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateRoomModal' onclick='openUpdateModal("+current.id+")'>Update Room</button></th>"
+                + "<th><button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' + onclick='openDeleteModal("+current.id+")'>Delete Room</button></td></td>";
 
-            roomList = roomList + roomString;
+                roomList = roomList + roomString;
 
-            });
+                });
 
-            $("#rooms").html(roomList);
-        }
-    });
+                $("#rooms").html(roomList);
+            }
+        });
     });
 
 };

@@ -12,6 +12,7 @@ import com.capgemini.Hotel.Molvena.gr2.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
+import java.util.Date;
 
 @Service
 public class GenericService {
@@ -32,13 +33,21 @@ public class GenericService {
     public void init(){
 
         Booking b1 = new Booking();
-        b1.setDesiredPeriodFrom("05-03-2018");
-        b1.setDesiredPeriodTill("06-03-2018");
+        String str1 = "03/05/2018";
+        Date date1 = new Date(str1);
+        b1.setDesiredPeriodFrom(date1);
+        String str2 = "03/06/2018";
+        Date date2 = new Date(str2);
+        b1.setDesiredPeriodTill(date2);
         this.bookingRepository.save(b1);
 
         Booking b2 = new Booking();
-        b2.setDesiredPeriodFrom("07-03-2018");
-        b2.setDesiredPeriodTill("08-03-2018");
+        String str3 = "03/15/2018";
+        Date date3 = new Date(str3);
+        b1.setDesiredPeriodFrom(date3);
+        String str4 = "03/18/2018";
+        Date date4 = new Date(str4);
+        b1.setDesiredPeriodTill(date4);
         this.bookingRepository.save(b2);
 
         Guest guest1 = new Guest();

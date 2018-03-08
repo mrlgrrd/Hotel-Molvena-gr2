@@ -8,9 +8,10 @@ import com.capgemini.Hotel.Molvena.gr2.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
@@ -106,10 +107,21 @@ public class RoomService {
         Date checkInDate = searchRoom.getCheckIn();
         Date checkOutDate = searchRoom.getCheckOut();
         int nrOfBeds = searchRoom.getNrOfBeds();
-        String roomType = searchRoom.getRoomType();
+        Enum<ERoomType> roomType = searchRoom.getRoomType();
         String roomTheme = searchRoom.getRoomTheme();
+        List<Room> theseRooms = new ArrayList<>();
 
-        return this.roomRepository.selectRoomForBooking(checkInDate,checkOutDate, nrOfBeds, roomTheme, roomType);
-
+        Iterable<Room> foundRooms = new ArrayList<>();
+        foundRooms = this.roomRepository.findByBookings_DesiredPeriodTillBeforeOrBookings_DesiredPeriodFromAfter(checkInDate,checkOutDate);
+        for (Room room:foundRooms) {
+            if(room.getNrOfPeople() <= nrOfBeds){
+                if(room.getTheme().equals(roomTheme)){
+                    if(room.getRoomType() == roomType){
+                        theseRooms.add(room);
+                    }
+                }
+            }
+        }
+        return theseRooms;
     }
 }

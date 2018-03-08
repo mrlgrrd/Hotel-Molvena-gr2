@@ -1,5 +1,7 @@
 package com.capgemini.Hotel.Molvena.gr2.model;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.Date;
 
 public class SearchRoom {
@@ -8,7 +10,8 @@ public class SearchRoom {
 
     private Date checkOut;
 
-    private String roomType;
+    @Enumerated(EnumType.STRING)
+    private ERoomType roomType;
 
     private int nrOfBeds;
 
@@ -49,11 +52,11 @@ public class SearchRoom {
         this.roomTheme = roomTheme;
     }
 
-    public String getRoomType() {
+    public ERoomType getRoomType() {
         return roomType;
     }
 
-    public void setRoomType(String roomType) {
+    public void setRoomType(ERoomType roomType) {
         this.roomType = roomType;
     }
 }
