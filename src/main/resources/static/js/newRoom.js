@@ -3,7 +3,7 @@ function addRoom(){
     var roomNumber = Number($("#roomNumber").val());
     var EroomType = Number($("#roomType").val());
     var roomTheme = $("#roomTheme").val();
-    var nrOfBeds = Number(("#nrOfBeds").val());
+    var nrOfBeds = Number($("#nrOfBeds").val());
     var roomOccupied = $("#occupied").val();
     var roomClean = $("#clean").val();
 
@@ -24,6 +24,8 @@ function addRoom(){
         data : newRoom,
         contentType : "application/json",
         success  :function(data){
+
+        $("#confirmation").text("You've successfully added room: #"+roomNumber)
         	console.log("post succesfull");
         	        }
     });
