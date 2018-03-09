@@ -1,11 +1,11 @@
 package com.capgemini.Hotel.Molvena.gr2.model;
 
 import com.capgemini.Hotel.Molvena.gr2.data.Dates;
+import com.capgemini.Hotel.Molvena.gr2.data.SearchRoom;
 import org.junit.Test;
 import org.meanbean.test.BeanTester;
 import org.meanbean.test.Configuration;
 import org.meanbean.test.ConfigurationBuilder;
-import org.springframework.boot.test.context.SpringBootTest;
 
 public class DomainTest {
 
