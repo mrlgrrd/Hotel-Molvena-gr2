@@ -64,8 +64,8 @@ function openDeleteModal(id, number){
     $("#deleteRoomModal").modal('show');
     var generateDeleteButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>"
                                 +"<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='deleteRoom("+id+");'>Delete</button>";
-
-    $("#deleteNumber").text(number);
+    var numberString = "Delete room "+ number;
+    $("#deleteNumber").text(numberString);
     $("#deleteModalFooter").html(generateDeleteButtons);
 }
 

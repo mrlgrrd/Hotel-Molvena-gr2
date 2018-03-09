@@ -85,7 +85,9 @@ public class RoomService {
                 break;
             }
         }
-        return foundRooms;
+         return foundRooms;
+
+
     }
 
     public void updateRoom(long id, Room updateRoom) {
@@ -109,7 +111,7 @@ public class RoomService {
         Enum<ERoomType> roomType = searchRoom.getRoomType();
         String roomTheme = searchRoom.getRoomTheme();
 
-        Set<Room> theseRooms = new HashSet<>();
+        Set<Room> theseRooms = new TreeSet<>();
 
         for (Room allRoom:this.roomRepository.findAll()) {
 
@@ -145,5 +147,6 @@ public class RoomService {
             }
         }
         return theseRooms;
+
     }
 }
