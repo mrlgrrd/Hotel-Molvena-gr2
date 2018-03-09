@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 
 @Repository
@@ -26,5 +27,5 @@ public interface RoomRepository extends CrudRepository<Room, Long>{
 //   @Query("FROM ROOM r LEFT OUTER JOIN ROOM_BOOKINGS rb ON (r.ID = rb.ROOMS_ID) LEFT OUTER JOIN BOOKING b ON (rb.BOOKINGS_ID = b.ID) WHERE (((b.desiredPeriodTill < (:checkInDate)) OR (b.desiredPeriodFrom > (:checkOutDate)))")
 //   List<Room> selectRoomForBooking(@Param("checkInDate") LocalDate checkInDate, @Param("checkOutDate") LocalDate checkOutDate);
 
-   List<Room> findByBookings_DesiredPeriodTillBeforeOrBookings_DesiredPeriodFromAfterOrBookingsIsNull(LocalDate checkInDate, LocalDate checkOutDate);
+   Set<Room> findByBookings_DesiredPeriodTillBeforeOrBookings_DesiredPeriodFromAfterOrBookingsIsNull(LocalDate checkInDate, LocalDate checkOutDate);
 }

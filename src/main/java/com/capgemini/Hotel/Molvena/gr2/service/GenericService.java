@@ -45,10 +45,10 @@ public class GenericService {
         Booking b2 = new Booking();
         String str3 = "2018-03-16";
         LocalDate date3 = LocalDate.parse(str3);
-        b1.setDesiredPeriodFrom(date3);
+        b2.setDesiredPeriodFrom(date3);
         String str4 = "2018-03-18";
         LocalDate date4 = LocalDate.parse(str4);
-        b1.setDesiredPeriodTill(date4);
+        b2.setDesiredPeriodTill(date4);
         this.bookingRepository.save(b2);
 
         Guest guest1 = new Guest();
@@ -74,7 +74,7 @@ public class GenericService {
 
         Room room1 = new Room();
         room1.setNumber(1);
-
+        room1.setNrOfPeople(4);
         room1.setTheme("Red");
         room1.setRoomType(ERoomType.DELUXE);
 
@@ -82,7 +82,7 @@ public class GenericService {
 
         Room room2 = new Room ();
         room2.setNumber(2);
-
+        room2.setNrOfPeople(4);
         room2.setTheme("Green");
         room2.setRoomType(ERoomType.DELUXE);
 
