@@ -1,6 +1,7 @@
 package com.capgemini.Hotel.Molvena.gr2.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,6 +22,8 @@ public class Room implements Serializable {
     private String theme;
     private int nrOfPeople;
     private boolean clean;
+
+    @NotNull
     private int number;
 
     @JsonIgnore

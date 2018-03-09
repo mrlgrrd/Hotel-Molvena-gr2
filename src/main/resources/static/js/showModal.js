@@ -20,7 +20,7 @@ function showGuestModalUpdate(id){
 
     removeBookingTable();
 
-	modaltext = "Update guest";
+	modaltext = "Edit";
 	$("#updateModalHeader").text(modaltext+":");
 
 	$('.countryselect').prop('disabled',false);
@@ -28,8 +28,8 @@ function showGuestModalUpdate(id){
 
 	showGuestModal(id);
 
-	var generateButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>"+
-	"<button type='button' class='btn btn-primary' data-dismiss='modal' onclick='updateGuest("+id+");'>"+modaltext+"</button>";
+	var generateButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>"+
+	"<button type='button' class='btn btn-info' data-dismiss='modal' onclick='updateGuest("+id+");'>"+modaltext+"</button>";
 
 	$("#buttonsupdatemodal").html(generateButtons);
 }
@@ -40,7 +40,7 @@ function showModalAddGuest(){
 
 	var modaltext
 
-		modaltext = "Add new guest";
+		modaltext = "Submit";
 		$("#updateModalHeader").text(modaltext+":");
 
 
@@ -52,7 +52,7 @@ function showModalAddGuest(){
 	showGuestModal(id);
 
 	var generateButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>"+
-	"<button type='button' class='btn btn-primary' data-dismiss='modal' onclick='addGuest();'>"+modaltext+"</button>";
+	"<button type='button' class='btn btn-success' data-dismiss='modal' onclick='addGuest();'>"+modaltext+"</button>";
 
 	$("#buttonsupdatemodal").html(generateButtons);
 
@@ -128,7 +128,7 @@ function findGuestBookings(id){
                         $.each(booking.rooms, function(roomIndex, room) {
                         	roomString = roomString + "#"+ room.id+ " " +room.theme +";          ";
                         });
-                        bookingString = bookingString+ "<td> " + roomString + "</td>" + "<td><button type='button' class='btn btn-info'>Update Booking</button></th>" + "<th><button type='button' class='btn btn-danger'>Delete Booking</button></td></td>";
+                        bookingString = bookingString+ "<td> " + roomString + "</td>" + "<td><button type='button' class='btn btn-info'>Edit</button></th>" + "<th><button type='button' class='btn btn-danger'>Delete</button></td></td>";
 
                         bookingList += bookingString;
 

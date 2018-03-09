@@ -16,15 +16,15 @@
 <body>
 
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="index.html">Molveno Lake Resort</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <!--<a class="navbar-brand" href="index.html">Molveno Lake Resort</a>-->
+    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">-->
+        <!--<span class="navbar-toggler-icon"></span>-->
+    <!--</button>-->
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index.html">Molveno Lake Resort<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Booking</a>
@@ -47,13 +47,6 @@
                     <a class="dropdown-item" href="viewallguests.html">View all</a>
                 </div>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Price</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="newprice.html">New Price</a>
-                    <a class="dropdown-item" href="viewallprice.html">View all</a>
-                </div>
-            </li>
         </ul>
     </div>
 </nav>
@@ -70,30 +63,25 @@
     <!-- line above the table where the search and add new room buttons are located -->
     <div class="row">
         <div class="col-md-1"></div>
-            <div class="col-md-1"><input type="text" id="searchRoomTheme" onkeyup="searchRoom()" placeholder="Search rooms" title="Search Rooms by Theme"></div>
-            <div class="col-md-7"></div>
-            <div class="col-md-2"><button type='button' class='btn btn-success' onclick="relocateNewRoom();">Add New Room</button>
-            </div>
+        <div class="col-md-1"><input type="text" id="searchRoomTheme" onkeyup="searchRoom()" placeholder="Search rooms" title="Search Rooms by Theme"></div>
+        <div class="col-md-7"></div>
+        <div class="col-md-2"><button type='button' class='btn btn-success' onclick="relocateNewRoom();">Add New Room</button></div>
         <div class="col-md-1"></div>
     </div>
-    <div class="row">
 
-    </div>
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
     <!-- Main table where the rooms are displayed -->
-    <table style="width:100%" class="display table-striped">
+    <table style="width:100%" class="table table-striped">
         <thead>
         <tr>
             <th>Number</th>
-            <th>Room Theme</th>
-            <th>Room Type</th>
+            <th>Theme</th>
+            <th>Type</th>
             <th>Nr of beds</th>
             <th>Occupied</th>
-            <th>Clean</th>
-            <th>Update</th>
-            <th>Delete</th>
+
         </tr>
         </thead>
         <tbody id="rooms">
@@ -149,14 +137,6 @@
                             <input type="number" class="form-control" id="nrOfBeds">
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="clean">Clean:
-                                <select class="form-control" id="clean">
-                                    <option value="false">Dirty</option>
-                                    <option value="true">Clean</option>
-                                </select>
-                            </label>
-                        </div>
-                        <div class="form-group col-md-3">
                             <label for="occupied">Available:
                                 <select class="form-control" id="occupied">
                                     <option value="true">Occupied</option>
@@ -186,10 +166,7 @@
 </main>
 
 
-<footer class="container">
-    <br>
-    <p>&copy; Molveno Lake Resort 2017-2018</p>
-</footer>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
