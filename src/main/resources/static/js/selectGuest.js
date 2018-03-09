@@ -106,7 +106,7 @@ function makeBooking(){
         var bookingModelObject = {
             booking : bookingObject,
             guestId : guest_id,
-            roomIds : roomids,
+            roomIds : [roomids],
         };
 
         var bookingModel = JSON.stringify(bookingModelObject);
@@ -167,7 +167,7 @@ function makeBooking(){
     function getRoomData(checkIn,checkOut,rooms){
         beginStay = checkIn;
         endStay =checkOut;
-        roomIds = rooms;
+        roomids = rooms;
         $("#bookingfrom").text(beginStay);
         $("#bookinguntil").text(beginStay);
         $("#rooms").text(rooms);
