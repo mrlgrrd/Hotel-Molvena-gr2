@@ -43,7 +43,7 @@ function showBookingList(){
                             $.each(booking.rooms, function(roomIndex, room) {
                                 roomString = roomString + "#"+ room.number+ ";          ";
                             });
-                            bookingString = bookingString+ "<td> " + roomString + "</td>" + "<td><button type='button' class='btn btn-info'>Edit</button></th>" + "<th><button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteBookingModal' onclick='javascript:showDeleteModal("+booking.id+")'>Delete</button></td></td>";;
+                            bookingString = bookingString+ "<td> " + roomString + "</td>" + "<td><button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteBookingModal' onclick='javascript:showDeleteModal("+booking.id+")'>Delete</button></td></td>";;
 
                             bookingList += bookingString;
 
