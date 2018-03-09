@@ -1,6 +1,6 @@
 var beginStay;
 var endStay;
-var roomids;
+var roomids = [];
 
 function searchRoom(){
     var inputCheckIn = $("#checkIn").val();
@@ -86,21 +86,22 @@ function searchRoom(){
 
 }
 
-function selectRoom(id){
+function selectRoom(newroomid){
      $.ajax({
-        	url : "http://localhost:8080/api/roomcontroller/findroombyid?id=" + id,
+        	url : "http://localhost:8080/api/roomcontroller/findroombyid?id=" + newroomid,
         	type : "get",
         	success: function(data){
         	    var roomString;
 
         			//$("#room").text(roomString);
         			//console.log(roomString);
-        			var room_id = id;
+        			var room_id = newroomid;
         			console.log(room_id);
 
 
         	}
         });
+     roomids.push(newroomid);
 
-     getRoomData(beginStay, endStay, id);
+     getRoomData(beginStay, endStay, roomids);
 }

@@ -106,7 +106,7 @@ function makeBooking(){
         var bookingModelObject = {
             booking : bookingObject,
             guestId : guest_id,
-            roomIds : [roomids],
+            roomIds : roomids,
         };
 
         var bookingModel = JSON.stringify(bookingModelObject);
