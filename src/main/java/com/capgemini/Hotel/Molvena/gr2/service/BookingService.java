@@ -40,25 +40,26 @@ public class BookingService {
     }
 
     public Booking addBooking(BookingModel bookingModel){
-
         Guest guest = guestService.findById(bookingModel.getGuestId());
-
         Booking booking = bookingModel.getBooking();
-        booking.setGuest(guest);
-        System.out.println(booking);
-        Booking newbooking = this.bookingRepository.save(booking);
-
         long[] roomids = bookingModel.getRoomIds();
-        if(roomids != null) {
-            for (int i = 0; i < roomids.length; i++) {
-                System.out.println(roomids[i]);
-                Room room = roomService.findRoomById(roomids[i]);
-                room.addBookingToRoom(newbooking);
-                newbooking.addRoomToBooking(room);
-                
+
+        if(guest != null && booking != null && roomids != null) {
+
+            booking.setGuest(guest);
+            Booking newbooking = this.bookingRepository.save(booking);
+            if (roomids != null) {
+                for (int i = 0; i < roomids.length; i++) {
+                    Room room = roomService.findRoomById(roomids[i]);
+                    room.addBookingToRoom(newbooking);
+                    newbooking.addRoomToBooking(room);
+
+                }
             }
+            return booking;
+        } else {
+            return null;
         }
-        return booking;
     }
 
     public Iterable<Booking> guestBooking(long id){

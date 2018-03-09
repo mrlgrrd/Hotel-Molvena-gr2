@@ -87,8 +87,6 @@ function makeBookingTable(){
 	+"<th>First name</th>"
 	+"<th>Last name</th>"
 	+"<th>Rooms</th>"
-	+"<th>Update</th>"
-	+"<th>Delete</th>"
 	+"</tr>"
 	+"</thead>"
 	+"<tbody id='bookings'>"
@@ -128,7 +126,7 @@ function findGuestBookings(id){
                         $.each(booking.rooms, function(roomIndex, room) {
                         	roomString = roomString + "#"+ room.id+ " " +room.theme +";          ";
                         });
-                        bookingString = bookingString+ "<td> " + roomString + "</td>" + "<td><button type='button' class='btn btn-info'>Edit</button></th>" + "<th><button type='button' class='btn btn-danger'>Delete</button></td></td>";
+                        bookingString = bookingString+ "<td> " + roomString + "</td>";
 
                         bookingList += bookingString;
 

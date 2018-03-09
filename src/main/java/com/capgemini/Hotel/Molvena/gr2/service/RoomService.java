@@ -104,6 +104,14 @@ public class RoomService {
 
     }
 
+    public Iterable<Room> findRooms(Long[] ids){
+        List<Room> rooms = new ArrayList<>();
+        for(int i = 0; i < ids.length; i++ ){
+            rooms.add(findRoomById(ids[i]));
+        }
+        return rooms;
+    }
+
     public Iterable<Room> selectRoomForBooking(SearchRoom searchRoom) {
         LocalDate checkInDate = searchRoom.getCheckIn();
         LocalDate checkOutDate = searchRoom.getCheckOut();
