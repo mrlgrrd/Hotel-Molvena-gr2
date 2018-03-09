@@ -45,7 +45,7 @@ function getRooms(){
 
                 var roomString = "<tr> <td>" + current.number + "</th> <td>  " + theme + "</th> <td>  " + typeRoom +"</th> <td> " + current.nrOfPeople + "</th> <td> " + occupied
                 + "</td><td><button type='button' class='btn btn-info' data-toggle='modal' data-target='#updateRoomModal' onclick='openUpdateModal("+current.id+")'>Edit</button></th>"
-                + "<th><button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' + onclick='openDeleteModal("+current.id+")'>Delete</button></td></td>";
+                + "<th><button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteGuestModal' + onclick='openDeleteModal("+current.id+","+current.number+")'>Delete</button></td></td>";
 
                 roomList = roomList + roomString;
 
@@ -60,11 +60,12 @@ function getRooms(){
 
 $(document).ready(getRooms());
 
-function openDeleteModal(id){
+function openDeleteModal(id, number){
     $("#deleteRoomModal").modal('show');
     var generateDeleteButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>"
                                 +"<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='deleteRoom("+id+");'>Delete</button>";
 
+    $("#deleteNumber").text(number);
     $("#deleteModalFooter").html(generateDeleteButtons);
 }
 
