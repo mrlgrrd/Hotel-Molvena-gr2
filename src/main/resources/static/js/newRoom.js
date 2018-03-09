@@ -3,7 +3,7 @@ function addRoom(){
     var roomNumber = Number($("#roomNumber").val());
     var EroomType = Number($("#roomType").val());
     var roomTheme = $("#roomTheme").val();
-    var nrOfBeds = $("#nrOfBeds").val();
+    var nrOfBeds = Number(("#nrOfBeds").val());
     var roomOccupied = $("#occupied").val();
     var roomClean = $("#clean").val();
 

@@ -10,9 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 @Transactional
@@ -111,25 +109,41 @@ public class RoomService {
         Enum<ERoomType> roomType = searchRoom.getRoomType();
         String roomTheme = searchRoom.getRoomTheme();
 
-        List<Room> theseRooms = new ArrayList<>();
+        Set<Room> theseRooms = new HashSet<>();
 
-        List<Room> foundRooms = new ArrayList<>();
-        foundRooms = this.roomRepository.findByBookings_DesiredPeriodTillBeforeOrBookings_DesiredPeriodFromAfterOrBookingsIsNull(checkInDate,checkOutDate);
-        for (Room room:foundRooms) {
-            if(room.getNrOfPeople() <= nrOfBeds){
-                if(roomTheme == null){
-                    if(room.getRoomType() == roomType){
-                        theseRooms.add(room);
-                    }
-                }
-                else if(room.getTheme().equals(roomTheme)){
-                    if(room.getRoomType() == roomType){
-                        theseRooms.add(room);
+        for (Room allRoom:this.roomRepository.findAll()) {
+
+            if (allRoom.getBookings() == null){
+               if(allRoom.getRoomType() == roomType && allRoom.getNrOfPeople() >= nrOfBeds) {
+                   if(roomTheme.equals(null)) {
+                       theseRooms.add(allRoom);
+                   }else if (allRoom.getTheme().equals(searchRoom.getRoomTheme())){
+                       theseRooms.add(allRoom);
+                   }
+               }
+            }
+
+            else if (allRoom.getBookings() != null){
+
+                Set<Room> foundRooms = new HashSet<>();
+                foundRooms = this.roomRepository.findByBookings_DesiredPeriodTillBeforeOrBookings_DesiredPeriodFromAfterOrBookingsIsNull(checkInDate, checkOutDate);
+
+                for (Room room : foundRooms) {
+                    if (room.getNrOfPeople() >= nrOfBeds) {
+                        if (roomTheme == null) {
+                            if (room.getRoomType() == roomType) {
+                                theseRooms.add(room);
+                            }
+                        } else if (room.getTheme().equals(roomTheme)) {
+                            if (room.getRoomType() == roomType) {
+
+                                theseRooms.add(room);
+                            }
+                        }
                     }
                 }
             }
         }
-
         return theseRooms;
     }
 }

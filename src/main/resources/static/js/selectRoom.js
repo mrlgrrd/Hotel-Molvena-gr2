@@ -2,10 +2,12 @@ function searchRoom(){
     var inputCheckIn = $("#checkIn").val();
     var inputCheckOut = $("#checkOut").val();
     var inputType = $("#roomType").val();
-    var nrOfBeds = Number($("#nrOfBeds").val());
+    var InputNrOfBeds = Number($("#nrOfBeds").val());
+
     var roomTheme = $("#roomTheme").val();
 
     console.log("input checkIn: " + inputCheckIn);
+    console.log("input nrofbeds: " + InputNrOfBeds);
 
     var checkInList = inputCheckIn.split("-");
     var checkInObject = {
@@ -28,7 +30,7 @@ function searchRoom(){
 
     var findRoom = {
         roomType : inputType,
-        nrOfPeople : nrOfBeds,
+        nrOfBeds : InputNrOfBeds,
         theme : roomTheme
         };
     findRoom.checkOut = inputCheckOut;
@@ -52,18 +54,20 @@ function searchRoom(){
                 var theme = "";
                 var typeRoom = "";
 
-                if(data.theme == null){
+                if(current.theme == null){
                     theme == ""}
-                    else {theme = data.theme};
+                    else {theme = current.theme};
+                    console.log("thema input: " + current.theme + " " + current.number);
+                    console.log("thema laten zien: " + theme + " " + current.number);
 
-                if(data.roomType == "HONEYMOON"){
+                if(current.roomType == "HONEYMOON"){
                     typeRoom = "Honeymoon"}
-                    else if(data.roomType == "DELUXE"){
+                    else if(current.roomType == "DELUXE"){
                         typeRoom = "Deluxe"}
-                    else if (data.roomType == "STANDARD"){
+                    else if (current.roomType == "STANDARD"){
                         typeRoom = "Standard"}
 
-                var roomString = "<tr> <td>" + current.number + "</th> <td>  " + theme + "</th> <td>  " + typeRoom +"</th> <td> " + current.nrOfPeople + "</th> <td> ";
+                var roomString = "<tr> <td>" + current.number + "</td> <td>  " + theme + "</td> <td>  " + typeRoom +"</td> <td> " + current.nrOfPeople + "</td> <td> " + "<button type='button' class='btn btn-info' onclick='javascript:selectRoom("+current.id+")'>Select Room</button></th>";
 
                 foundRooms = foundRooms + roomString;
                 });
@@ -74,4 +78,21 @@ function searchRoom(){
 
     });
 
+}
+
+function selectRoom(id){
+     $.ajax({
+        	url : "http://localhost:8080/api/roomcontroller/findroombyid?id=" + id,
+        	type : "get",
+        	success: function(data){
+        	    var roomString;
+
+        			//$("#room").text(roomString);
+        			//console.log(roomString);
+        			var room_id = id;
+        			console.log(room_id);
+
+
+        	}
+        });
 }

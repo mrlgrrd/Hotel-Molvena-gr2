@@ -19,18 +19,18 @@ function showBookingList(){
 
 
                         if (booking.desiredPeriodFrom != null){
-                        var checkInDay = booking.desiredPeriodFrom.dayOfMonth;
-                        var checkInMonth = booking.desiredPeriodFrom.monthValue;
-                        var checkInYear = booking.desiredPeriodFrom.year;
+                        var checkInDay = booking.desiredPeriodFrom[2];
+                        var checkInMonth = booking.desiredPeriodFrom[1];
+                        var checkInYear = booking.desiredPeriodFrom[0];
                         var checkIn = checkInDay + "-" + checkInMonth + "-" + checkInYear;
                         }
                         else {checkIn = "00-00-0000"};
 
 
                         if (booking.desiredPeriodTill != null){
-                        var checkOutDay = booking.desiredPeriodFrom.dayOfMonth;
-                        var checkOutMonth = booking.desiredPeriodFrom.monthValue;
-                        var checkOutYear = booking.desiredPeriodFrom.year;
+                        var checkOutDay = booking.desiredPeriodTill[2];
+                        var checkOutMonth = booking.desiredPeriodTill[1];
+                        var checkOutYear = booking.desiredPeriodTill[0];
                         var checkOut = checkOutDay + "-" + checkOutMonth + "-" + checkOutYear;
                         }
                         else { checkOut = "00-00-0000"};
