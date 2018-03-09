@@ -18,8 +18,8 @@ function showDeleteModal(id){
                 	$("#textdeletemodal").text("Are you sure you want to delete "+firstname+" "+preposition+" "+" "+lastname+" out of the system?");
                 }
 
-                var generateButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>"+
-                "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='deleteGuest("+id+");'>Delete guest</button>";
+                var generateButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>"+
+                "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='deleteGuest("+id+");'>Delete</button>";
 
                 $("#buttonsdeletemodal").html(generateButtons);
             }

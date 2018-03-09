@@ -25,21 +25,21 @@
 <body>
 
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="index.html">Molveno Lake Resort</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <!--<a class="navbar-brand" href="index.html">Molveno Lake Resort</a>-->
+    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">-->
+        <!--<span class="navbar-toggler-icon"></span>-->
+    <!--</button>-->
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index.html">Molveno Lake Resort<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Booking</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     <a class="dropdown-item" href="newbooking.html">New booking</a>
-                    <a class="dropdown-item" href="viewallbookings">View all</a>
+                    <a class="dropdown-item" href="viewallbookings.html">View all</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -54,13 +54,6 @@
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     <a class="dropdown-item" href="newguest.html">New guest</a>
                     <a class="dropdown-item" href="viewallguests.html">View all</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Price</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="newprice.html">New Price</a>
-                    <a class="dropdown-item" href="viewallprice.html">View all</a>
                 </div>
             </li>
         </ul>
@@ -78,31 +71,32 @@
     <!--Search guest button-->
     <div class="row">
         <div class="col-md-1"></div>
-        <input type="text" id="searchGuest" onkeyup="searchguest()" placeholder="Search guest" title="Type in a guest">
+        <div class="col-md-1"><input type="text" id="searchGuest" onkeyup="searchguest()" placeholder="Search guest" title="Type in a guest"></div>
         <div class="col-md-7"></div>
-
-        <button type='button' class='btn btn-success' data-toggle='modal' data-target='#updateGuestModal' onclick='javascript:showModalAddGuest()'>Add new guest</button>
-
+        <div class="col-md-2"><button type='button' class='btn btn-success' data-toggle='modal' data-target='#updateGuestModal' onclick='javascript:showModalAddGuest()'>Add new guest</button></div>
+        <div class="col-md-1"></div>
     </div>
-
+    <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
     <table style="width:100%" class="table table-striped">
         <thead>
         <tr>
             <th>First name</th>
-            <th> Preposition</th>
-            <th> Last name</th>
-            <th> City</th>
-            <th> Country</th>
-            <th> Telephone number</th>
-            <th> Email</th>
-            <th> See details</th>
-            <th> Update</th>
-            <th> Delete</th>
+            <th>Preposition</th>
+            <th>Last name</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Phone</th>
+            <th>Email</th>
+
+
         </tr>
         </thead>
         <tbody id="guests">
         </tbody>
     </table>
+    </div>
 
     <!-- deleteGuestModal -->
     <div class="modal fade" id="deleteGuestModal" tabindex="-1" role="dialog" aria-labelledby="deleteGuestModalLabel" aria-hidden="true">
@@ -136,7 +130,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="form-group col-md-4">
-                            <label for="fname">First name:</label>
+                            <label for="fname">First name:*</label>
                             <input type="text" class="form-control" id="fname">
                         </div>
                         <div class="form-group col-md-2">
@@ -144,7 +138,7 @@
                             <input type="text" class="form-control" id="preposition">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="lname">Last name:</label>
+                            <label for="lname">Last name:*</label>
                             <input type="text" class="form-control" id="lname">
                         </div>
                     </div>
@@ -169,23 +163,24 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="phone">Telephone number:</label>
+                            <label for="phone">Telephone number:**</label>
                             <input type="text" class="form-control" id="phone">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="email">E-mail address:</label>
+                            <label for="email">E-mail address:**</label>
                             <input type="text" class="form-control" id="email">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="passportnr">Passport number:</label>
+                            <label for="passportnr">Identification nr:</label>
                             <input type="text" class="form-control" id="passportnr">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="nationality">Nationality:</label>
                             <select class="form-control countryselect" id="nationality"></select>
                         </div>
+                        <p>*Required fields </br> **Phone or email required</p>
                     </div>
                     <div id="row">
                         <div id="bookingtable" class="col-md-12">
@@ -216,12 +211,10 @@
             </div>
         </div>
     </div>
+    </div>
 </main>
 
-<footer class="container">
-    </br>
-    <p>&copy; Molveno Lake Resort 2017-2018</p>
-</footer>
+
 
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>-->

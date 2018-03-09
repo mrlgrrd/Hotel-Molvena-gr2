@@ -16,15 +16,15 @@
 <body>
 
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="index.html">Molveno Lake Resort</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <!--<a class="navbar-brand" href="index.html">Molveno Lake Resort</a>-->
+    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">-->
+        <!--<span class="navbar-toggler-icon"></span>-->
+    <!--</button>-->
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index.html">Molveno Lake Resort<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Booking</a>
@@ -47,13 +47,6 @@
                     <a class="dropdown-item" href="viewallguests.html">View all</a>
                 </div>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Price</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="newprice.html">New Price</a>
-                    <a class="dropdown-item" href="viewallprice.html">View all</a>
-                </div>
-            </li>
         </ul>
     </div>
 </nav>
@@ -68,17 +61,17 @@
     </div>
 
     <div class="row">
-        <div class="col-md-2"></div>
+        <div class="col-md-1"></div>
         <div class="col-md-1"><input type="text" id="searchBooking" onkeyup="searchBooking()" placeholder="Search bookings" title="Search bookings by date"></div>
-        <div class="col-md-6"></div>
-        <div class="col-md-1"><button type='button' class='btn btn-success' onclick="goToNewBooking();">Add New Booking</button>
-        </div>
+        <div class="col-md-7"></div>
+        <div class="col-md-2"><button type='button' class='btn btn-success' onclick="goToNewBooking();">Add New Booking</button></div>
         <div class="col-md-2"></div>
     </div>
     <div class="row">
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="container">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
 
         <table style="width:100%" class="table table-striped">
             <thead>
@@ -89,7 +82,7 @@
                 <th>Guest name</th>
                 <th>Email</th>
                 <th>Phone</th>
-                <th>Rooms</th>
+                <th>Room(s)</th>
 
 
             </tr>
@@ -97,6 +90,7 @@
             <tbody id="bookings">
             </tbody>
         </table>
+        </div>
 
         <!-- deleteGuestModal -->
         <div class="modal fade" id="deleteBookingModal" tabindex="-1" role="dialog" aria-labelledby="deleteBookingModalLabel" aria-hidden="true">
