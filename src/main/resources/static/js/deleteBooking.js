@@ -7,14 +7,14 @@ function showDeleteModal(id){
 		type : "get",
 		success: function(data){
 
-			var firstname = data.id;
-			var lastname = data.id;
+			var firstname = "'Booking #" + data.id;
+			var lastname = "- guest: " + data.guest.firstname + " " + data.guest.lastname + "'";
 
             $("#textdeletemodal").text("Are you sure you want to delete "+firstname+" "+lastname+" out of the system?");
 
 
-                var generateButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>"+
-                "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='deleteBooking("+id+");'>Delete booking</button>";
+                var generateButtons = "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>"+
+                "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='deleteBooking("+id+");'>Delete</button>";
 
                 $("#buttonsdeletemodal").html(generateButtons);
             }
