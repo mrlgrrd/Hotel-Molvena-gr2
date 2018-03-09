@@ -22,8 +22,6 @@ public class Room implements Serializable {
     private String theme;
     private int nrOfPeople;
     private boolean clean;
-
-    @NotNull
     private int number;
 
     @JsonIgnore
