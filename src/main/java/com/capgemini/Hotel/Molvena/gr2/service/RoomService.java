@@ -85,7 +85,9 @@ public class RoomService {
                 break;
             }
         }
-        return foundRooms;
+         return foundRooms;
+
+
     }
 
     public void updateRoom(long id, Room updateRoom) {
@@ -102,6 +104,14 @@ public class RoomService {
 
     }
 
+    public Iterable<Room> findRooms(Long[] ids){
+        List<Room> rooms = new ArrayList<>();
+        for(int i = 0; i < ids.length; i++ ){
+            rooms.add(findRoomById(ids[i]));
+        }
+        return rooms;
+    }
+
     public Iterable<Room> selectRoomForBooking(SearchRoom searchRoom) {
         LocalDate checkInDate = searchRoom.getCheckIn();
         LocalDate checkOutDate = searchRoom.getCheckOut();
@@ -109,7 +119,7 @@ public class RoomService {
         Enum<ERoomType> roomType = searchRoom.getRoomType();
         String roomTheme = searchRoom.getRoomTheme();
 
-        Set<Room> theseRooms = new HashSet<>();
+        Set<Room> theseRooms = new TreeSet<>();
 
         for (Room allRoom:this.roomRepository.findAll()) {
 
@@ -145,5 +155,6 @@ public class RoomService {
             }
         }
         return theseRooms;
+
     }
 }

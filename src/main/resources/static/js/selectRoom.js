@@ -103,5 +103,9 @@ function selectRoom(newroomid){
         });
      roomids.push(newroomid);
 
+
+
+     showaddguest()
+
      getRoomData(beginStay, endStay, roomids);
 }
