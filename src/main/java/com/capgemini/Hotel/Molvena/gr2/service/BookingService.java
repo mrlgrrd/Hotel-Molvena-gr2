@@ -1,5 +1,6 @@
 package com.capgemini.Hotel.Molvena.gr2.service;
 import com.capgemini.Hotel.Molvena.gr2.data.BookingModel;
+import com.capgemini.Hotel.Molvena.gr2.data.Dates;
 import com.capgemini.Hotel.Molvena.gr2.model.Booking;
 import com.capgemini.Hotel.Molvena.gr2.model.Room;
 import com.capgemini.Hotel.Molvena.gr2.person.Guest;
@@ -7,6 +8,7 @@ import com.capgemini.Hotel.Molvena.gr2.repositories.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -138,6 +140,13 @@ public class BookingService {
             victim.getRooms().remove(r);
         }
         this.bookingRepository.delete(id);
+    }
+
+    public void checkWhetherAvailable(Dates dates){
+        String checkIn = dates.getDesiredPeriodFrom();
+        String checkOut = dates.getDesiredPeriodTill();
+        System.out.println(checkIn + " " + checkOut);
+
     }
 }
 

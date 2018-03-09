@@ -124,3 +124,26 @@ function makeBooking(){
         })
 
     }
+
+    function checkAvailability(){
+        var checkIn = ($("#checkIn").val()).toString();
+        console.log(checkIn);
+        var checkOut = ($("#checkOut").val()).toString();
+
+        var datesObject = {
+            desiredPeriodFrom : checkIn,
+            desiredPeriodTill : checkOut,
+        }
+
+        var dates = JSON.stringify(datesObject);
+
+        $.ajax({
+            url : "http://localhost:8080/api/bookingcontroller/checkavailability",
+            type: "get",
+            data: dates,
+            contentType: "application/json",
+            success : function(data){
+
+            }
+        })
+    }
