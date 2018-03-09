@@ -47,6 +47,11 @@ public class RoomController {
         return this.roomService.findRoomById(id);
     }
 
+    @RequestMapping(value = "findselectedrooms", method = RequestMethod.POST)
+    public Iterable<Room> selectedrooms(@RequestBody Long[] ids){
+        return this.roomService.findRooms(ids);
+    }
+
     /**
      * search the collection of rooms for the given parameters
      * @param theme search parameters
@@ -61,4 +66,6 @@ public class RoomController {
     public Iterable<Room> searchRoom(){
         return roomService.allRooms();
     }
+
+
 }
