@@ -1,4 +1,6 @@
-package com.capgemini.Hotel.Molvena.gr2.model;
+package com.capgemini.Hotel.Molvena.gr2.data;
+
+import com.capgemini.Hotel.Molvena.gr2.model.ERoomType;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

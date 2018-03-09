@@ -1,8 +1,8 @@
 package com.capgemini.Hotel.Molvena.gr2.service;
 
+import com.capgemini.Hotel.Molvena.gr2.data.SearchRoom;
 import com.capgemini.Hotel.Molvena.gr2.model.ERoomType;
 import com.capgemini.Hotel.Molvena.gr2.model.Room;
-import com.capgemini.Hotel.Molvena.gr2.model.SearchRoom;
 import com.capgemini.Hotel.Molvena.gr2.repositories.BookingRepository;
 import com.capgemini.Hotel.Molvena.gr2.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;

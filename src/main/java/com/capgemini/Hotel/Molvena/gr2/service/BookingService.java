@@ -142,10 +142,11 @@ public class BookingService {
         this.bookingRepository.delete(id);
     }
 
-    public void checkWhetherAvailable(Dates dates){
-        String checkIn = dates.getDesiredPeriodFrom();
-        String checkOut = dates.getDesiredPeriodTill();
-        System.out.println(checkIn + " " + checkOut);
+    public Iterable<Room> checkWhetherAvailable(Dates dates){
+        LocalDate checkIn = dates.getDesiredPeriodFrom();
+        LocalDate checkOut = dates.getDesiredPeriodTill();
+
+        return null;
 
     }
 }

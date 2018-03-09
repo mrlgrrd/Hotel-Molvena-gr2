@@ -51,9 +51,9 @@ public class BookingController {
         return bookingService.findById(id);
     }
 
-    @RequestMapping(value = "checkavailability/{dates}", method = RequestMethod.GET)
-    public void checkAvailability(@PathVariable Dates dates){
-        bookingService.checkWhetherAvailable(dates);
+    @RequestMapping(value = "checkavailability", method = RequestMethod.POST)
+    public Iterable<Room> checkAvailability(@RequestBody Dates dates){
+        return bookingService.checkWhetherAvailable(dates);
     }
 
 //    @RequestMapping(value = "deletebooking", method = RequestMethod.DELETE)

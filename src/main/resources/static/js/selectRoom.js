@@ -1,3 +1,7 @@
+var beginStay;
+var endStay;
+var roomids;
+
 function searchRoom(){
     var inputCheckIn = $("#checkIn").val();
     var inputCheckOut = $("#checkOut").val();
@@ -17,6 +21,8 @@ function searchRoom(){
     };
 
     var checkInJson = JSON.stringify(checkInObject);
+    beginStay = inputCheckIn;
+    endStay = inputCheckOut;
 
     console.log("checkoutn: "+ inputCheckOut);
     var checkOutList = inputCheckOut.split("-");
@@ -95,4 +101,6 @@ function selectRoom(id){
 
         	}
         });
+
+     getRoomData(beginStay, endStay, id);
 }

@@ -1,12 +1,10 @@
 package com.capgemini.Hotel.Molvena.gr2.controller;
 
 import com.capgemini.Hotel.Molvena.gr2.model.Room;
-import com.capgemini.Hotel.Molvena.gr2.model.SearchRoom;
+import com.capgemini.Hotel.Molvena.gr2.data.SearchRoom;
 import com.capgemini.Hotel.Molvena.gr2.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
 
 @RestController
 @RequestMapping("/api/roomcontroller/")

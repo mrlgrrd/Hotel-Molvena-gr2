@@ -126,24 +126,50 @@ function makeBooking(){
     }
 
     function checkAvailability(){
-        var checkIn = ($("#checkIn").val()).toString();
-        console.log(checkIn);
-        var checkOut = ($("#checkOut").val()).toString();
+        var inputCheckIn = $("#checkIn").val();
+        console.log(inputCheckIn);
+        // var checkInList = inputCheckIn.split("-");
+        // var checkInObject = {
+        //     dayOfMonth : checkInList[2],
+        //     month : checkInList[1],
+        //     year : checkInList[0]
+        // };
+        // var checkInJson = JSON.stringify(checkInObject);
+
+        var inputCheckOut = $("#checkOut").val();
+        // var checkOutList = inputCheckOut.split("-");
+        // var checkOutObject = {
+        //     dayOfMonth : checkOutList[2],
+        //     month : checkOutList[1],
+        //     year : checkOutList[0]
+        // };
+        // var checkOutJson = JSON.stringify(checkOutObject);
 
         var datesObject = {
-            desiredPeriodFrom : checkIn,
-            desiredPeriodTill : checkOut,
+            desiredPeriodFrom : inputCheckIn,
+            desiredPeriodTill : inputCheckOut,
         }
 
         var dates = JSON.stringify(datesObject);
+           console.log(dates);
 
         $.ajax({
             url : "http://localhost:8080/api/bookingcontroller/checkavailability",
-            type: "get",
+            type: "post",
             data: dates,
             contentType: "application/json",
             success : function(data){
 
             }
         })
+    }
+
+    function getRoomData(checkIn,checkOut,rooms){
+        beginStay = checkIn;
+        endStay =checkOut;
+        roomIds = rooms;
+        $("#bookingfrom").text(beginStay);
+        $("#bookinguntil").text(beginStay);
+        $("#rooms").text(rooms);
+
     }

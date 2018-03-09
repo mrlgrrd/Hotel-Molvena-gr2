@@ -4,23 +4,23 @@ import java.time.LocalDate;
 
 public class Dates {
 
-    private String desiredPeriodFrom;
+    private LocalDate desiredPeriodFrom;
 
-    private String desiredPeriodTill;
+    private LocalDate desiredPeriodTill;
 
-    public String getDesiredPeriodFrom() {
+    public LocalDate getDesiredPeriodFrom() {
         return desiredPeriodFrom;
     }
 
-    public void setDesiredPeriodFrom(String desiredPeriodFrom) {
+    public void setDesiredPeriodFrom(LocalDate desiredPeriodFrom) {
         this.desiredPeriodFrom = desiredPeriodFrom;
     }
 
-    public String getDesiredPeriodTill() {
+    public LocalDate getDesiredPeriodTill() {
         return desiredPeriodTill;
     }
 
-    public void setDesiredPeriodTill(String desiredPeriodTill) {
+    public void setDesiredPeriodTill(LocalDate desiredPeriodTill) {
         this.desiredPeriodTill = desiredPeriodTill;
     }
 }
