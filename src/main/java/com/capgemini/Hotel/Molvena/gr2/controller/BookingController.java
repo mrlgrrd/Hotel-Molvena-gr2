@@ -1,7 +1,9 @@
 package com.capgemini.Hotel.Molvena.gr2.controller;
 
 import com.capgemini.Hotel.Molvena.gr2.data.BookingModel;
+import com.capgemini.Hotel.Molvena.gr2.data.Dates;
 import com.capgemini.Hotel.Molvena.gr2.model.Booking;
+import com.capgemini.Hotel.Molvena.gr2.model.Room;
 import com.capgemini.Hotel.Molvena.gr2.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -47,6 +49,11 @@ public class BookingController {
     @RequestMapping(value = "findbooking/{id}", method = RequestMethod.GET)
     public Booking findBooking(@PathVariable Long id){
         return bookingService.findById(id);
+    }
+
+    @RequestMapping(value = "checkavailability/{dates}", method = RequestMethod.GET)
+    public void checkAvailability(@PathVariable Dates dates){
+        bookingService.checkWhetherAvailable(dates);
     }
 
 //    @RequestMapping(value = "deletebooking", method = RequestMethod.DELETE)

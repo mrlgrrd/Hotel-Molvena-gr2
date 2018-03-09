@@ -47,25 +47,6 @@ public class GuestService {
 
     public Iterable<Guest> searchGuests(String searchValue){
 
-//        int numberWords = searchWords.length;
-//        ArrayList<Guest> returnvalue = null;
-//        switch(numberWords){
-//            case 1: {
-//                returnvalue = this.guestRepository.findByFirstnameContainingIgnoreCaseOrLastnameContainingIgnoreCase(searchWords[0],searchWords[0]);
-//                break;
-//            }
-//            case 2: {
-//                returnvalue = this.guestRepository.findByFirstnameContainingIgnoreCaseAndLastnameContainingIgnoreCase(searchWords[0],searchWords[1]);
-//                break;
-//            }
-//            case 3: {
-//                returnvalue = this.guestRepository.findByFirstnameContainingIgnoreCaseAndPrepositionContainingIgnoreCaseAndLastnameContainingIgnoreCase(searchWords[0],searchWords[1],searchWords[2]);
-//                break;
-//            }
-//        }
-//
-//        return returnvalue;
-
         //All searchwords are divided by a space --> make an array with the different words
         String searchWords[] = searchValue.split(" ");
         //If the input is emptied, all guests should be shown again.
@@ -114,7 +95,35 @@ public class GuestService {
 
     @Transactional
     public Guest addGuest(Guest guest){
-        this.guestRepository.save(guest);
+        String firstname = guest.getFirstname();
+        String lastname = guest.getLastname();
+        String phone = guest.getPhone();
+        String email = guest.getEmail();
+        boolean names = false;
+        boolean contact = false;
+        if(firstname == "") {
+            guest.setFirstname(null);
+        }
+        if(lastname == ""){
+            guest.setLastname(null);
+        }
+        if(phone == ""){
+            guest.setPhone(null);
+            phone = null;
+        }
+        if(email == ""){
+            guest.setEmail(null);
+            email = null;
+        }
+        if(firstname != null && lastname != null){
+            names = true;
+        }
+        if(email != null || phone != null){
+            contact = true;
+        }
+        if(names && contact) {
+            this.guestRepository.save(guest);
+        }
         return guest;
     }
 
@@ -134,7 +143,33 @@ public class GuestService {
             guest.setPassportNumber(updateGuest.getPassportNumber());
             guest.setNationality(updateGuest.getNationality());
         }
-        this.guestRepository.save(guest);
+        String firstname = guest.getFirstname();
+        String lastname = guest.getLastname();
+        String phone = guest.getPhone();
+        String email = guest.getEmail();
+        boolean names = false;
+        boolean contact = false;
+        if(firstname == "") {
+            guest.setFirstname(null);
+        }
+        if(lastname == ""){
+            guest.setLastname(null);
+        }
+        if(phone == ""){
+            guest.setPhone(null);
+        }
+        if(email == ""){
+            guest.setEmail(null);
+        }
+        if(firstname != null && lastname != null){
+            names = true;
+        }
+        if(email != null || phone != null){
+            contact = true;
+        }
+        if(names && contact) {
+            this.guestRepository.save(guest);
+        }
         return guest;
     }
 
@@ -148,36 +183,6 @@ public class GuestService {
         Guest guest = this.guestRepository.findTopByOrderByIdDesc();
         return guest;
     }
-
-
-    //package com.capgemini.Hotel.Molvena.gr2.repositories;
-//import com.capgemini.Hotel.Molvena.gr2.person.Guest;
-//import org.springframework.stereotype.Repository;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//@Repository
-//public class GuestRepository {
-//
-//
-//
-//    private List<Guest> guests = new ArrayList<>();
-//
-//    public GuestRepository(){
-//        this.guests = new ArrayList<>();
-//    }
-//
-//
-//    public Guest newGuest(Guest guest){
-//        this.guests.add(guest);
-//        return guest;
-//    }
-//
-//    public List<Guest> getGuests() {
-//        return guests;
-//    }
-//}
 
 
 }
