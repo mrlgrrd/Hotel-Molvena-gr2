@@ -14,7 +14,6 @@ public class DomainTest {
         BeanTester tester = new BeanTester();
 
 
-        tester.testBean(Dates.class);
         tester.testBean(Room.class);
         tester.testBean(Price.class);
     }
@@ -31,5 +30,6 @@ public class DomainTest {
 
         tester.testBean(Booking.class, configuration);
         tester.testBean(SearchRoom.class, configuration);
+        tester.testBean(Dates.class, configuration);
     }
 }
