@@ -38,7 +38,7 @@ public class Booking implements Serializable {
                 "id=" + id +
                 ", desiredPeriodFrom='" + desiredPeriodFrom + '\'' +
                 ", desiredPeriodTill='" + desiredPeriodTill + '\'' +
-                ", guest=" + guest.getLastname() +
+                ", guest=" + (guest !=null ? guest.getLastname() : "empty") +
                 '}';
     }
 
